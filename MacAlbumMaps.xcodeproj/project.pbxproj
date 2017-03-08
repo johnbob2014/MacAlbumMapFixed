@@ -1,0 +1,662 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		1E4269D11E61BD02002087EA /* Date+Assistant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E4269D01E61BD02002087EA /* Date+Assistant.swift */; };
+		1E46B3111E625EE5000C6379 /* FileManager+Assistant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E46B3101E625EE5000C6379 /* FileManager+Assistant.swift */; };
+		1E46B3131E625F00000C6379 /* URL+Assistant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E46B3121E625F00000C6379 /* URL+Assistant.swift */; };
+		1E4C894D1E6D8ADF001AD00C /* GCStarAnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E4C894C1E6D8ADF001AD00C /* GCStarAnnotationView.swift */; };
+		1ECA41BB1E6160CE0068CB44 /* CLPlacemark+Assistant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ECA41BA1E6160CE0068CB44 /* CLPlacemark+Assistant.swift */; };
+		3D6B5AB6A20AF244E2674E9F /* Pods_MacAlbumMaps.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9BEBD2E7F4F52E4B845D5AEA /* Pods_MacAlbumMaps.framework */; };
+		4B2CD3AE1E65589100AA1B9E /* GCTreeNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B2CD3AD1E65589100AA1B9E /* GCTreeNode.swift */; };
+		4B2E3D651E5EE031003A913B /* MAMSettingManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B2E3D641E5EE031003A913B /* MAMSettingManager.swift */; };
+		4B2E5F091E695D1000866737 /* Array.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B2E5EFB1E695D1000866737 /* Array.swift */; };
+		4B2E5F0A1E695D1000866737 /* ContrastDisplayContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B2E5EFC1E695D1000866737 /* ContrastDisplayContext.swift */; };
+		4B2E5F0B1E695D1000866737 /* DynamicColor+Deriving.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B2E5EFD1E695D1000866737 /* DynamicColor+Deriving.swift */; };
+		4B2E5F0C1E695D1000866737 /* DynamicColor+HSB.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B2E5EFE1E695D1000866737 /* DynamicColor+HSB.swift */; };
+		4B2E5F0D1E695D1000866737 /* DynamicColor+HSL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B2E5EFF1E695D1000866737 /* DynamicColor+HSL.swift */; };
+		4B2E5F0E1E695D1000866737 /* DynamicColor+Lab.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B2E5F001E695D1000866737 /* DynamicColor+Lab.swift */; };
+		4B2E5F0F1E695D1000866737 /* DynamicColor+Mixing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B2E5F011E695D1000866737 /* DynamicColor+Mixing.swift */; };
+		4B2E5F101E695D1000866737 /* DynamicColor+RGBA.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B2E5F021E695D1000866737 /* DynamicColor+RGBA.swift */; };
+		4B2E5F111E695D1000866737 /* DynamicColor+XYZ.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B2E5F031E695D1000866737 /* DynamicColor+XYZ.swift */; };
+		4B2E5F121E695D1000866737 /* DynamicColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B2E5F041E695D1000866737 /* DynamicColor.swift */; };
+		4B2E5F131E695D1000866737 /* DynamicColorSpace.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B2E5F051E695D1000866737 /* DynamicColorSpace.swift */; };
+		4B2E5F141E695D1000866737 /* DynamicGradient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B2E5F061E695D1000866737 /* DynamicGradient.swift */; };
+		4B2E5F151E695D1000866737 /* HSL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B2E5F071E695D1000866737 /* HSL.swift */; };
+		4B2E5F161E695D1000866737 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B2E5F081E695D1000866737 /* Utils.swift */; };
+		4B2E5F181E695EF600866737 /* DynamicColor+Assistant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B2E5F171E695EF600866737 /* DynamicColor+Assistant.swift */; };
+		4B339BD71E5C131F00401B0C /* CoordinateInfo+AlecrimCoreDataAttributes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B339BCE1E5C131F00401B0C /* CoordinateInfo+AlecrimCoreDataAttributes.swift */; };
+		4B339BDA1E5C131F00401B0C /* FootprintsRepositoryInfo+AlecrimCoreDataAttributes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B339BD11E5C131F00401B0C /* FootprintsRepositoryInfo+AlecrimCoreDataAttributes.swift */; };
+		4B339BDD1E5C131F00401B0C /* MediaInfo+AlecrimCoreDataAttributes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B339BD41E5C131F00401B0C /* MediaInfo+AlecrimCoreDataAttributes.swift */; };
+		4B543D1B1E6655A40017E12C /* IcoMoon_Arrow-Bottom_WBG.png in Resources */ = {isa = PBXBuildFile; fileRef = 4B543D171E6655A40017E12C /* IcoMoon_Arrow-Bottom_WBG.png */; };
+		4B543D1C1E6655A40017E12C /* IcoMoon_Arrow-Left_WBG.png in Resources */ = {isa = PBXBuildFile; fileRef = 4B543D181E6655A40017E12C /* IcoMoon_Arrow-Left_WBG.png */; };
+		4B543D1D1E6655A40017E12C /* IcoMoon_Arrow-Right_WBG.png in Resources */ = {isa = PBXBuildFile; fileRef = 4B543D191E6655A40017E12C /* IcoMoon_Arrow-Right_WBG.png */; };
+		4B543D1E1E6655A40017E12C /* IcoMoon_Arrow-Top_WBG.png in Resources */ = {isa = PBXBuildFile; fileRef = 4B543D1A1E6655A40017E12C /* IcoMoon_Arrow-Top_WBG.png */; };
+		4B543D351E6659C90017E12C /* IcoMoon_Download_WBG.png in Resources */ = {isa = PBXBuildFile; fileRef = 4B543D1F1E6659C90017E12C /* IcoMoon_Download_WBG.png */; };
+		4B543D361E6659C90017E12C /* IcoMoon_Flag_WBG.png in Resources */ = {isa = PBXBuildFile; fileRef = 4B543D201E6659C90017E12C /* IcoMoon_Flag_WBG.png */; };
+		4B543D371E6659C90017E12C /* IcoMoon_Glasses_WBG.png in Resources */ = {isa = PBXBuildFile; fileRef = 4B543D211E6659C90017E12C /* IcoMoon_Glasses_WBG.png */; };
+		4B543D381E6659C90017E12C /* IcoMoon_Heart-Fill_WBG.png in Resources */ = {isa = PBXBuildFile; fileRef = 4B543D221E6659C90017E12C /* IcoMoon_Heart-Fill_WBG.png */; };
+		4B543D391E6659C90017E12C /* IcoMoon_Heart-Stroke_WBG.png in Resources */ = {isa = PBXBuildFile; fileRef = 4B543D231E6659C90017E12C /* IcoMoon_Heart-Stroke_WBG.png */; };
+		4B543D3A1E6659C90017E12C /* IcoMoon_MapMarker_WBG.png in Resources */ = {isa = PBXBuildFile; fileRef = 4B543D241E6659C90017E12C /* IcoMoon_MapMarker_WBG.png */; };
+		4B543D3B1E6659C90017E12C /* IcoMoon_Minus_WBG.png in Resources */ = {isa = PBXBuildFile; fileRef = 4B543D251E6659C90017E12C /* IcoMoon_Minus_WBG.png */; };
+		4B543D3C1E6659C90017E12C /* IcoMoon_Monitor_WBG.png in Resources */ = {isa = PBXBuildFile; fileRef = 4B543D261E6659C90017E12C /* IcoMoon_Monitor_WBG.png */; };
+		4B543D3D1E6659C90017E12C /* IcoMoon_PieChart_WBG.png in Resources */ = {isa = PBXBuildFile; fileRef = 4B543D271E6659C90017E12C /* IcoMoon_PieChart_WBG.png */; };
+		4B543D3E1E6659C90017E12C /* IcoMoon_Play_WBG.png in Resources */ = {isa = PBXBuildFile; fileRef = 4B543D281E6659C90017E12C /* IcoMoon_Play_WBG.png */; };
+		4B543D3F1E6659C90017E12C /* IcoMoon_Play-Rect_WBG.png in Resources */ = {isa = PBXBuildFile; fileRef = 4B543D291E6659C90017E12C /* IcoMoon_Play-Rect_WBG.png */; };
+		4B543D401E6659C90017E12C /* IcoMoon_Plus_WBG.png in Resources */ = {isa = PBXBuildFile; fileRef = 4B543D2A1E6659C90017E12C /* IcoMoon_Plus_WBG.png */; };
+		4B543D411E6659C90017E12C /* IcoMoon_Repeat_WBG.png in Resources */ = {isa = PBXBuildFile; fileRef = 4B543D2B1E6659C90017E12C /* IcoMoon_Repeat_WBG.png */; };
+		4B543D421E6659C90017E12C /* IcoMoon_Setting_WBG.png in Resources */ = {isa = PBXBuildFile; fileRef = 4B543D2C1E6659C90017E12C /* IcoMoon_Setting_WBG.png */; };
+		4B543D431E6659C90017E12C /* IcoMoon_Share_WBG.png in Resources */ = {isa = PBXBuildFile; fileRef = 4B543D2D1E6659C90017E12C /* IcoMoon_Share_WBG.png */; };
+		4B543D441E6659C90017E12C /* IcoMoon_Share2_WBG.png in Resources */ = {isa = PBXBuildFile; fileRef = 4B543D2E1E6659C90017E12C /* IcoMoon_Share2_WBG.png */; };
+		4B543D451E6659C90017E12C /* IcoMoon_StatisticBar1_WBG.png in Resources */ = {isa = PBXBuildFile; fileRef = 4B543D2F1E6659C90017E12C /* IcoMoon_StatisticBar1_WBG.png */; };
+		4B543D461E6659C90017E12C /* IcoMoon_Trophy_WBG.png in Resources */ = {isa = PBXBuildFile; fileRef = 4B543D301E6659C90017E12C /* IcoMoon_Trophy_WBG.png */; };
+		4B543D471E6659C90017E12C /* IcoMoon_User_WBG.png in Resources */ = {isa = PBXBuildFile; fileRef = 4B543D311E6659C90017E12C /* IcoMoon_User_WBG.png */; };
+		4B543D481E6659C90017E12C /* IcoMoon_User-Follow_WBG.png in Resources */ = {isa = PBXBuildFile; fileRef = 4B543D321E6659C90017E12C /* IcoMoon_User-Follow_WBG.png */; };
+		4B543D491E6659C90017E12C /* IcoMoon_User-On_WBG.png in Resources */ = {isa = PBXBuildFile; fileRef = 4B543D331E6659C90017E12C /* IcoMoon_User-On_WBG.png */; };
+		4B543D4A1E6659C90017E12C /* IcoMoon_Video_WBG.png in Resources */ = {isa = PBXBuildFile; fileRef = 4B543D341E6659C90017E12C /* IcoMoon_Video_WBG.png */; };
+		4B656F471E5D0C1F0074BFA1 /* MAMCoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B656F461E5D0C1F0074BFA1 /* MAMCoreDataManager.swift */; };
+		4B665B7C1E652B94008F5095 /* AppIcon.icns in Resources */ = {isa = PBXBuildFile; fileRef = 4B665B7B1E652B94008F5095 /* AppIcon.icns */; };
+		4B76B3391E567CD2003BED65 /* MediaMapVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B76B3381E567CD2003BED65 /* MediaMapVC.swift */; };
+		4B88D0831E5E8A6D008A69BC /* MediaInfoGroupAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B88D0821E5E8A6D008A69BC /* MediaInfoGroupAnnotation.swift */; };
+		4B88D0881E5E8ADE008A69BC /* GCLocationAnalyser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B88D0861E5E8ADE008A69BC /* GCLocationAnalyser.swift */; };
+		4B88D0891E5E8ADE008A69BC /* GCMediaLibraryLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B88D0871E5E8ADE008A69BC /* GCMediaLibraryLoader.swift */; };
+		4B88D08B1E5E90B4008A69BC /* FootprintAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B88D08A1E5E90B4008A69BC /* FootprintAnnotation.swift */; };
+		4B8FB5AC1E554EFB00400F58 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B8FB5AB1E554EFB00400F58 /* AppDelegate.swift */; };
+		4B8FB5B11E554EFB00400F58 /* MacAlbumMaps.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 4B8FB5AF1E554EFB00400F58 /* MacAlbumMaps.xcdatamodeld */; };
+		4B8FB5B31E554EFB00400F58 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4B8FB5B21E554EFB00400F58 /* Assets.xcassets */; };
+		4B8FB5B61E554EFB00400F58 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4B8FB5B41E554EFB00400F58 /* Main.storyboard */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		1E4269D01E61BD02002087EA /* Date+Assistant.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Date+Assistant.swift"; path = "GenericExtensions/Date+Assistant.swift"; sourceTree = "<group>"; };
+		1E46B3101E625EE5000C6379 /* FileManager+Assistant.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "FileManager+Assistant.swift"; path = "GenericExtensions/FileManager+Assistant.swift"; sourceTree = "<group>"; };
+		1E46B3121E625F00000C6379 /* URL+Assistant.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "URL+Assistant.swift"; path = "GenericExtensions/URL+Assistant.swift"; sourceTree = "<group>"; };
+		1E4C894C1E6D8ADF001AD00C /* GCStarAnnotationView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GCStarAnnotationView.swift; sourceTree = "<group>"; };
+		1ECA41B81E6118100068CB44 /* MacAlbumMaps.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MacAlbumMaps.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		1ECA41BA1E6160CE0068CB44 /* CLPlacemark+Assistant.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "CLPlacemark+Assistant.swift"; path = "GenericExtensions/CLPlacemark+Assistant.swift"; sourceTree = "<group>"; };
+		4B2CD3AD1E65589100AA1B9E /* GCTreeNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GCTreeNode.swift; sourceTree = "<group>"; };
+		4B2E3D641E5EE031003A913B /* MAMSettingManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MAMSettingManager.swift; path = MAMModels/MAMSettingManager.swift; sourceTree = "<group>"; };
+		4B2E5EFB1E695D1000866737 /* Array.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Array.swift; sourceTree = "<group>"; };
+		4B2E5EFC1E695D1000866737 /* ContrastDisplayContext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContrastDisplayContext.swift; sourceTree = "<group>"; };
+		4B2E5EFD1E695D1000866737 /* DynamicColor+Deriving.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "DynamicColor+Deriving.swift"; sourceTree = "<group>"; };
+		4B2E5EFE1E695D1000866737 /* DynamicColor+HSB.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "DynamicColor+HSB.swift"; sourceTree = "<group>"; };
+		4B2E5EFF1E695D1000866737 /* DynamicColor+HSL.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "DynamicColor+HSL.swift"; sourceTree = "<group>"; };
+		4B2E5F001E695D1000866737 /* DynamicColor+Lab.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "DynamicColor+Lab.swift"; sourceTree = "<group>"; };
+		4B2E5F011E695D1000866737 /* DynamicColor+Mixing.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "DynamicColor+Mixing.swift"; sourceTree = "<group>"; };
+		4B2E5F021E695D1000866737 /* DynamicColor+RGBA.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "DynamicColor+RGBA.swift"; sourceTree = "<group>"; };
+		4B2E5F031E695D1000866737 /* DynamicColor+XYZ.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "DynamicColor+XYZ.swift"; sourceTree = "<group>"; };
+		4B2E5F041E695D1000866737 /* DynamicColor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DynamicColor.swift; sourceTree = "<group>"; };
+		4B2E5F051E695D1000866737 /* DynamicColorSpace.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DynamicColorSpace.swift; sourceTree = "<group>"; };
+		4B2E5F061E695D1000866737 /* DynamicGradient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DynamicGradient.swift; sourceTree = "<group>"; };
+		4B2E5F071E695D1000866737 /* HSL.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HSL.swift; sourceTree = "<group>"; };
+		4B2E5F081E695D1000866737 /* Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
+		4B2E5F171E695EF600866737 /* DynamicColor+Assistant.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "DynamicColor+Assistant.swift"; path = "MacAlbumMaps/GenericExtensions/DynamicColor+Assistant.swift"; sourceTree = SOURCE_ROOT; };
+		4B339BCE1E5C131F00401B0C /* CoordinateInfo+AlecrimCoreDataAttributes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CoordinateInfo+AlecrimCoreDataAttributes.swift"; sourceTree = "<group>"; };
+		4B339BD11E5C131F00401B0C /* FootprintsRepositoryInfo+AlecrimCoreDataAttributes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "FootprintsRepositoryInfo+AlecrimCoreDataAttributes.swift"; sourceTree = "<group>"; };
+		4B339BD41E5C131F00401B0C /* MediaInfo+AlecrimCoreDataAttributes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "MediaInfo+AlecrimCoreDataAttributes.swift"; sourceTree = "<group>"; };
+		4B543D171E6655A40017E12C /* IcoMoon_Arrow-Bottom_WBG.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "IcoMoon_Arrow-Bottom_WBG.png"; path = "MAMResources/IcoMoon_Arrow-Bottom_WBG.png"; sourceTree = "<group>"; };
+		4B543D181E6655A40017E12C /* IcoMoon_Arrow-Left_WBG.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "IcoMoon_Arrow-Left_WBG.png"; path = "MAMResources/IcoMoon_Arrow-Left_WBG.png"; sourceTree = "<group>"; };
+		4B543D191E6655A40017E12C /* IcoMoon_Arrow-Right_WBG.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "IcoMoon_Arrow-Right_WBG.png"; path = "MAMResources/IcoMoon_Arrow-Right_WBG.png"; sourceTree = "<group>"; };
+		4B543D1A1E6655A40017E12C /* IcoMoon_Arrow-Top_WBG.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "IcoMoon_Arrow-Top_WBG.png"; path = "MAMResources/IcoMoon_Arrow-Top_WBG.png"; sourceTree = "<group>"; };
+		4B543D1F1E6659C90017E12C /* IcoMoon_Download_WBG.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = IcoMoon_Download_WBG.png; path = MAMResources/IcoMoon_Download_WBG.png; sourceTree = "<group>"; };
+		4B543D201E6659C90017E12C /* IcoMoon_Flag_WBG.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = IcoMoon_Flag_WBG.png; path = MAMResources/IcoMoon_Flag_WBG.png; sourceTree = "<group>"; };
+		4B543D211E6659C90017E12C /* IcoMoon_Glasses_WBG.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = IcoMoon_Glasses_WBG.png; path = MAMResources/IcoMoon_Glasses_WBG.png; sourceTree = "<group>"; };
+		4B543D221E6659C90017E12C /* IcoMoon_Heart-Fill_WBG.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "IcoMoon_Heart-Fill_WBG.png"; path = "MAMResources/IcoMoon_Heart-Fill_WBG.png"; sourceTree = "<group>"; };
+		4B543D231E6659C90017E12C /* IcoMoon_Heart-Stroke_WBG.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "IcoMoon_Heart-Stroke_WBG.png"; path = "MAMResources/IcoMoon_Heart-Stroke_WBG.png"; sourceTree = "<group>"; };
+		4B543D241E6659C90017E12C /* IcoMoon_MapMarker_WBG.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = IcoMoon_MapMarker_WBG.png; path = MAMResources/IcoMoon_MapMarker_WBG.png; sourceTree = "<group>"; };
+		4B543D251E6659C90017E12C /* IcoMoon_Minus_WBG.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = IcoMoon_Minus_WBG.png; path = MAMResources/IcoMoon_Minus_WBG.png; sourceTree = "<group>"; };
+		4B543D261E6659C90017E12C /* IcoMoon_Monitor_WBG.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = IcoMoon_Monitor_WBG.png; path = MAMResources/IcoMoon_Monitor_WBG.png; sourceTree = "<group>"; };
+		4B543D271E6659C90017E12C /* IcoMoon_PieChart_WBG.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = IcoMoon_PieChart_WBG.png; path = MAMResources/IcoMoon_PieChart_WBG.png; sourceTree = "<group>"; };
+		4B543D281E6659C90017E12C /* IcoMoon_Play_WBG.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = IcoMoon_Play_WBG.png; path = MAMResources/IcoMoon_Play_WBG.png; sourceTree = "<group>"; };
+		4B543D291E6659C90017E12C /* IcoMoon_Play-Rect_WBG.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "IcoMoon_Play-Rect_WBG.png"; path = "MAMResources/IcoMoon_Play-Rect_WBG.png"; sourceTree = "<group>"; };
+		4B543D2A1E6659C90017E12C /* IcoMoon_Plus_WBG.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = IcoMoon_Plus_WBG.png; path = MAMResources/IcoMoon_Plus_WBG.png; sourceTree = "<group>"; };
+		4B543D2B1E6659C90017E12C /* IcoMoon_Repeat_WBG.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = IcoMoon_Repeat_WBG.png; path = MAMResources/IcoMoon_Repeat_WBG.png; sourceTree = "<group>"; };
+		4B543D2C1E6659C90017E12C /* IcoMoon_Setting_WBG.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = IcoMoon_Setting_WBG.png; path = MAMResources/IcoMoon_Setting_WBG.png; sourceTree = "<group>"; };
+		4B543D2D1E6659C90017E12C /* IcoMoon_Share_WBG.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = IcoMoon_Share_WBG.png; path = MAMResources/IcoMoon_Share_WBG.png; sourceTree = "<group>"; };
+		4B543D2E1E6659C90017E12C /* IcoMoon_Share2_WBG.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = IcoMoon_Share2_WBG.png; path = MAMResources/IcoMoon_Share2_WBG.png; sourceTree = "<group>"; };
+		4B543D2F1E6659C90017E12C /* IcoMoon_StatisticBar1_WBG.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = IcoMoon_StatisticBar1_WBG.png; path = MAMResources/IcoMoon_StatisticBar1_WBG.png; sourceTree = "<group>"; };
+		4B543D301E6659C90017E12C /* IcoMoon_Trophy_WBG.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = IcoMoon_Trophy_WBG.png; path = MAMResources/IcoMoon_Trophy_WBG.png; sourceTree = "<group>"; };
+		4B543D311E6659C90017E12C /* IcoMoon_User_WBG.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = IcoMoon_User_WBG.png; path = MAMResources/IcoMoon_User_WBG.png; sourceTree = "<group>"; };
+		4B543D321E6659C90017E12C /* IcoMoon_User-Follow_WBG.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "IcoMoon_User-Follow_WBG.png"; path = "MAMResources/IcoMoon_User-Follow_WBG.png"; sourceTree = "<group>"; };
+		4B543D331E6659C90017E12C /* IcoMoon_User-On_WBG.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "IcoMoon_User-On_WBG.png"; path = "MAMResources/IcoMoon_User-On_WBG.png"; sourceTree = "<group>"; };
+		4B543D341E6659C90017E12C /* IcoMoon_Video_WBG.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = IcoMoon_Video_WBG.png; path = MAMResources/IcoMoon_Video_WBG.png; sourceTree = "<group>"; };
+		4B656F461E5D0C1F0074BFA1 /* MAMCoreDataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MAMCoreDataManager.swift; sourceTree = "<group>"; };
+		4B665B7B1E652B94008F5095 /* AppIcon.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; name = AppIcon.icns; path = MAMResources/AppIcon.icns; sourceTree = "<group>"; };
+		4B76B3381E567CD2003BED65 /* MediaMapVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MediaMapVC.swift; sourceTree = "<group>"; };
+		4B88D0821E5E8A6D008A69BC /* MediaInfoGroupAnnotation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MediaInfoGroupAnnotation.swift; path = MAMModels/MediaInfoGroupAnnotation.swift; sourceTree = "<group>"; };
+		4B88D0861E5E8ADE008A69BC /* GCLocationAnalyser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GCLocationAnalyser.swift; sourceTree = "<group>"; };
+		4B88D0871E5E8ADE008A69BC /* GCMediaLibraryLoader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GCMediaLibraryLoader.swift; sourceTree = "<group>"; };
+		4B88D08A1E5E90B4008A69BC /* FootprintAnnotation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FootprintAnnotation.swift; path = MAMModels/FootprintAnnotation.swift; sourceTree = "<group>"; };
+		4B8FB5AB1E554EFB00400F58 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		4B8FB5B01E554EFB00400F58 /* MacAlbumMaps.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = MacAlbumMaps.xcdatamodel; sourceTree = "<group>"; };
+		4B8FB5B21E554EFB00400F58 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		4B8FB5B51E554EFB00400F58 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		4B8FB5B71E554EFB00400F58 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		6826725DC6F90CA237FDBBDA /* Pods-MacAlbumMaps.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MacAlbumMaps.release.xcconfig"; path = "Pods/Target Support Files/Pods-MacAlbumMaps/Pods-MacAlbumMaps.release.xcconfig"; sourceTree = "<group>"; };
+		8975812DC64039374319AC5B /* Pods-MacAlbumMaps.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MacAlbumMaps.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MacAlbumMaps/Pods-MacAlbumMaps.debug.xcconfig"; sourceTree = "<group>"; };
+		9BEBD2E7F4F52E4B845D5AEA /* Pods_MacAlbumMaps.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MacAlbumMaps.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		4B8FB5A51E554EFB00400F58 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3D6B5AB6A20AF244E2674E9F /* Pods_MacAlbumMaps.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		0B09E196C83B2F202F3AAD68 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				8975812DC64039374319AC5B /* Pods-MacAlbumMaps.debug.xcconfig */,
+				6826725DC6F90CA237FDBBDA /* Pods-MacAlbumMaps.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		1ECA41B91E61604F0068CB44 /* GenericExtensions */ = {
+			isa = PBXGroup;
+			children = (
+				4B2E5EFA1E695D1000866737 /* DynamicColor */,
+				4B2E5F171E695EF600866737 /* DynamicColor+Assistant.swift */,
+				1ECA41BA1E6160CE0068CB44 /* CLPlacemark+Assistant.swift */,
+				1E4269D01E61BD02002087EA /* Date+Assistant.swift */,
+				1E46B3101E625EE5000C6379 /* FileManager+Assistant.swift */,
+				1E46B3121E625F00000C6379 /* URL+Assistant.swift */,
+			);
+			name = GenericExtensions;
+			sourceTree = "<group>";
+		};
+		4B2E5EFA1E695D1000866737 /* DynamicColor */ = {
+			isa = PBXGroup;
+			children = (
+				4B2E5EFB1E695D1000866737 /* Array.swift */,
+				4B2E5EFC1E695D1000866737 /* ContrastDisplayContext.swift */,
+				4B2E5EFD1E695D1000866737 /* DynamicColor+Deriving.swift */,
+				4B2E5EFE1E695D1000866737 /* DynamicColor+HSB.swift */,
+				4B2E5EFF1E695D1000866737 /* DynamicColor+HSL.swift */,
+				4B2E5F001E695D1000866737 /* DynamicColor+Lab.swift */,
+				4B2E5F011E695D1000866737 /* DynamicColor+Mixing.swift */,
+				4B2E5F021E695D1000866737 /* DynamicColor+RGBA.swift */,
+				4B2E5F031E695D1000866737 /* DynamicColor+XYZ.swift */,
+				4B2E5F041E695D1000866737 /* DynamicColor.swift */,
+				4B2E5F051E695D1000866737 /* DynamicColorSpace.swift */,
+				4B2E5F061E695D1000866737 /* DynamicGradient.swift */,
+				4B2E5F071E695D1000866737 /* HSL.swift */,
+				4B2E5F081E695D1000866737 /* Utils.swift */,
+			);
+			name = DynamicColor;
+			path = GenericExtensions/DynamicColor;
+			sourceTree = "<group>";
+		};
+		4B339BCD1E5C131F00401B0C /* AlecrimCoreData */ = {
+			isa = PBXGroup;
+			children = (
+				4B656F461E5D0C1F0074BFA1 /* MAMCoreDataManager.swift */,
+				4B339BCE1E5C131F00401B0C /* CoordinateInfo+AlecrimCoreDataAttributes.swift */,
+				4B339BD11E5C131F00401B0C /* FootprintsRepositoryInfo+AlecrimCoreDataAttributes.swift */,
+				4B339BD41E5C131F00401B0C /* MediaInfo+AlecrimCoreDataAttributes.swift */,
+			);
+			path = AlecrimCoreData;
+			sourceTree = "<group>";
+		};
+		4B665B7A1E652B87008F5095 /* MAMResources */ = {
+			isa = PBXGroup;
+			children = (
+				4B543D1F1E6659C90017E12C /* IcoMoon_Download_WBG.png */,
+				4B543D201E6659C90017E12C /* IcoMoon_Flag_WBG.png */,
+				4B543D211E6659C90017E12C /* IcoMoon_Glasses_WBG.png */,
+				4B543D221E6659C90017E12C /* IcoMoon_Heart-Fill_WBG.png */,
+				4B543D231E6659C90017E12C /* IcoMoon_Heart-Stroke_WBG.png */,
+				4B543D241E6659C90017E12C /* IcoMoon_MapMarker_WBG.png */,
+				4B543D251E6659C90017E12C /* IcoMoon_Minus_WBG.png */,
+				4B543D261E6659C90017E12C /* IcoMoon_Monitor_WBG.png */,
+				4B543D271E6659C90017E12C /* IcoMoon_PieChart_WBG.png */,
+				4B543D281E6659C90017E12C /* IcoMoon_Play_WBG.png */,
+				4B543D291E6659C90017E12C /* IcoMoon_Play-Rect_WBG.png */,
+				4B543D2A1E6659C90017E12C /* IcoMoon_Plus_WBG.png */,
+				4B543D2B1E6659C90017E12C /* IcoMoon_Repeat_WBG.png */,
+				4B543D2C1E6659C90017E12C /* IcoMoon_Setting_WBG.png */,
+				4B543D2D1E6659C90017E12C /* IcoMoon_Share_WBG.png */,
+				4B543D2E1E6659C90017E12C /* IcoMoon_Share2_WBG.png */,
+				4B543D2F1E6659C90017E12C /* IcoMoon_StatisticBar1_WBG.png */,
+				4B543D301E6659C90017E12C /* IcoMoon_Trophy_WBG.png */,
+				4B543D311E6659C90017E12C /* IcoMoon_User_WBG.png */,
+				4B543D321E6659C90017E12C /* IcoMoon_User-Follow_WBG.png */,
+				4B543D331E6659C90017E12C /* IcoMoon_User-On_WBG.png */,
+				4B543D341E6659C90017E12C /* IcoMoon_Video_WBG.png */,
+				4B665B7B1E652B94008F5095 /* AppIcon.icns */,
+				4B543D171E6655A40017E12C /* IcoMoon_Arrow-Bottom_WBG.png */,
+				4B543D181E6655A40017E12C /* IcoMoon_Arrow-Left_WBG.png */,
+				4B543D191E6655A40017E12C /* IcoMoon_Arrow-Right_WBG.png */,
+				4B543D1A1E6655A40017E12C /* IcoMoon_Arrow-Top_WBG.png */,
+			);
+			name = MAMResources;
+			sourceTree = "<group>";
+		};
+		4B88D0841E5E8A75008A69BC /* MAMModels */ = {
+			isa = PBXGroup;
+			children = (
+				4B2E3D641E5EE031003A913B /* MAMSettingManager.swift */,
+				4B88D0821E5E8A6D008A69BC /* MediaInfoGroupAnnotation.swift */,
+				4B88D08A1E5E90B4008A69BC /* FootprintAnnotation.swift */,
+			);
+			name = MAMModels;
+			sourceTree = "<group>";
+		};
+		4B88D0851E5E8ADE008A69BC /* GenericClasses */ = {
+			isa = PBXGroup;
+			children = (
+				4B88D0861E5E8ADE008A69BC /* GCLocationAnalyser.swift */,
+				4B88D0871E5E8ADE008A69BC /* GCMediaLibraryLoader.swift */,
+				4B2CD3AD1E65589100AA1B9E /* GCTreeNode.swift */,
+				1E4C894C1E6D8ADF001AD00C /* GCStarAnnotationView.swift */,
+			);
+			path = GenericClasses;
+			sourceTree = "<group>";
+		};
+		4B8FB59F1E554EFB00400F58 = {
+			isa = PBXGroup;
+			children = (
+				4B8FB5AA1E554EFB00400F58 /* MacAlbumMaps */,
+				0B09E196C83B2F202F3AAD68 /* Pods */,
+				D4C260E6018A492B02384509 /* Frameworks */,
+				1ECA41B81E6118100068CB44 /* MacAlbumMaps.app */,
+			);
+			sourceTree = "<group>";
+		};
+		4B8FB5AA1E554EFB00400F58 /* MacAlbumMaps */ = {
+			isa = PBXGroup;
+			children = (
+				4B665B7A1E652B87008F5095 /* MAMResources */,
+				1ECA41B91E61604F0068CB44 /* GenericExtensions */,
+				4B88D0851E5E8ADE008A69BC /* GenericClasses */,
+				4B88D0841E5E8A75008A69BC /* MAMModels */,
+				4B339BCD1E5C131F00401B0C /* AlecrimCoreData */,
+				4B8FB5AB1E554EFB00400F58 /* AppDelegate.swift */,
+				4B76B3381E567CD2003BED65 /* MediaMapVC.swift */,
+				4B8FB5B21E554EFB00400F58 /* Assets.xcassets */,
+				4B8FB5B41E554EFB00400F58 /* Main.storyboard */,
+				4B8FB5B71E554EFB00400F58 /* Info.plist */,
+				4B8FB5AF1E554EFB00400F58 /* MacAlbumMaps.xcdatamodeld */,
+			);
+			path = MacAlbumMaps;
+			sourceTree = "<group>";
+		};
+		D4C260E6018A492B02384509 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				9BEBD2E7F4F52E4B845D5AEA /* Pods_MacAlbumMaps.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		4B8FB5A71E554EFB00400F58 /* MacAlbumMaps */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 4B8FB5BA1E554EFB00400F58 /* Build configuration list for PBXNativeTarget "MacAlbumMaps" */;
+			buildPhases = (
+				B668336D507866C6AB548D24 /* [CP] Check Pods Manifest.lock */,
+				4B8FB5A41E554EFB00400F58 /* Sources */,
+				4B8FB5A51E554EFB00400F58 /* Frameworks */,
+				4B8FB5A61E554EFB00400F58 /* Resources */,
+				1020CF5B809C5E9B12668EC9 /* [CP] Embed Pods Frameworks */,
+				7C67406BA9231FD9CF887022 /* [CP] Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = MacAlbumMaps;
+			productName = MacAlbumMaps;
+			productReference = 1ECA41B81E6118100068CB44 /* MacAlbumMaps.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		4B8FB5A01E554EFB00400F58 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0820;
+				LastUpgradeCheck = 0820;
+				ORGANIZATIONNAME = ZhangBaoGuo;
+				TargetAttributes = {
+					4B8FB5A71E554EFB00400F58 = {
+						CreatedOnToolsVersion = 8.2.1;
+						DevelopmentTeam = 9R3WHNFTF3;
+						ProvisioningStyle = Automatic;
+					};
+				};
+			};
+			buildConfigurationList = 4B8FB5A31E554EFB00400F58 /* Build configuration list for PBXProject "MacAlbumMaps" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 4B8FB59F1E554EFB00400F58;
+			productRefGroup = 4B8FB59F1E554EFB00400F58;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				4B8FB5A71E554EFB00400F58 /* MacAlbumMaps */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		4B8FB5A61E554EFB00400F58 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4B543D481E6659C90017E12C /* IcoMoon_User-Follow_WBG.png in Resources */,
+				4B543D491E6659C90017E12C /* IcoMoon_User-On_WBG.png in Resources */,
+				4B543D421E6659C90017E12C /* IcoMoon_Setting_WBG.png in Resources */,
+				4B543D401E6659C90017E12C /* IcoMoon_Plus_WBG.png in Resources */,
+				4B543D1D1E6655A40017E12C /* IcoMoon_Arrow-Right_WBG.png in Resources */,
+				4B543D441E6659C90017E12C /* IcoMoon_Share2_WBG.png in Resources */,
+				4B543D1C1E6655A40017E12C /* IcoMoon_Arrow-Left_WBG.png in Resources */,
+				4B543D3B1E6659C90017E12C /* IcoMoon_Minus_WBG.png in Resources */,
+				4B543D411E6659C90017E12C /* IcoMoon_Repeat_WBG.png in Resources */,
+				4B8FB5B31E554EFB00400F58 /* Assets.xcassets in Resources */,
+				4B8FB5B61E554EFB00400F58 /* Main.storyboard in Resources */,
+				4B543D1B1E6655A40017E12C /* IcoMoon_Arrow-Bottom_WBG.png in Resources */,
+				4B543D4A1E6659C90017E12C /* IcoMoon_Video_WBG.png in Resources */,
+				4B543D351E6659C90017E12C /* IcoMoon_Download_WBG.png in Resources */,
+				4B543D3F1E6659C90017E12C /* IcoMoon_Play-Rect_WBG.png in Resources */,
+				4B543D1E1E6655A40017E12C /* IcoMoon_Arrow-Top_WBG.png in Resources */,
+				4B543D361E6659C90017E12C /* IcoMoon_Flag_WBG.png in Resources */,
+				4B543D371E6659C90017E12C /* IcoMoon_Glasses_WBG.png in Resources */,
+				4B665B7C1E652B94008F5095 /* AppIcon.icns in Resources */,
+				4B543D471E6659C90017E12C /* IcoMoon_User_WBG.png in Resources */,
+				4B543D451E6659C90017E12C /* IcoMoon_StatisticBar1_WBG.png in Resources */,
+				4B543D3C1E6659C90017E12C /* IcoMoon_Monitor_WBG.png in Resources */,
+				4B543D391E6659C90017E12C /* IcoMoon_Heart-Stroke_WBG.png in Resources */,
+				4B543D3D1E6659C90017E12C /* IcoMoon_PieChart_WBG.png in Resources */,
+				4B543D461E6659C90017E12C /* IcoMoon_Trophy_WBG.png in Resources */,
+				4B543D3A1E6659C90017E12C /* IcoMoon_MapMarker_WBG.png in Resources */,
+				4B543D431E6659C90017E12C /* IcoMoon_Share_WBG.png in Resources */,
+				4B543D381E6659C90017E12C /* IcoMoon_Heart-Fill_WBG.png in Resources */,
+				4B543D3E1E6659C90017E12C /* IcoMoon_Play_WBG.png in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		1020CF5B809C5E9B12668EC9 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-MacAlbumMaps/Pods-MacAlbumMaps-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		7C67406BA9231FD9CF887022 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-MacAlbumMaps/Pods-MacAlbumMaps-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		B668336D507866C6AB548D24 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		4B8FB5A41E554EFB00400F58 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4B2E5F181E695EF600866737 /* DynamicColor+Assistant.swift in Sources */,
+				4B8FB5B11E554EFB00400F58 /* MacAlbumMaps.xcdatamodeld in Sources */,
+				4B88D08B1E5E90B4008A69BC /* FootprintAnnotation.swift in Sources */,
+				4B2E5F0C1E695D1000866737 /* DynamicColor+HSB.swift in Sources */,
+				4B88D0891E5E8ADE008A69BC /* GCMediaLibraryLoader.swift in Sources */,
+				4B88D0831E5E8A6D008A69BC /* MediaInfoGroupAnnotation.swift in Sources */,
+				4B8FB5AC1E554EFB00400F58 /* AppDelegate.swift in Sources */,
+				4B2E5F131E695D1000866737 /* DynamicColorSpace.swift in Sources */,
+				4B2E5F0B1E695D1000866737 /* DynamicColor+Deriving.swift in Sources */,
+				4B76B3391E567CD2003BED65 /* MediaMapVC.swift in Sources */,
+				4B339BD71E5C131F00401B0C /* CoordinateInfo+AlecrimCoreDataAttributes.swift in Sources */,
+				4B2E5F111E695D1000866737 /* DynamicColor+XYZ.swift in Sources */,
+				1ECA41BB1E6160CE0068CB44 /* CLPlacemark+Assistant.swift in Sources */,
+				4B88D0881E5E8ADE008A69BC /* GCLocationAnalyser.swift in Sources */,
+				4B2E5F091E695D1000866737 /* Array.swift in Sources */,
+				4B2E5F141E695D1000866737 /* DynamicGradient.swift in Sources */,
+				4B2CD3AE1E65589100AA1B9E /* GCTreeNode.swift in Sources */,
+				1E46B3131E625F00000C6379 /* URL+Assistant.swift in Sources */,
+				1E4C894D1E6D8ADF001AD00C /* GCStarAnnotationView.swift in Sources */,
+				4B656F471E5D0C1F0074BFA1 /* MAMCoreDataManager.swift in Sources */,
+				4B2E5F121E695D1000866737 /* DynamicColor.swift in Sources */,
+				1E4269D11E61BD02002087EA /* Date+Assistant.swift in Sources */,
+				4B339BDD1E5C131F00401B0C /* MediaInfo+AlecrimCoreDataAttributes.swift in Sources */,
+				4B2E5F161E695D1000866737 /* Utils.swift in Sources */,
+				4B2E5F151E695D1000866737 /* HSL.swift in Sources */,
+				1E46B3111E625EE5000C6379 /* FileManager+Assistant.swift in Sources */,
+				4B2E5F0E1E695D1000866737 /* DynamicColor+Lab.swift in Sources */,
+				4B2E3D651E5EE031003A913B /* MAMSettingManager.swift in Sources */,
+				4B2E5F0D1E695D1000866737 /* DynamicColor+HSL.swift in Sources */,
+				4B339BDA1E5C131F00401B0C /* FootprintsRepositoryInfo+AlecrimCoreDataAttributes.swift in Sources */,
+				4B2E5F101E695D1000866737 /* DynamicColor+RGBA.swift in Sources */,
+				4B2E5F0A1E695D1000866737 /* ContrastDisplayContext.swift in Sources */,
+				4B2E5F0F1E695D1000866737 /* DynamicColor+Mixing.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		4B8FB5B41E554EFB00400F58 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				4B8FB5B51E554EFB00400F58 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		4B8FB5B81E554EFB00400F58 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "-";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.12;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		4B8FB5B91E554EFB00400F58 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "-";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.12;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = macosx;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+			};
+			name = Release;
+		};
+		4B8FB5BB1E554EFB00400F58 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 8975812DC64039374319AC5B /* Pods-MacAlbumMaps.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "Mac Developer";
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = 9R3WHNFTF3;
+				INFOPLIST_FILE = MacAlbumMaps/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.ZhangBaoGuo.MacAlbumMaps;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Debug;
+		};
+		4B8FB5BC1E554EFB00400F58 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6826725DC6F90CA237FDBBDA /* Pods-MacAlbumMaps.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "Mac Developer";
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = 9R3WHNFTF3;
+				INFOPLIST_FILE = MacAlbumMaps/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.ZhangBaoGuo.MacAlbumMaps;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		4B8FB5A31E554EFB00400F58 /* Build configuration list for PBXProject "MacAlbumMaps" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4B8FB5B81E554EFB00400F58 /* Debug */,
+				4B8FB5B91E554EFB00400F58 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		4B8FB5BA1E554EFB00400F58 /* Build configuration list for PBXNativeTarget "MacAlbumMaps" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4B8FB5BB1E554EFB00400F58 /* Debug */,
+				4B8FB5BC1E554EFB00400F58 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		4B8FB5AF1E554EFB00400F58 /* MacAlbumMaps.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				4B8FB5B01E554EFB00400F58 /* MacAlbumMaps.xcdatamodel */,
+			);
+			currentVersion = 4B8FB5B01E554EFB00400F58 /* MacAlbumMaps.xcdatamodel */;
+			path = MacAlbumMaps.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
+	};
+	rootObject = 4B8FB5A01E554EFB00400F58 /* Project object */;
+}
