@@ -139,6 +139,12 @@ extension MediaInfo : MKAnnotation,GCLocationAnalyserProtocol{
     }
 }
 
+extension FootprintsRepositoryInfo{
+    var filePath: String {
+        return appCachesPath + "/" + self.identifier!
+    }
+}
+
 //MARK: - CoreData管理器
 class MAMCoreDataManager: NSObject {
     
@@ -249,6 +255,7 @@ class MAMCoreDataManager: NSObject {
         var validMediaObjects = [MLMediaObject]()
         
         let latestMD = self.latestModificationDate
+        
         var newLatestMD: Date = latestMD
         for mediaObject in mediaObjects {
             if let currentMD = mediaObject.modificationDate{
@@ -618,6 +625,64 @@ class MAMCoreDataManager: NSObject {
         return MAMCoreDataManager.placemarkHierarchicalInfoTreeNode(placemarkHierarchicalInfoDictionary: MAMCoreDataManager.placemarkHierarchicalInfoDictionary(mediaInfos: mediaInfos))
     }
     
+    // MARK: - FootprintsRepositoryInfo
+    
+    
+    
+    class func addFR(fr: FootprintsRepository) -> Bool {
+        if FileManager.directoryExists(directoryPath: appCachesPath, autoCreate: true) == false {
+            print("无法创建存储文件夹，添加足迹包失败！")
+            return false
+        }
+        
+        if let existsInfo = appContext.footprintsRepositoryInfos.first(where: { $0.identifier == fr.identifier }){
+            print("已经存在相同的足迹包，添加失败！ ID:\(existsInfo.identifier)")
+            return false
+        }else{
+            
+            let filePath = appCachesPath + "/" + fr.identifier
+            
+            if fr.exportToMFRFile(filePath: filePath) {
+                
+                let info = appContext.footprintsRepositoryInfos.create()
+                
+                info.footprintsCount = NSNumber.init(value: fr.footprintAnnotations.count)
+                info.creationDate = fr.creationDate as NSDate?
+                info.radius = NSNumber.init(value: fr.radius)
+                
+                if let footprintsRepositoryType = fr.footprintsRepositoryType{
+                    info.footprintsRepositoryType = NSNumber.init(value: footprintsRepositoryType.rawValue)
+                }
+                
+                info.title = fr.title;
+                info.placemarkStatisticalInfo = fr.placemarkStatisticalInfo;
+                info.modificatonDate = fr.modificatonDate as NSDate?
+                
+                info.distance = NSNumber.init(value: fr.distance)
+                info.startDate = fr.startDate as NSDate
+                info.endDate = fr.endDate as NSDate
+                info.duration = NSNumber.init(value: fr.duration)
+                info.averageSpeed = NSNumber.init(value: fr.averageSpeed)
+                
+                info.identifier = fr.identifier
+                
+                do {
+                    try appContext.save()
+                    print("足迹包 \(info.title) 添加成功\n\(info.filePath)")
+                    return true
+                    
+                } catch {
+                    print("足迹包 \(fr.title) 添加失败！")
+                    return false
+                }
+                
+            }else{
+                print("创建足迹包文件失败！")
+                return false
+            }
+            
+        }
+    }
 }
 
 

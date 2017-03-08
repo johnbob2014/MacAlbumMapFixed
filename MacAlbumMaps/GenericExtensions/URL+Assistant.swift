@@ -9,15 +9,15 @@
 import Foundation
 
 extension URL{
-    var documentURL: URL{
+    static var documentURL: URL{
         return FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).last!
     }
     
-    var libraryURL: URL{
+    static var libraryURL: URL{
         return FileManager.default.urls(for: .libraryDirectory, in: .userDomainMask).last!
     }
     
-    var cachesURL: URL{
+    static var cachesURL: URL{
         return FileManager.default.urls(for: .cachesDirectory, in: .userDomainMask).last!
     }
 }

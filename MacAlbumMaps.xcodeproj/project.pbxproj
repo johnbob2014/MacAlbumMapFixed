@@ -66,6 +66,10 @@
 		4B88D0881E5E8ADE008A69BC /* GCLocationAnalyser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B88D0861E5E8ADE008A69BC /* GCLocationAnalyser.swift */; };
 		4B88D0891E5E8ADE008A69BC /* GCMediaLibraryLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B88D0871E5E8ADE008A69BC /* GCMediaLibraryLoader.swift */; };
 		4B88D08B1E5E90B4008A69BC /* FootprintAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B88D08A1E5E90B4008A69BC /* FootprintAnnotation.swift */; };
+		4B8B243F1E6F888C006C3D37 /* GCCoordinateTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B8B243E1E6F888C006C3D37 /* GCCoordinateTransformer.m */; };
+		4B8B24451E6F94EE006C3D37 /* FootprintsRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B8B24441E6F94EE006C3D37 /* FootprintsRepository.swift */; };
+		4B8B244B1E6F9BE0006C3D37 /* NSData+NSHash.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B8B24481E6F9BE0006C3D37 /* NSData+NSHash.m */; };
+		4B8B244C1E6F9BE0006C3D37 /* NSString+NSHash.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B8B244A1E6F9BE0006C3D37 /* NSString+NSHash.m */; };
 		4B8FB5AC1E554EFB00400F58 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B8FB5AB1E554EFB00400F58 /* AppDelegate.swift */; };
 		4B8FB5B11E554EFB00400F58 /* MacAlbumMaps.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 4B8FB5AF1E554EFB00400F58 /* MacAlbumMaps.xcdatamodeld */; };
 		4B8FB5B31E554EFB00400F58 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4B8FB5B21E554EFB00400F58 /* Assets.xcassets */; };
@@ -132,6 +136,14 @@
 		4B88D0861E5E8ADE008A69BC /* GCLocationAnalyser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GCLocationAnalyser.swift; sourceTree = "<group>"; };
 		4B88D0871E5E8ADE008A69BC /* GCMediaLibraryLoader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GCMediaLibraryLoader.swift; sourceTree = "<group>"; };
 		4B88D08A1E5E90B4008A69BC /* FootprintAnnotation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FootprintAnnotation.swift; path = MAMModels/FootprintAnnotation.swift; sourceTree = "<group>"; };
+		4B8B243D1E6F888C006C3D37 /* GCCoordinateTransformer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCCoordinateTransformer.h; sourceTree = "<group>"; };
+		4B8B243E1E6F888C006C3D37 /* GCCoordinateTransformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCCoordinateTransformer.m; sourceTree = "<group>"; };
+		4B8B24431E6F8BE3006C3D37 /* MacAlbumMaps-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "MacAlbumMaps-Bridging-Header.h"; sourceTree = "<group>"; };
+		4B8B24441E6F94EE006C3D37 /* FootprintsRepository.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FootprintsRepository.swift; path = MAMModels/FootprintsRepository.swift; sourceTree = "<group>"; };
+		4B8B24471E6F9BE0006C3D37 /* NSData+NSHash.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+NSHash.h"; sourceTree = "<group>"; };
+		4B8B24481E6F9BE0006C3D37 /* NSData+NSHash.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+NSHash.m"; sourceTree = "<group>"; };
+		4B8B24491E6F9BE0006C3D37 /* NSString+NSHash.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+NSHash.h"; sourceTree = "<group>"; };
+		4B8B244A1E6F9BE0006C3D37 /* NSString+NSHash.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+NSHash.m"; sourceTree = "<group>"; };
 		4B8FB5AB1E554EFB00400F58 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4B8FB5B01E554EFB00400F58 /* MacAlbumMaps.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = MacAlbumMaps.xcdatamodel; sourceTree = "<group>"; };
 		4B8FB5B21E554EFB00400F58 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -166,6 +178,7 @@
 		1ECA41B91E61604F0068CB44 /* GenericExtensions */ = {
 			isa = PBXGroup;
 			children = (
+				4B8B24461E6F9BE0006C3D37 /* NSHash */,
 				4B2E5EFA1E695D1000866737 /* DynamicColor */,
 				4B2E5F171E695EF600866737 /* DynamicColor+Assistant.swift */,
 				1ECA41BA1E6160CE0068CB44 /* CLPlacemark+Assistant.swift */,
@@ -249,6 +262,7 @@
 				4B2E3D641E5EE031003A913B /* MAMSettingManager.swift */,
 				4B88D0821E5E8A6D008A69BC /* MediaInfoGroupAnnotation.swift */,
 				4B88D08A1E5E90B4008A69BC /* FootprintAnnotation.swift */,
+				4B8B24441E6F94EE006C3D37 /* FootprintsRepository.swift */,
 			);
 			name = MAMModels;
 			sourceTree = "<group>";
@@ -256,12 +270,33 @@
 		4B88D0851E5E8ADE008A69BC /* GenericClasses */ = {
 			isa = PBXGroup;
 			children = (
+				4B8B243C1E6F888C006C3D37 /* GCCoordinateTransformer */,
 				4B88D0861E5E8ADE008A69BC /* GCLocationAnalyser.swift */,
 				4B88D0871E5E8ADE008A69BC /* GCMediaLibraryLoader.swift */,
 				4B2CD3AD1E65589100AA1B9E /* GCTreeNode.swift */,
 				1E4C894C1E6D8ADF001AD00C /* GCStarAnnotationView.swift */,
 			);
 			path = GenericClasses;
+			sourceTree = "<group>";
+		};
+		4B8B243C1E6F888C006C3D37 /* GCCoordinateTransformer */ = {
+			isa = PBXGroup;
+			children = (
+				4B8B243D1E6F888C006C3D37 /* GCCoordinateTransformer.h */,
+				4B8B243E1E6F888C006C3D37 /* GCCoordinateTransformer.m */,
+			);
+			path = GCCoordinateTransformer;
+			sourceTree = "<group>";
+		};
+		4B8B24461E6F9BE0006C3D37 /* NSHash */ = {
+			isa = PBXGroup;
+			children = (
+				4B8B24471E6F9BE0006C3D37 /* NSData+NSHash.h */,
+				4B8B24481E6F9BE0006C3D37 /* NSData+NSHash.m */,
+				4B8B24491E6F9BE0006C3D37 /* NSString+NSHash.h */,
+				4B8B244A1E6F9BE0006C3D37 /* NSString+NSHash.m */,
+			);
+			path = NSHash;
 			sourceTree = "<group>";
 		};
 		4B8FB59F1E554EFB00400F58 = {
@@ -284,6 +319,7 @@
 				4B339BCD1E5C131F00401B0C /* AlecrimCoreData */,
 				4B8FB5AB1E554EFB00400F58 /* AppDelegate.swift */,
 				4B76B3381E567CD2003BED65 /* MediaMapVC.swift */,
+				4B8B24431E6F8BE3006C3D37 /* MacAlbumMaps-Bridging-Header.h */,
 				4B8FB5B21E554EFB00400F58 /* Assets.xcassets */,
 				4B8FB5B41E554EFB00400F58 /* Main.storyboard */,
 				4B8FB5B71E554EFB00400F58 /* Info.plist */,
@@ -471,16 +507,20 @@
 				1E4C894D1E6D8ADF001AD00C /* GCStarAnnotationView.swift in Sources */,
 				4B656F471E5D0C1F0074BFA1 /* MAMCoreDataManager.swift in Sources */,
 				4B2E5F121E695D1000866737 /* DynamicColor.swift in Sources */,
+				4B8B24451E6F94EE006C3D37 /* FootprintsRepository.swift in Sources */,
 				1E4269D11E61BD02002087EA /* Date+Assistant.swift in Sources */,
 				4B339BDD1E5C131F00401B0C /* MediaInfo+AlecrimCoreDataAttributes.swift in Sources */,
 				4B2E5F161E695D1000866737 /* Utils.swift in Sources */,
 				4B2E5F151E695D1000866737 /* HSL.swift in Sources */,
+				4B8B244C1E6F9BE0006C3D37 /* NSString+NSHash.m in Sources */,
+				4B8B243F1E6F888C006C3D37 /* GCCoordinateTransformer.m in Sources */,
 				1E46B3111E625EE5000C6379 /* FileManager+Assistant.swift in Sources */,
 				4B2E5F0E1E695D1000866737 /* DynamicColor+Lab.swift in Sources */,
 				4B2E3D651E5EE031003A913B /* MAMSettingManager.swift in Sources */,
 				4B2E5F0D1E695D1000866737 /* DynamicColor+HSL.swift in Sources */,
 				4B339BDA1E5C131F00401B0C /* FootprintsRepositoryInfo+AlecrimCoreDataAttributes.swift in Sources */,
 				4B2E5F101E695D1000866737 /* DynamicColor+RGBA.swift in Sources */,
+				4B8B244B1E6F9BE0006C3D37 /* NSData+NSHash.m in Sources */,
 				4B2E5F0A1E695D1000866737 /* ContrastDisplayContext.swift in Sources */,
 				4B2E5F0F1E695D1000866737 /* DynamicColor+Mixing.swift in Sources */,
 			);
@@ -602,6 +642,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.ZhangBaoGuo.MacAlbumMaps;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "MacAlbumMaps/MacAlbumMaps-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
@@ -618,6 +659,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.ZhangBaoGuo.MacAlbumMaps;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "MacAlbumMaps/MacAlbumMaps-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Release;

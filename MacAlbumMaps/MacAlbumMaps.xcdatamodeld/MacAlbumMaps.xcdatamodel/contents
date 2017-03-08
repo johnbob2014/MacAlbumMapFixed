@@ -61,11 +61,11 @@
         <attribute name="originalURLString" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="thumbnailURLString" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="urlString" optional="YES" attributeType="String" syncable="YES"/>
-        <relationship name="coordinateInfo" maxCount="1" deletionRule="Nullify" destinationEntity="CoordinateInfo" syncable="YES"/>
+        <relationship name="coordinateInfo" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="CoordinateInfo" syncable="YES"/>
     </entity>
     <elements>
-        <element name="CoordinateInfo" positionX="3555" positionY="2808" width="128" height="450"/>
-        <element name="FootprintsRepositoryInfo" positionX="3726" positionY="3024" width="128" height="240"/>
-        <element name="MediaInfo" positionX="3888" positionY="2928" width="128" height="300"/>
+        <element name="CoordinateInfo" positionX="3555" positionY="2808" width="128" height="448"/>
+        <element name="FootprintsRepositoryInfo" positionX="3393" positionY="2664" width="128" height="240"/>
+        <element name="MediaInfo" positionX="3987" positionY="2778" width="128" height="298"/>
     </elements>
 </model>

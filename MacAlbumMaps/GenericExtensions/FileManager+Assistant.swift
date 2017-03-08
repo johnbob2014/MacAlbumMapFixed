@@ -9,7 +9,7 @@
 import Foundation
 
 extension FileManager{
-    func directoryExists(directoryPath: String,autoCreate: Bool) -> Bool {
+    class func directoryExists(directoryPath: String,autoCreate: Bool) -> Bool {
         
         var isDirectory: ObjCBool = false
         var exists = FileManager.default.fileExists(atPath: directoryPath,isDirectory: &isDirectory)
@@ -21,7 +21,7 @@ extension FileManager{
         }
         
         if autoCreate {
-            try! FileManager.default.createDirectory(atPath: directoryPath, withIntermediateDirectories: false, attributes: nil)
+            try! FileManager.default.createDirectory(atPath: directoryPath, withIntermediateDirectories: true, attributes: nil)
         }
         
         exists = FileManager.default.fileExists(atPath: directoryPath,isDirectory: &isDirectory)

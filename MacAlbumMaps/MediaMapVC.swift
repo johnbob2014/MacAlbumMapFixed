@@ -190,19 +190,22 @@ class MediaMapVC: NSViewController,MKMapViewDelegate,NSOutlineViewDelegate,NSOut
         self.locationOutlineView.expandItem(rootTreeNode)
         
         // 初始化statisticalInfoTV
-        statisticalInfoTVString = self.calculateStatisticalInfos(mediaInfos: sortedMediaInfos)
-        
-        //self.goBtn.layer?.backgroundColor = DynamicColor.randomFlatColor.cgColor
+        if MAMSettingManager.everLaunched {
+            statisticalInfoTVString = self.calculateStatisticalInfos(mediaInfos: sortedMediaInfos)
+        }else{
+            statisticalInfoTVString = NSLocalizedString("Preparing data for first lanuch, wait please...", comment: "正在为首次使用准备数据，请耐心等待...")
+        }
     }
     
     private func updateMediaInfos(){
         
         mediaLibraryLoader.loadCompletionHandler = { (loadedMediaObjects: [MLMediaObject]) -> Void in
-            MAMCoreDataManager.latestModificationDate = Date.init(timeIntervalSinceNow: 0.0)
+            //MAMCoreDataManager.latestModificationDate = Date.init(timeIntervalSince1970: 0.0)
             
             self.goBtn.isEnabled = false
             self.loadProgressIndicator.isHidden = false
             self.loadProgressIndicator.startAnimation(self)
+            
             
             
             MAMCoreDataManager.updateCoreData(from: loadedMediaObjects)
@@ -585,6 +588,8 @@ class MediaMapVC: NSViewController,MKMapViewDelegate,NSOutlineViewDelegate,NSOut
             // 更新数组
             self.currentMediaInfoGroupAnnotations.append(mediaGroupAnno)
             self.currentFootprintAnnotations.append(footprintAnno)
+            
+            
         }
         
         currentIDAnnotations = currentMediaInfoGroupAnnotations
@@ -597,6 +602,27 @@ class MediaMapVC: NSViewController,MKMapViewDelegate,NSOutlineViewDelegate,NSOut
             self.addCircleOverlays(annotations: self.currentIDAnnotations, radius: mergeDistance / 2.0)
         }
         
+        let footprintsRepository = FootprintsRepository()
+        footprintsRepository.creationDate = Date.init(timeIntervalSinceNow: 0.0)
+        footprintsRepository.footprintAnnotations = currentFootprintAnnotations
+        footprintsRepository.title = "test11"
+        
+        MAMCoreDataManager.addFR(fr: footprintsRepository)
+        
+        
+        //FileManager.directoryExists(directoryPath:MAMSettingManager.appCachesURL.absoluteString, autoCreate: true)
+        
+        //let file = MAMSettingManager.appCachesURL.appendingPathComponent("test3.mfr").absoluteString
+        //let su = footprintsRepository.exportToMFRFile(filePath: file)
+        //print(file)
+        //print(su)
+//        let data = NSKeyedArchiver.archivedData(withRootObject: footprintsRepository)
+//        print(data)
+        //print(footprintsRepository)
+        //print(file)
+        
+        //let newfr = FootprintsRepository.importFromMFRFile(filePath: file)
+       // print(newfr)
     }
     
     func addLineOverlays(annotations: [MKAnnotation],fixedArrowLength: CLLocationDistance = 0.0) {

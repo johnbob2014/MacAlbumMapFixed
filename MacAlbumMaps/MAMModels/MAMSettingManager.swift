@@ -26,6 +26,9 @@ enum MapExtendedMode: Int {
     case Record
 }
 
+let appCachesURL = URL.cachesURL.appendingPathComponent("com.ZhangBaoGuo.MacAlbumMaps")
+let appCachesPath = appCachesURL.absoluteString
+
 class MAMSettingManager: NSObject {
     /// 是否曾经登陆
     class var everLaunched: Bool{
@@ -41,4 +44,5 @@ class MAMSettingManager: NSObject {
             NSUserDefaultsController.shared().defaults.synchronize()
         }
     }
+    
 }
