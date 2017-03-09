@@ -381,7 +381,7 @@ class MAMCoreDataManager: NSObject {
                 
                 coordinateInfo.updatePlacemark(geocoder: geocoder){
                     (succeeded,placemarkString) -> Void in
-                    var infoString = NSLocalizedString("Total:", comment: "总计：") + "\(total)  " + NSLocalizedString("Now parsing:", comment: "正在解析：") + "\(reverseGeocodeSucceedCount+index+1)\n"
+                    var infoString = NSLocalizedString("Total:", comment: "总计：") + "\(total) " + NSLocalizedString("Now parsing:", comment: "正在解析：") + "\(reverseGeocodeSucceedCount+index+1) "
                     infoString += succeeded ? placemarkString! : NSLocalizedString("Parse failed!", comment: "解析失败！")
                     
                     DispatchQueue.main.async {

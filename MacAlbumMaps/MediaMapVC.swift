@@ -51,12 +51,14 @@ class MediaMapVC: NSViewController,MKMapViewDelegate,NSOutlineViewDelegate,NSOut
         eliminateCheckBtn.isHidden = false
         shareCheckBtn.isHidden = false
         favoriteCoordinateInfoBtn.isHidden = false
+        favoriteMediaBtn.isHidden = false
     }
     
     func hideMediaInfoButtons() {
         eliminateCheckBtn.isHidden = true
         shareCheckBtn.isHidden = true
         favoriteCoordinateInfoBtn.isHidden = true
+        favoriteMediaBtn.isHidden = true
     }
     
     /// 当前添加的、用于导航的 MKAnnotation数组
@@ -163,7 +165,7 @@ class MediaMapVC: NSViewController,MKMapViewDelegate,NSOutlineViewDelegate,NSOut
                 
                 eliminateCheckBtn.state = currentMediaInfo.eliminateThisMedia!.intValue
                 shareCheckBtn.state = currentMediaInfo.actAsThumbnail!.intValue
-                favoriteCoordinateInfoBtn.title = currentMediaInfo.favorite!.boolValue ? "⭐️":"☆"
+                //favoriteCoordinateInfoBtn.title = currentMediaInfo.favorite!.boolValue ? "⭐️":"☆"
                 
                 // 显示MediaInfo缩略图或原图
                 if let thumbnailURL = URL.init(string: currentMediaInfo.thumbnailURLString!){
@@ -279,7 +281,7 @@ class MediaMapVC: NSViewController,MKMapViewDelegate,NSOutlineViewDelegate,NSOut
         if MAMSettingManager.everLaunched {
             statisticalInfoTVString = self.calculateStatisticalInfos(mediaInfos: sortedMediaInfos)
         }else{
-            statisticalInfoTVString = NSLocalizedString("Preparing data for first lanuch, wait please...", comment: "正在为首次使用准备数据，请耐心等待...")
+            placemarkInfoTF.stringValue = NSLocalizedString("Preparing data for first lanuch, wait please...", comment: "正在为首次使用准备数据，请耐心等待...")
         }
         
         changeOverlayStyleBtn.tag = 0
@@ -653,6 +655,22 @@ class MediaMapVC: NSViewController,MKMapViewDelegate,NSOutlineViewDelegate,NSOut
         try! appContext.save()
     }
     
+    @IBOutlet weak var favoriteMediaBtn: NSButton!
+    @IBAction func favoriteMedia(_ sender: NSButton) {
+        var isFavorite = (currentMediaInfo.favorite?.boolValue)! ? true : false
+        
+        isFavorite = !isFavorite
+        
+        currentMediaInfo.favorite = NSNumber.init(value: isFavorite)
+        do {
+            try appContext.save()
+            //sender.title = isFavorite ? "⭐️" : "☆"
+            sender.state = isFavorite ? 1:0
+        } catch {
+            
+        }
+    }
+
     @IBOutlet weak var favoriteCoordinateInfoBtn: NSButton!
     @IBAction func favoriteCoordinate(_ sender: NSButton) {
         var isFavorite = (currentMediaInfo.coordinateInfo?.favorite?.boolValue)! ? true : false
@@ -662,7 +680,8 @@ class MediaMapVC: NSViewController,MKMapViewDelegate,NSOutlineViewDelegate,NSOut
         currentMediaInfo.coordinateInfo?.favorite = NSNumber.init(value: isFavorite)
         do {
             try appContext.save()
-            sender.title = isFavorite ? "⭐️" : "☆"
+            //sender.title = isFavorite ? "⭐️" : "☆"
+            sender.state = isFavorite ? 1:0
         } catch {
             
         }
