@@ -9,6 +9,7 @@
 import Cocoa
 
 enum FootprintsRepositoryType: Int {
+    case Unknown = 0
     case Sent = 1
     case Received = 2
     case Recorded = 3
@@ -149,7 +150,7 @@ class FootprintsRepository: NSObject,NSCoding {
         }
         
         if self.footprintsRepositoryType != nil {
-            aCoder.encode(self.footprintsRepositoryType, forKey: "footprintsRepositoryType")
+            aCoder.encode(self.footprintsRepositoryType!.rawValue, forKey: "footprintsRepositoryType")
         }
         
         aCoder.encode(self.placemarkStatisticalInfo, forKey: "placemarkStatisticalInfo")

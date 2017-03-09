@@ -29,12 +29,12 @@ enum PlacemarkInfoDictionaryKey : String {
 //MARK: - 扩展
 extension CoordinateInfo : MKAnnotation{
     
-    // MARK: - MKAnnotation Protocol
+    //  MKAnnotation Protocol
     public var coordinate: CLLocationCoordinate2D {
         return CLLocationCoordinate2DMake((self.latitude?.doubleValue)!, (self.longitude?.doubleValue)!)
     }
     
-    // MARK: -
+    /// 更新地址信息
     func updatePlacemark(geocoder: CLGeocoder,completionHandler:((Bool, String?) -> Void)? = nil) {
         geocoder.reverseGeocodeLocation(CLLocation.init(latitude: self.coordinate.latitude, longitude: self.coordinate.longitude)) { (placemarks, error) in
             if error == nil{
@@ -69,24 +69,30 @@ extension CoordinateInfo : MKAnnotation{
                 completionHandler?(false, nil)
             }
             
-            //try! self.managedObjectContext?.save()
         }
     }
 
 }
 
-extension MediaInfo : MKAnnotation,GCLocationAnalyserProtocol{
+extension MediaInfo: GCLocationAnalyserProtocol{
     
     // MKAnnotation Protocol
-    public var coordinate: CLLocationCoordinate2D {
-        return (self.coordinateInfo?.coordinate)!
-    }
+//    public var coordinate: CLLocationCoordinate2D {
+//        return (self.coordinateInfo?.coordinate)!
+//    }
     
+    var coordinateWGS84: CLLocationCoordinate2D {
+        let coordinateInfo = self.coordinateInfo!
+        
+        return CLLocationCoordinate2D.init(latitude: CLLocationDegrees(coordinateInfo.latitude!), longitude: CLLocationDegrees(coordinateInfo.longitude!))
+    }
+
     // GCLocationAnalyserProtocol
     var location: CLLocation{
-        return CLLocation.init(latitude: self.coordinate.latitude, longitude: self.coordinate.longitude)
+        return CLLocation.init(latitude: self.coordinateWGS84.latitude, longitude: self.coordinateWGS84.longitude)
     }
     
+    // 详细信息
     var detailInfomation: String{
         get{
             var detail = ""
@@ -627,9 +633,8 @@ class MAMCoreDataManager: NSObject {
     
     // MARK: - FootprintsRepositoryInfo
     
-    
-    
-    class func addFR(fr: FootprintsRepository) -> Bool {
+    /// 添加 FootprintsRepositoryInfo
+    class func addFRInfo(fr: FootprintsRepository) -> Bool {
         if FileManager.directoryExists(directoryPath: appCachesPath, autoCreate: true) == false {
             print("无法创建存储文件夹，添加足迹包失败！")
             return false
@@ -683,18 +688,45 @@ class MAMCoreDataManager: NSObject {
             
         }
     }
+    
+    /// 移除 FootprintsRepositoryInfo
+    class func removeFRInfo(frInfo: FootprintsRepositoryInfo) -> Bool {
+        let title = frInfo.title!
+        let filePath = frInfo.filePath
+        var succeeded = false
+        
+        appContext.delete(frInfo)
+        
+        do {
+            try appContext.save()
+            print("足迹包 \(title) 移除成功")
+            succeeded = true
+        } catch  {
+            print("足迹包 \(title) 移除失败！")
+        }
+        
+        if FileManager.default.fileExists(atPath: filePath) {
+            do {
+                try FileManager.default.removeItem(atPath: filePath)
+                print("足迹包文件删除成功")
+            } catch  {
+                print("足迹包文件删除失败！")
+            }
+        }
+        
+        return succeeded
+    }
 }
 
 
 /*
 extension CoordinateInfo : MKAnnotation{
  
-    // MARK: - MKAnnotation Protocol
+ 
     public var coordinate: CLLocationCoordinate2D {
         return CLLocationCoordinate2DMake((self.latitude?.doubleValue)!, (self.longitude?.doubleValue)!)
     }
-    
-    // MARK: - Core Data
+ 
     class func truncatedValue(_ aValue:Double) -> Double {
         let truncateBase : Double = pow(10, 10)
         return floor(aValue * truncateBase) / truncateBase
