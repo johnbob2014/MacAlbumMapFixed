@@ -66,9 +66,17 @@ class MediaMapVC: NSViewController,MKMapViewDelegate,NSOutlineViewDelegate,NSOut
     var currentMediaInfoGroupAnnotations = [MediaInfoGroupAnnotation]()
     //var currentFootprintAnnotations = [FootprintAnnotation]()
     
+    var indexOfCurrentAnnotationDidChange = false
     /// 当前MKAnnotation序号 
     /// ☆带属性观测器的核心属性
     var indexOfCurrentAnnotation = 0{
+        willSet{
+            if indexOfCurrentAnnotation == newValue {
+                indexOfCurrentAnnotationDidChange = false
+            }else{
+                indexOfCurrentAnnotationDidChange = true
+            }
+        }
         didSet{
             print("didSet: indexOfCurrentAnnotation")
             if indexOfCurrentAnnotation >= 0 && indexOfCurrentAnnotation < currentIDAnnotations.count{
@@ -76,19 +84,15 @@ class MediaMapVC: NSViewController,MKMapViewDelegate,NSOutlineViewDelegate,NSOut
                 // 显示序号
                 self.indexOfCurrentAnnotationLabel.stringValue = "\(self.indexOfCurrentAnnotation + 1)/\(self.currentIDAnnotations.count)"
                 
-                // ☆移动地图
-                let annotation = self.currentIDAnnotations[indexOfCurrentAnnotation]
-                mainMapView.setCenter(annotation.coordinate, animated: false)
-                mainMapView.selectAnnotation(annotation, animated: true)
-                
-                mainMapView.removeOverlays(mainMapView.overlays)
-                
                 // 如果是时刻模式，或者显示的是时刻模式生成的足迹包，添加直线路线
                 if indexOfTabViewItem == 0 || (currentFootprintsRepository != nil && currentFootprintsRepository!.radius == 0){
-                    var startCoord = CLLocationCoordinate2D.init()
-                    var endCoord = CLLocationCoordinate2D.init()
-                    var overlayTitle = ""
+                    
                     if currentIDAnnotations.count >= 2{
+                        mainMapView.removeOverlays(mainMapView.overlays.filter({ !($0 is MKCircle) }))
+                        var startCoord = CLLocationCoordinate2D.init()
+                        var endCoord = CLLocationCoordinate2D.init()
+                        var overlayTitle = ""
+                        
                         if indexOfCurrentAnnotation == 0 {
                             // 添加下条路线
                             startCoord = currentIDAnnotations[0].coordinate
@@ -118,6 +122,13 @@ class MediaMapVC: NSViewController,MKMapViewDelegate,NSOutlineViewDelegate,NSOut
                             self.createSignleOverlay(startCoordinate: startCoord, endCoordinate: endCoord, overlayTitle: overlayTitle)
                         }
                     }
+                }
+                
+                // ☆移动地图
+                if indexOfCurrentAnnotationDidChange {
+                    let annotation = self.currentIDAnnotations[indexOfCurrentAnnotation]
+                    mainMapView.setCenter(annotation.coordinate, animated: false)
+                    mainMapView.selectAnnotation(annotation, animated: true)
                 }
                 
             }else{
@@ -165,7 +176,8 @@ class MediaMapVC: NSViewController,MKMapViewDelegate,NSOutlineViewDelegate,NSOut
                 
                 eliminateCheckBtn.state = currentMediaInfo.eliminateThisMedia!.intValue
                 shareCheckBtn.state = currentMediaInfo.actAsThumbnail!.intValue
-                //favoriteCoordinateInfoBtn.title = currentMediaInfo.favorite!.boolValue ? "⭐️":"☆"
+                favoriteMediaBtn.state = (currentMediaInfo.favorite?.intValue)!
+                favoriteCoordinateInfoBtn.state = (currentMediaInfo.coordinateInfo?.favorite?.intValue)!
                 
                 // 显示MediaInfo缩略图或原图
                 if let thumbnailURL = URL.init(string: currentMediaInfo.thumbnailURLString!){
@@ -205,7 +217,7 @@ class MediaMapVC: NSViewController,MKMapViewDelegate,NSOutlineViewDelegate,NSOut
         didSet{
             if indexOfCurrentThumbnail >= 0 && indexOfCurrentThumbnail < currentFootprintAnnotationThumbnailArray.count{
                 imageView.image = currentThumbnail
-                currentMediaInfoLabel.stringValue = "\(indexOfCurrentThumbnail + 1)/\(currentFootprintAnnotationThumbnailArray.count)"
+                currentMediaInfoLabel.stringValue = "\(indexOfCurrentThumbnail + 1)/\(currentFootprintAnnotationThumbnailArray.count)\n\n\n\n\n\n\n\n"
             }else{
                 indexOfCurrentThumbnail = oldValue
             }
@@ -546,6 +558,22 @@ class MediaMapVC: NSViewController,MKMapViewDelegate,NSOutlineViewDelegate,NSOut
     }
 
     // MARK: - 右侧功能按钮
+    
+    // MARK: - 显示隐藏我的位置
+    @IBAction func userLocationBtnTD(_ sender: NSButton) {
+        var shows = mainMapView.showsUserLocation
+        shows = !shows
+        mainMapView.showsUserLocation = shows
+        
+        if shows {
+            mainMapView.selectAnnotation(mainMapView.userLocation, animated: true)
+            sender.image = NSImage.init(named: "IcoMoon_User-On_WBG")
+        }else{
+            sender.image = NSImage.init(named: "IcoMoon_User_WBG")
+        }
+    }
+    
+    // MARK: - 地图类型转换
     @IBAction func mapTypeBtnTD(_ sender: NSButton) {
         if mainMapView.mapType == MKMapType.standard {
             mainMapView.mapType = MKMapType.hybrid
@@ -554,7 +582,7 @@ class MediaMapVC: NSViewController,MKMapViewDelegate,NSOutlineViewDelegate,NSOut
         }
     }
     
-    
+    // MARK: - 路线类型转换
     @IBOutlet weak var changeOverlayStyleBtn: NSButton!
     @IBAction func changeOverlayStyleBtnTD(_ sender: NSButton) {
         if changeOverlayStyleBtn.tag == 0 {
@@ -569,15 +597,16 @@ class MediaMapVC: NSViewController,MKMapViewDelegate,NSOutlineViewDelegate,NSOut
             changeOverlayStyleBtn.tag = 0
         }
         
-        let index = indexOfCurrentAnnotation
-        indexOfCurrentAnnotation = index
+        let previousIndexOfCurrentAnnotation = indexOfCurrentAnnotation - 1
+        indexOfCurrentAnnotation = previousIndexOfCurrentAnnotation + 1
     }
     
+    // MARK: - 分享足迹包
     @IBAction func shareFootprintsRepositoryBtnTD(_ sender: NSButton) {
         if let fr = self.createFootprintsRepository(withThumbnailArray: true){
-            print(fr)
-            print(MAMCoreDataManager.addFRInfo(fr: fr))
-            browserTableView.reloadData()
+            if MAMCoreDataManager.addFRInfo(fr: fr){
+                browserTableView.reloadData()
+            }
         }
         
     }
@@ -586,7 +615,6 @@ class MediaMapVC: NSViewController,MKMapViewDelegate,NSOutlineViewDelegate,NSOut
     @IBOutlet weak var indexOfCurrentAnnotationLabel: NSTextField!
     
     // MARK: - 右侧导航按钮 Navigation
-    // var isPlaying = false
     var playTimer: Timer?
     
     @IBAction func firstBtnTD(_ sender: NSButton) {
@@ -599,9 +627,15 @@ class MediaMapVC: NSViewController,MKMapViewDelegate,NSOutlineViewDelegate,NSOut
     
     @IBAction func playBtnTD(_ sender: NSButton) {
         if playTimer == nil {
-            playTimer = Timer.init(timeInterval: 2.0, repeats: true, block: { _ in self.indexOfCurrentAnnotation += 1 })
+            //playTimer = Timer.init(timeInterval: 2.0, repeats: true, block: { _ in self.indexOfCurrentAnnotation += 1 })
+            playTimer = Timer.scheduledTimer(withTimeInterval: 2.0, repeats: true, block: { _ in self.indexOfCurrentAnnotation += 1 })
+            playTimer?.fire()
+            sender.layer?.borderWidth = 3.0
+            sender.layer?.borderColor = NSColor.brown.cgColor
         }else{
+            playTimer?.invalidate()
             playTimer = nil
+            sender.layer?.borderWidth = 0.0
         }
     }
     
@@ -673,18 +707,27 @@ class MediaMapVC: NSViewController,MKMapViewDelegate,NSOutlineViewDelegate,NSOut
 
     @IBOutlet weak var favoriteCoordinateInfoBtn: NSButton!
     @IBAction func favoriteCoordinate(_ sender: NSButton) {
-        var isFavorite = (currentMediaInfo.coordinateInfo?.favorite?.boolValue)! ? true : false
-        
-        isFavorite = !isFavorite
-        
-        currentMediaInfo.coordinateInfo?.favorite = NSNumber.init(value: isFavorite)
-        do {
-            try appContext.save()
-            //sender.title = isFavorite ? "⭐️" : "☆"
-            sender.state = isFavorite ? 1:0
-        } catch {
+        if let coordinateInfo = currentMediaInfo.coordinateInfo{
+            var isFavorite = (coordinateInfo.favorite?.boolValue)! ? true : false
             
+            isFavorite = !isFavorite
+            
+            currentMediaInfo.coordinateInfo?.favorite = NSNumber.init(value: isFavorite)
+            do {
+                try appContext.save()
+                
+                if isFavorite{
+                    sender.state = isFavorite ? 1:0
+                    mainMapView.addAnnotation(coordinateInfo)
+                }else{
+                    mainMapView.removeAnnotation(coordinateInfo)
+                }
+                
+            } catch {
+                
+            }
         }
+        
     }
 
 
@@ -816,12 +859,17 @@ class MediaMapVC: NSViewController,MKMapViewDelegate,NSOutlineViewDelegate,NSOut
     
     var currentFootprintsRepository: FootprintsRepository?
     func showFootprintsRepository(fr: FootprintsRepository) -> Void {
+        if fr.footprintAnnotations.count == 0{
+            return
+        }
+        
         self.clearMainMapView()
         currentFootprintsRepository = fr
         
         mainMapView.addAnnotations(fr.footprintAnnotations)
         currentIDAnnotations = fr.footprintAnnotations
         
+        print(fr.radius)
         if fr.radius > 0 {
             self.addCircleOverlays(annotations: currentIDAnnotations, radius: fr.radius)
             currentMergeDistance = fr.radius * 2.0
@@ -897,7 +945,7 @@ class MediaMapVC: NSViewController,MKMapViewDelegate,NSOutlineViewDelegate,NSOut
             let circle = MKCircle.init(center: anno.coordinate, radius: circleRadius)
             circleOverlays.append(circle)
         }
-                
+        
         self.mainMapView.addOverlays(circleOverlays)
     }
     
@@ -1018,6 +1066,8 @@ class MediaMapVC: NSViewController,MKMapViewDelegate,NSOutlineViewDelegate,NSOut
             footprintAnnotations.append(footprintAnno)
         }
         
+        print(footprintAnnotations)
+        
         let footprintsRepository = FootprintsRepository()
         footprintsRepository.footprintAnnotations = footprintAnnotations
         footprintsRepository.footprintsRepositoryType = FootprintsRepositoryType.Sent
@@ -1039,18 +1089,14 @@ class MediaMapVC: NSViewController,MKMapViewDelegate,NSOutlineViewDelegate,NSOut
         
         if annotation is MediaInfoGroupAnnotation {
             let pinAV = MKPinAnnotationView.init(annotation: annotation, reuseIdentifier: "pinAV")
-            pinAV.pinTintColor = DynamicColor.randomColor(in: DynamicColor.preferredAnnotationViewColors)
+            pinAV.pinTintColor = NSColor.green.withAlphaComponent(0.6)//DynamicColor.randomColor(in: DynamicColor.preferredAnnotationViewColors)
             pinAV.canShowCallout = true
             
             let mediaGroupAnno = annotation as! MediaInfoGroupAnnotation
             if let mediaInfo = mediaGroupAnno.mediaInfos.first{
-                //print("Add a MediaInfoGroupAnnotation")
                 let imageView = NSImageView.init(frame: NSRect.init(x: 0, y: 0, width: 80, height: 80))
-                //imageView.layer?.backgroundColor = NSColor.black.cgColor
                 imageView.image = NSImage.init(contentsOf: URL.init(string: mediaInfo.thumbnailURLString!)!)
-                //imageView.content
-                //pinAV.leftCalloutAccessoryView = imageView
-                //pinAV.rightCalloutAccessoryView = imageView
+                pinAV.leftCalloutAccessoryView = imageView
             }
             
             return pinAV
@@ -1119,6 +1165,11 @@ class MediaMapVC: NSViewController,MKMapViewDelegate,NSOutlineViewDelegate,NSOut
             }else if view.annotation is FootprintAnnotation{
                 let footprintAnno = view.annotation as! FootprintAnnotation
                 currentFootprintAnnotationThumbnailArray = footprintAnno.thumbnailArray
+            }
+        }else if view is GCStarAnnotationView{
+            if view.annotation is CoordinateInfo{
+                let coordinateInfo = view.annotation as! CoordinateInfo
+                currentMediaInfoLabel.stringValue = coordinateInfo.locationInfomation
             }
         }
     }

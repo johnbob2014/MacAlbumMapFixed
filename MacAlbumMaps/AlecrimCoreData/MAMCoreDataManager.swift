@@ -31,12 +31,33 @@ extension CoordinateInfo : MKAnnotation{
     
     //  MKAnnotation Protocol
     public var coordinate: CLLocationCoordinate2D {
+        return GCCoordinateTransformer.transformToMars(fromEarth:self.coordinateWGS84)
+    }
+    
+    /// WGS84座标
+    var coordinateWGS84: CLLocationCoordinate2D {
         return CLLocationCoordinate2DMake((self.latitude?.doubleValue)!, (self.longitude?.doubleValue)!)
+    }
+    
+    /// 地址信息字符串
+    var locationInfomation: String{
+        get{
+            var detail = ""
+            detail += self.coordinateWGS84.latitude > 0 ? NSLocalizedString("N. ",comment: "北纬 "):NSLocalizedString("S. ",comment: "南纬 ")
+            detail += "\(fabs(self.coordinateWGS84.latitude))\n"
+            detail += self.coordinateWGS84.longitude > 0 ? NSLocalizedString("E. ",comment: "东经 "):NSLocalizedString("W. ",comment: "西经 ")
+            detail += "\(fabs(self.coordinateWGS84.longitude))\n"
+            
+            if let localizedPlaceString = self.localizedPlaceString_Placemark{
+                detail += localizedPlaceString
+            }
+            return detail
+        }
     }
     
     /// 更新地址信息
     func updatePlacemark(geocoder: CLGeocoder,completionHandler:((Bool, String?) -> Void)? = nil) {
-        geocoder.reverseGeocodeLocation(CLLocation.init(latitude: self.coordinate.latitude, longitude: self.coordinate.longitude)) { (placemarks, error) in
+        geocoder.reverseGeocodeLocation(CLLocation.init(latitude: self.coordinateWGS84.latitude, longitude: self.coordinateWGS84.longitude)) { (placemarks, error) in
             if error == nil{
                 
                 if let placemark = placemarks?.last{
@@ -92,7 +113,7 @@ extension MediaInfo: GCLocationAnalyserProtocol{
         return CLLocation.init(latitude: self.coordinateWGS84.latitude, longitude: self.coordinateWGS84.longitude)
     }
     
-    // 详细信息
+    /// 详细信息字符串
     var detailInfomation: String{
         get{
             var detail = ""
@@ -130,14 +151,15 @@ extension MediaInfo: GCLocationAnalyserProtocol{
             
             // 添加地址信息
             if let coordinateInfo = self.coordinateInfo{
-                detail += coordinateInfo.coordinate.latitude > 0 ? NSLocalizedString("N. ",comment: "北纬 "):NSLocalizedString("S. ",comment: "南纬 ")
-                detail += "\(fabs(coordinateInfo.coordinate.latitude))\n"
-                detail += coordinateInfo.coordinate.longitude > 0 ? NSLocalizedString("E. ",comment: "东经 "):NSLocalizedString("W. ",comment: "西经 ")
-                detail += "\(fabs(coordinateInfo.coordinate.longitude))\n"
-                
-                if let localizedPlaceString = coordinateInfo.localizedPlaceString_Placemark{
-                    detail += localizedPlaceString
-                }
+                detail += coordinateInfo.locationInfomation
+//                detail += coordinateInfo.coordinateWGS84.latitude > 0 ? NSLocalizedString("N. ",comment: "北纬 "):NSLocalizedString("S. ",comment: "南纬 ")
+//                detail += "\(fabs(coordinateInfo.coordinateWGS84.latitude))\n"
+//                detail += coordinateInfo.coordinateWGS84.longitude > 0 ? NSLocalizedString("E. ",comment: "东经 "):NSLocalizedString("W. ",comment: "西经 ")
+//                detail += "\(fabs(coordinateInfo.coordinateWGS84.longitude))\n"
+//                
+//                if let localizedPlaceString = coordinateInfo.localizedPlaceString_Placemark{
+//                    detail += localizedPlaceString
+//                }
             }
             
             return detail

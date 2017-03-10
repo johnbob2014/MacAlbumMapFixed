@@ -12,8 +12,8 @@ enum FootprintsRepositoryType: Int {
     case Unknown = 0
     case Sent = 1
     case Received = 2
-    case Recorded = 3
-    case Edited = 4
+    case Recorded = 4
+    case Edited = 8
 }
 
 class FootprintsRepository: NSObject,NSCoding {
