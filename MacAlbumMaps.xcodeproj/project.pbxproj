@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1E30F21D1E74321B00098946 /* XMLDictionary.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E30F21C1E74321B00098946 /* XMLDictionary.m */; };
 		1E4269D11E61BD02002087EA /* Date+Assistant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E4269D01E61BD02002087EA /* Date+Assistant.swift */; };
 		1E46B3111E625EE5000C6379 /* FileManager+Assistant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E46B3101E625EE5000C6379 /* FileManager+Assistant.swift */; };
 		1E46B3131E625F00000C6379 /* URL+Assistant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E46B3121E625F00000C6379 /* URL+Assistant.swift */; };
@@ -77,6 +78,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1E30F21B1E74321B00098946 /* XMLDictionary.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XMLDictionary.h; sourceTree = "<group>"; };
+		1E30F21C1E74321B00098946 /* XMLDictionary.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMLDictionary.m; sourceTree = "<group>"; };
 		1E4269D01E61BD02002087EA /* Date+Assistant.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Date+Assistant.swift"; path = "GenericExtensions/Date+Assistant.swift"; sourceTree = "<group>"; };
 		1E46B3101E625EE5000C6379 /* FileManager+Assistant.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "FileManager+Assistant.swift"; path = "GenericExtensions/FileManager+Assistant.swift"; sourceTree = "<group>"; };
 		1E46B3121E625F00000C6379 /* URL+Assistant.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "URL+Assistant.swift"; path = "GenericExtensions/URL+Assistant.swift"; sourceTree = "<group>"; };
@@ -175,6 +178,15 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		1E30F21A1E74321B00098946 /* XMLDictionary */ = {
+			isa = PBXGroup;
+			children = (
+				1E30F21B1E74321B00098946 /* XMLDictionary.h */,
+				1E30F21C1E74321B00098946 /* XMLDictionary.m */,
+			);
+			path = XMLDictionary;
+			sourceTree = "<group>";
+		};
 		1ECA41B91E61604F0068CB44 /* GenericExtensions */ = {
 			isa = PBXGroup;
 			children = (
@@ -270,6 +282,7 @@
 		4B88D0851E5E8ADE008A69BC /* GenericClasses */ = {
 			isa = PBXGroup;
 			children = (
+				1E30F21A1E74321B00098946 /* XMLDictionary */,
 				4B8B243C1E6F888C006C3D37 /* GCCoordinateTransformer */,
 				4B88D0861E5E8ADE008A69BC /* GCLocationAnalyser.swift */,
 				4B88D0871E5E8ADE008A69BC /* GCMediaLibraryLoader.swift */,
@@ -491,6 +504,7 @@
 				4B88D08B1E5E90B4008A69BC /* FootprintAnnotation.swift in Sources */,
 				4B2E5F0C1E695D1000866737 /* DynamicColor+HSB.swift in Sources */,
 				4B88D0891E5E8ADE008A69BC /* GCMediaLibraryLoader.swift in Sources */,
+				1E30F21D1E74321B00098946 /* XMLDictionary.m in Sources */,
 				4B88D0831E5E8A6D008A69BC /* MediaInfoGroupAnnotation.swift in Sources */,
 				4B8FB5AC1E554EFB00400F58 /* AppDelegate.swift in Sources */,
 				4B2E5F131E695D1000866737 /* DynamicColorSpace.swift in Sources */,

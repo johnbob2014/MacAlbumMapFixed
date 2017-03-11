@@ -28,7 +28,7 @@ class FootprintAnnotation: NSObject,MKAnnotation,NSCoding,GCLocationAnalyserProt
     var speed: CLLocationSpeed = 0.0
     
     /// 自定义标题
-    var customTitle = "Custom Title"
+    var customTitle = ""
     
     /// 标记该FootprintAnnotation是否为用户手动添加，主要用于记录和编辑
     var isUserManuallyAdded: Bool = false
@@ -46,11 +46,23 @@ class FootprintAnnotation: NSObject,MKAnnotation,NSCoding,GCLocationAnalyserProt
     }
     
     var title: String?{
-        return self.customTitle
+        if self.customTitle.isEmpty{
+            return subtitle
+        }else{
+            return self.customTitle
+        }
     }
     
     var subtitle: String?{
-        return ""
+        return dateString
+    }
+    
+    var dateString: String{
+        if let end = endDate {
+            return startDate.stringWithFormat(format: "yyyy-MM-dd") + " ~ " + end.stringWithFormat(format: "yyyy-MM-dd")
+        }else{
+            return startDate.stringWithDefaultFormat()
+        }
     }
     
     // MARK: - GCLocationAnalyserProtocol
@@ -104,5 +116,62 @@ class FootprintAnnotation: NSObject,MKAnnotation,NSCoding,GCLocationAnalyserProt
     }
     
     // MARK: - Export To and Import From GPX File
+    
+    func gpx_wpt_String() -> String {
+        var gpx_wpt_String = ""
+        
+        gpx_wpt_String += String.init(format:"\n    <wpt lat=\"%.9f\" lon=\"%.9f\">",self.coordinateWGS84.latitude,self.coordinateWGS84.longitude)
+        gpx_wpt_String += String.init(format:"\n    <ele>%.2f</ele>",self.altitude)
+        gpx_wpt_String += String.init(format:"\n    <name>%@</name>",self.customTitle)
+        gpx_wpt_String += String.init(format:"\n    <time>%@T%@Z</time>",self.startDate.stringWithFormat(format: "yyyy-MM-dd"),self.startDate.stringWithFormat(format: "hh:mm:ss"))
+        if let end = self.endDate{
+            gpx_wpt_String += String.init(format:"\n    <endtime>%@T%@Z</endtime>",end.stringWithFormat(format: "yyyy-MM-dd"),end.stringWithFormat(format: "hh:mm:ss"))
+        }
+        gpx_wpt_String += "\n    </wpt>"
+        
+        return gpx_wpt_String
+    }
+    
+    func gpx_trk_trkseg_trkpt_String() -> String {
+        var gpx_trk_trkseg_trkpt_String = ""
+        
+        gpx_trk_trkseg_trkpt_String += String.init(format:"\n            <trkpt lat=\"%.9f\" lon=\"%.9f\">",self.coordinateWGS84.latitude,self.coordinateWGS84.longitude)
+        gpx_trk_trkseg_trkpt_String += String.init(format:"\n            <ele>%.2f</ele>",self.altitude)
+        gpx_trk_trkseg_trkpt_String += String.init(format:"\n            <time>%@T%@Z</time>",self.startDate.stringWithFormat(format: "yyyy-MM-dd"),self.startDate.stringWithFormat(format: "hh:mm:ss"))
+        if let end = self.endDate{
+            gpx_trk_trkseg_trkpt_String  += String.init(format:"\n            <endtime>%@T%@Z</endtime>",end.stringWithFormat(format: "yyyy-MM-dd"),end.stringWithFormat(format: "hh:mm:ss"))
+        }
+        gpx_trk_trkseg_trkpt_String += "\n            </trkpt>"
+        
+        return gpx_trk_trkseg_trkpt_String
+    }
+    
+    class func footprintAnnotationFromGPXPointDictionary(pointDictionary: Dictionary<String,String>,isUserManuallyAdded: Bool) -> FootprintAnnotation {
+        
+        let footprintAnnotation = FootprintAnnotation()
+        footprintAnnotation.isUserManuallyAdded = isUserManuallyAdded
+        
+        for (key,value) in pointDictionary {
+            switch key {
+            case "name":
+                footprintAnnotation.customTitle = value
+            case "_lat":
+                footprintAnnotation.coordinateWGS84.latitude = (value as NSString).doubleValue
+            case "_lon":
+                footprintAnnotation.coordinateWGS84.longitude = (value as NSString).doubleValue
+            case "ele":
+                footprintAnnotation.altitude = (value as NSString).doubleValue
+            case "time":
+                footprintAnnotation.startDate = Date.dateFromGPXTimeString(timeString: value)
+            case "endtime":
+                // AlbumMaps特有属性 endtime endDate
+                footprintAnnotation.endDate = Date.dateFromGPXTimeString(timeString: value)
+            default:
+                break
+            }
+        }
+        
+        return footprintAnnotation
+    }
 
 }

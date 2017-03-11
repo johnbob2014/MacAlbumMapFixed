@@ -29,7 +29,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         // The directory the application uses to store the Core Data store file. This code uses a directory named "com.apple.toolsQA.CocoaApp_CD" in the user's Application Support directory.
         let urls = FileManager.default.urls(for: .applicationSupportDirectory, in: .userDomainMask)
         let appSupportURL = urls[urls.count - 1]
-        return appSupportURL.appendingPathComponent("com.apple.toolsQA.CocoaApp_CD")
+        return appSupportURL.appendingPathComponent("com.ZhangBaoGuo.MacAlbumMaps")
     }()
 
     lazy var managedObjectModel: NSManagedObjectModel = {

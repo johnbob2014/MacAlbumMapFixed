@@ -31,7 +31,7 @@ class FootprintsRepository: NSObject,NSCoding {
     var radius = 0.0
     
     /// 类型
-    var footprintsRepositoryType: FootprintsRepositoryType?
+    var footprintsRepositoryType = FootprintsRepositoryType.Unknown
     
     /// 标题
     var title = ""
@@ -132,9 +132,7 @@ class FootprintsRepository: NSObject,NSCoding {
         }
         
         let footprintsRepositoryType = aDecoder.decodeInteger(forKey:"footprintsRepositoryType")
-        if footprintsRepositoryType != 0 {
-            self.footprintsRepositoryType = FootprintsRepositoryType.init(rawValue: footprintsRepositoryType)
-        }
+        self.footprintsRepositoryType = FootprintsRepositoryType.init(rawValue: footprintsRepositoryType)!
         
         self.placemarkStatisticalInfo = aDecoder.decodeObject(forKey:"placemarkStatisticalInfo") as! String
     }
@@ -149,10 +147,7 @@ class FootprintsRepository: NSObject,NSCoding {
             aCoder.encode(self.modificatonDate, forKey: "modificatonDate")
         }
         
-        if self.footprintsRepositoryType != nil {
-            aCoder.encode(self.footprintsRepositoryType!.rawValue, forKey: "footprintsRepositoryType")
-        }
-        
+        aCoder.encode(self.footprintsRepositoryType.rawValue, forKey: "footprintsRepositoryType")
         aCoder.encode(self.placemarkStatisticalInfo, forKey: "placemarkStatisticalInfo")
     }
     
@@ -176,5 +171,197 @@ class FootprintsRepository: NSObject,NSCoding {
     }
     
     // MARK: - Export To and Import From GPX File
+    
+    func exportToGPXFile(filePath: String) -> Bool{
+        var gpx_String = ""
+        
+        // xml版本及编码
+        gpx_String += "<?xml version=\"1.0\" encoding=\"UTF-8\"?>"
+        
+        // gpx头
+        gpx_String += "\n<gpx"
+        gpx_String += "\n    version=\"1.0\""
+        gpx_String += "\n    creator=\"GPSBabel - http://www.gpsbabel.org\""
+        gpx_String += "\n    xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\""
+        gpx_String += "\n    xmlns=\"http://www.topografix.com/GPX/1/0\""
+        gpx_String += "\n    xsi:schemaLocation=\"http://www.topografix.com/GPX/1/0 http://www.topografix.com/GPX/1/0/gpx.xsd\">"
+        
+        // 缩进1层
+        // 日期
+        gpx_String += String.init(format:"\n    <time>%@T%@Z</time>", self.creationDate.stringWithFormat(format: "yyyy-MM-dd"),self.creationDate.stringWithFormat(format: "hh:mm:ss"))
+        
+        // 名称
+        gpx_String += String.init(format:"\n    <name>%@</name>",self.title)
+        
+        // 座标范围
+        if let firstFP = footprintAnnotations.first{
+            var minlat = firstFP.coordinateWGS84.latitude
+            var minlon = firstFP.coordinateWGS84.longitude
+            var maxlat = minlat
+            var maxlon = minlon
+            
+            for fp in footprintAnnotations {
+                let currentLatitude = fp.coordinateWGS84.latitude
+                if currentLatitude < minlat {
+                    minlat = currentLatitude
+                }
+                if currentLatitude > maxlat {
+                    maxlat = currentLatitude
+                }
+                
+                let currentLongitude = fp.coordinateWGS84.longitude
+                if currentLongitude < minlon {
+                    minlon = currentLongitude
+                }
+                if currentLongitude > maxlon{
+                    maxlon = currentLongitude
+                }
+            }
+            
+            gpx_String += String.init(format:"\n    <bounds minlat=\"%.9f\" minlon=\"%.9f\" maxlat=\"%.9f\" maxlon=\"%.9f\"/>",minlat,minlon,maxlat,maxlon)
+        }
+        
+        // AlbumMaps特有属性 足迹包类型
+        gpx_String += String.init(format:"\n    <footprintsRepositoryType>%lu</footprintsRepositoryType>",footprintsRepositoryType.rawValue)
+        
+        // AlbumMaps特有属性 足迹包半径
+        gpx_String += String.init(format:"\n    <radius>%.2f</radius>",radius)
+        
+        // 添加wpt
+        for fp in footprintAnnotations {
+            if fp.isUserManuallyAdded {
+                gpx_String += fp.gpx_wpt_String()
+            }
+        }
+        
+        // 添加trk
+        gpx_String += "\n    <trk>"
+        
+        // 缩进2层
+        gpx_String += "\n        <name>AlbumMaps Line Track</name>"
+        gpx_String += "\n        <trkseg>"
+        
+        // 添加trkpt
+        for fp in footprintAnnotations {
+            gpx_String += fp.gpx_trk_trkseg_trkpt_String()
+        }
+        
+        // 回缩，结束trkseg
+        gpx_String += "\n        </trkseg>"
+        
+        // 回缩，结束trk
+        gpx_String += "\n    </trk>"
+        
+        // 回缩，结束gpx
+        gpx_String += "\n</gpx>"
+        
+        // 写入文件
+        if let gpx_Data = gpx_String.data(using: .utf8){
+            let fileURL = URL.init(fileURLWithPath: filePath)
+            do {
+                try gpx_Data.write(to: fileURL)
+                return true
+            } catch  {
+                return false
+            }
+        }else{
+            return false
+        }
+    }
+    
+    class func importFromGPXFile(filePath: String) -> FootprintsRepository? {
+        // 使用XMLDictionary解析gpx文件
+        let gpxFileDic = NSDictionary.init(xmlFile: filePath)
+        if gpxFileDic == nil{
+            return nil
+        }
+        
+        let footprintsRepository = FootprintsRepository()
+        
+        var userManuallyAddedFootprintArray = [FootprintAnnotation]()
+        var footprintArray = [FootprintAnnotation]()
+        for (key,value) in gpxFileDic! {
+            var keyString = ""
+            if key is String || key is NSString{
+                keyString = key as! String
+            }
+            
+            switch keyString{
+            case "name":
+                if value is String || value is NSString { footprintsRepository.title = value as! String }
+            case "time":
+                if value is String || value is NSString { footprintsRepository.creationDate = Date.dateFromGPXTimeString(timeString: value as! String) }
+            case "footprintsRepositoryType":
+                if value is String || value is NSString { footprintsRepository.footprintsRepositoryType = FootprintsRepositoryType(rawValue: Int((value as! NSString).intValue))! }
+            case "radius":
+                if value is String || value is NSString { footprintsRepository.radius = (value as! NSString).doubleValue }
+            case "wpt":
+                // 添加wpt
+                var wptNSDicArray = NSArray.init()
+                // 如果只有一个点，wptDicArray会被XMLDictionary解析成字典，这时候，需要将wptDicArray转化为数组
+                if value is NSArray {
+                    wptNSDicArray = value as! NSArray
+                }else if value is NSDictionary{
+                    wptNSDicArray = NSArray.init(object: value)
+                }
+                
+                for wptNSDic in wptNSDicArray {
+                    if wptNSDic is NSDictionary{
+                        let wptDic = wptNSDic as! Dictionary<String,String>
+                        let fp = FootprintAnnotation.footprintAnnotationFromGPXPointDictionary(pointDictionary: wptDic, isUserManuallyAdded: true)
+                        userManuallyAddedFootprintArray.append(fp)
+                    }
+                }
+            case "trk":
+                // 添加trkpt
+                if value is NSDictionary {
+                    let trkNSDic = value as! NSDictionary
+                    
+                    if trkNSDic.allKeys.contains(where: { (key) -> Bool in
+                        (key as! String) == "trkseg"
+                    }) {
+                        // trksegDic
+                        let trksegNSDic = trkNSDic["trkseg"] as! NSDictionary
+                        
+                        if trksegNSDic.allKeys.contains(where: { (key) -> Bool in
+                            (key as! String) == "trkpt"
+                        }) {
+                            let trkObject = trksegNSDic["trkpt"]
+                            
+                            var trkptNSDicArray = NSArray.init()
+                            if trkObject is NSArray {
+                                trkptNSDicArray = trkObject as! NSArray
+                            }else if trkObject is NSDictionary{
+                                if trkObject != nil {
+                                    trkptNSDicArray = NSArray.init(object: trkObject!)
+                                }
+                            }
+                            
+                            for trkptNSDic in trkptNSDicArray {
+                                if trkptNSDic is NSDictionary {
+                                    let trkptDic = trkptNSDic as! Dictionary<String,String>
+                                    let fp = FootprintAnnotation.footprintAnnotationFromGPXPointDictionary(pointDictionary: trkptDic, isUserManuallyAdded: false)
+                                    footprintArray.append(fp)
+                                }
+                            }
+                            
+                        }
+                        
+                    }
+                }
+            default:
+                break
+            }
+        }
+        
+        footprintArray.append(contentsOf: userManuallyAddedFootprintArray)
+        
+        // 按时间排序
+        footprintArray.sort(by: {$0.0.startDate.compare($0.1.startDate) == ComparisonResult.orderedAscending})
+        
+        footprintsRepository.footprintAnnotations = footprintArray
+        
+        return footprintsRepository
+    }
 
 }

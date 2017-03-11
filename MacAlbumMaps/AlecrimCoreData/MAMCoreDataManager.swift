@@ -676,11 +676,7 @@ class MAMCoreDataManager: NSObject {
                 info.footprintsCount = NSNumber.init(value: fr.footprintAnnotations.count)
                 info.creationDate = fr.creationDate as NSDate?
                 info.radius = NSNumber.init(value: fr.radius)
-                
-                if let footprintsRepositoryType = fr.footprintsRepositoryType{
-                    info.footprintsRepositoryType = NSNumber.init(value: footprintsRepositoryType.rawValue)
-                }
-                
+                info.footprintsRepositoryType = NSNumber.init(value: fr.footprintsRepositoryType.rawValue)
                 info.title = fr.title;
                 info.placemarkStatisticalInfo = fr.placemarkStatisticalInfo;
                 info.modificatonDate = fr.modificatonDate as NSDate?

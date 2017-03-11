@@ -19,17 +19,17 @@ class GCStarAnnotationView: MKAnnotationView {
     var characterAttributes: Dictionary<String,Any>{
         get{
             return [NSFontAttributeName:NSFont.systemFont(ofSize: NSFont.systemFontSize() * CGFloat(self.starScale)),
-                    NSStrokeColorAttributeName:DynamicColor.red,
+                    NSStrokeColorAttributeName:NSColor.red,
                     NSStrokeWidthAttributeName:2.0] as [String : Any]
         }
     }
     
     /// 星标背景颜色，默认为红色
-    var starBackColor = DynamicColor.red
+    var starBackColor = NSColor.red
     
     override init(annotation: MKAnnotation?, reuseIdentifier: String?) {
         super.init(annotation: annotation, reuseIdentifier: reuseIdentifier)
-        self.layer?.backgroundColor = DynamicColor.clear.cgColor
+        self.layer?.backgroundColor = NSColor.clear.cgColor
         let startString: NSString = "⭐️"
         let stringSize = startString.size(withAttributes: self.characterAttributes)
         let edgeLength = (stringSize.width + stringSize.height)/2.0

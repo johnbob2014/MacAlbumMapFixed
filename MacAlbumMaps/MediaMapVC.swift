@@ -302,7 +302,10 @@ class MediaMapVC: NSViewController,MKMapViewDelegate,NSOutlineViewDelegate,NSOut
     private func updateMediaInfos(){
         
         mediaLibraryLoader.loadCompletionHandler = { (loadedMediaObjects: [MLMediaObject]) -> Void in
-            //MAMCoreDataManager.latestModificationDate = Date.init(timeIntervalSince1970: 0.0)
+            if !MAMSettingManager.everLaunched{
+                MAMCoreDataManager.latestModificationDate = Date.init(timeIntervalSince1970: 0.0)
+                MAMSettingManager.everLaunched = true
+            }
             
             self.goBtn.isEnabled = false
             self.loadProgressIndicator.isHidden = false
@@ -603,12 +606,23 @@ class MediaMapVC: NSViewController,MKMapViewDelegate,NSOutlineViewDelegate,NSOut
     
     // MARK: - 分享足迹包
     @IBAction func shareFootprintsRepositoryBtnTD(_ sender: NSButton) {
-        if let fr = self.createFootprintsRepository(withThumbnailArray: true){
+        let fpt = appCachesPath + "/test22.gpx"
+        
+        if let fr = self.createFootprintsRepository(withThumbnailArray: false){
             if MAMCoreDataManager.addFRInfo(fr: fr){
                 browserTableView.reloadData()
             }
+            
+            fr.exportToGPXFile(filePath: fpt)
+            
         }
         
+        
+        
+//        print(fpt)
+//        if let fp = FootprintsRepository.importFromGPXFile(filePath: fpt){
+//            self.showFootprintsRepository(fr: fp)
+//        }
     }
 
     // MARK: - 右侧Annotation序号

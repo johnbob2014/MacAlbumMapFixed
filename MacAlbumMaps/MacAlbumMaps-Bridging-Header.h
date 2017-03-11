@@ -12,5 +12,6 @@
 #import "GCCoordinateTransformer.h"
 #import "NSData+NSHash.h"
 #import "NSString+NSHash.h"
+#import "XMLDictionary.h"
 
 #endif /* MacAlbumMaps_Bridging_Header_h */

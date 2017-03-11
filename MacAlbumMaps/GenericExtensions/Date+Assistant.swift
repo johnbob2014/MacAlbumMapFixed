@@ -81,11 +81,16 @@ extension Date{
     ///
     /// - Parameter timeString: GPX时间字符串
     /// - Returns: 日期
-    static func dateFromGPXTimeString(timeString: String) -> Date? {
+    static func dateFromGPXTimeString(timeString: String) -> Date {
         var ts = timeString.replacingOccurrences(of: "T", with: " ")
         ts = ts.replacingOccurrences(of: "Z", with: "")
         let dateFormatter = DateFormatter.init()
         dateFormatter.dateFormat = "yyyy-MM-dd hh:mm:ss"
-        return dateFormatter.date(from: ts)
+        
+        if let date = dateFormatter.date(from: ts){
+            return date
+        }else{
+            return Date.init(timeIntervalSinceReferenceDate: 0.0)
+        }
     }
 }
