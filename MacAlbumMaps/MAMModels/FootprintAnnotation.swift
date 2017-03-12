@@ -132,40 +132,96 @@ class FootprintAnnotation: NSObject,MKAnnotation,NSCoding,GCLocationAnalyserProt
         return gpx_wpt_String
     }
     
-    func gpx_trk_trkseg_trkpt_String() -> String {
+    func gpx_trk_trkseg_trkpt_String(enhancedGPX: Bool = false) -> String {
         var gpx_trk_trkseg_trkpt_String = ""
         
         gpx_trk_trkseg_trkpt_String += String.init(format:"\n            <trkpt lat=\"%.9f\" lon=\"%.9f\">",self.coordinateWGS84.latitude,self.coordinateWGS84.longitude)
         gpx_trk_trkseg_trkpt_String += String.init(format:"\n            <ele>%.2f</ele>",self.altitude)
+        // AlbumMaps特有属性 trkpt名称 (规范性地GPX文件没有这个属性）
+        gpx_trk_trkseg_trkpt_String += String.init(format:"\n            <name>%@</name>",self.customTitle)
         gpx_trk_trkseg_trkpt_String += String.init(format:"\n            <time>%@T%@Z</time>",self.startDate.stringWithFormat(format: "yyyy-MM-dd"),self.startDate.stringWithFormat(format: "hh:mm:ss"))
+        // AlbumMaps特有属性 trkpt结束日期
         if let end = self.endDate{
             gpx_trk_trkseg_trkpt_String  += String.init(format:"\n            <endtime>%@T%@Z</endtime>",end.stringWithFormat(format: "yyyy-MM-dd"),end.stringWithFormat(format: "hh:mm:ss"))
         }
+        
+        // AlbumMaps特有属性 trkpt缩略图
+        if enhancedGPX {
+            gpx_trk_trkseg_trkpt_String += "\n            <thumbnails>"
+            for (index,thumbnail) in thumbnailArray.enumerated() {
+                gpx_trk_trkseg_trkpt_String += "\n                <thumbnail index=\"\(index)\">"
+                gpx_trk_trkseg_trkpt_String += String.init(format:"\n                    <data>%@</data>",thumbnail.base64EncodedString())
+                gpx_trk_trkseg_trkpt_String += "\n                </thumbnail>"
+            }
+            gpx_trk_trkseg_trkpt_String += "\n            </thumbnails>"
+        }
+        
         gpx_trk_trkseg_trkpt_String += "\n            </trkpt>"
         
         return gpx_trk_trkseg_trkpt_String
     }
     
-    class func footprintAnnotationFromGPXPointDictionary(pointDictionary: Dictionary<String,String>,isUserManuallyAdded: Bool) -> FootprintAnnotation {
+    class func footprintAnnotationFromGPXPointDictionary(pointDictionary: NSDictionary,isUserManuallyAdded: Bool) -> FootprintAnnotation {
         
         let footprintAnnotation = FootprintAnnotation()
         footprintAnnotation.isUserManuallyAdded = isUserManuallyAdded
         
         for (key,value) in pointDictionary {
-            switch key {
+            var keyString = ""
+            if key is NSString || key is String {
+                keyString = key as! String
+            }
+            
+            switch keyString {
             case "name":
-                footprintAnnotation.customTitle = value
+                footprintAnnotation.customTitle = value as! String
             case "_lat":
-                footprintAnnotation.coordinateWGS84.latitude = (value as NSString).doubleValue
+                footprintAnnotation.coordinateWGS84.latitude = (value as! NSString).doubleValue
             case "_lon":
-                footprintAnnotation.coordinateWGS84.longitude = (value as NSString).doubleValue
+                footprintAnnotation.coordinateWGS84.longitude = (value as! NSString).doubleValue
             case "ele":
-                footprintAnnotation.altitude = (value as NSString).doubleValue
+                footprintAnnotation.altitude = (value as! NSString).doubleValue
             case "time":
-                footprintAnnotation.startDate = Date.dateFromGPXTimeString(timeString: value)
+                footprintAnnotation.startDate = Date.dateFromGPXTimeString(timeString: value as! String)
             case "endtime":
                 // AlbumMaps特有属性 endtime endDate
-                footprintAnnotation.endDate = Date.dateFromGPXTimeString(timeString: value)
+                footprintAnnotation.endDate = Date.dateFromGPXTimeString(timeString: value as! String)
+            case "thumbnails":
+                // AlbumMaps特有属性 
+                if value is NSDictionary{
+                    // thumbnails - NSDictionary
+                    let thumbnailsNSDic = value as! NSDictionary
+                    
+                    // thumbnailObject - NSArray or NSDictionary
+                    if let thumbnailObject = thumbnailsNSDic["thumbnail"]{
+                        
+                        // thumbnailNSDicNSArray - 内容为 缩略图字典 的数组
+                        var thumbnailNSDicNSArray = NSArray()
+                        
+                        if thumbnailObject is NSArray {
+                            thumbnailNSDicNSArray = thumbnailObject as! NSArray
+                        }else if thumbnailObject is NSDictionary{
+                            thumbnailNSDicNSArray = NSArray.init(object: thumbnailObject)
+                        }
+                        
+                        // thumbnailNSDic - 缩略图字典
+                        for thumbnailNSDic in thumbnailNSDicNSArray {
+                            if thumbnailNSDic is NSDictionary{
+                                // thumbnailDataString - 缩略图Data字符串
+                                if let thumbnailDataString = (thumbnailNSDic as! NSDictionary)["data"]{
+                                    if thumbnailDataString is NSString {
+                                        if let thumbnailData = Data.init(base64Encoded: thumbnailDataString as! String){
+                                            footprintAnnotation.thumbnailArray.append(thumbnailData)
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        
+                    }
+                }
+                
+                
             default:
                 break
             }

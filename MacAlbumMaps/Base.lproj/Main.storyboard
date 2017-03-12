@@ -812,13 +812,13 @@
                                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                                     <subviews>
                                                                         <scrollView autohidesScrollers="YES" horizontalLineScroll="19" horizontalPageScroll="10" verticalLineScroll="19" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="04u-mP-ig3">
-                                                                            <rect key="frame" x="-3" y="-34" width="300" height="452"/>
+                                                                            <rect key="frame" x="-3" y="-3" width="300" height="421"/>
                                                                             <clipView key="contentView" id="XBM-sA-MPX">
-                                                                                <rect key="frame" x="1" y="0.0" width="298" height="451"/>
+                                                                                <rect key="frame" x="1" y="0.0" width="298" height="420"/>
                                                                                 <autoresizingMask key="autoresizingMask"/>
                                                                                 <subviews>
                                                                                     <outlineView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" multipleSelection="NO" autosaveColumns="NO" rowSizeStyle="automatic" headerView="enZ-NN-sLD" viewBased="YES" indentationPerLevel="16" autoresizesOutlineColumn="YES" outlineTableColumn="vkL-mp-R7w" id="PYB-CZ-qaL" userLabel="Location Outline View">
-                                                                                        <rect key="frame" x="0.0" y="0.0" width="298" height="428"/>
+                                                                                        <rect key="frame" x="0.0" y="0.0" width="298" height="397"/>
                                                                                         <autoresizingMask key="autoresizingMask"/>
                                                                                         <size key="intercellSpacing" width="3" height="2"/>
                                                                                         <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -987,13 +987,13 @@
                                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                                     <subviews>
                                                                         <scrollView autohidesScrollers="YES" horizontalLineScroll="19" horizontalPageScroll="10" verticalLineScroll="19" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nrR-cz-TgO">
-                                                                            <rect key="frame" x="-3" y="-56" width="300" height="501"/>
+                                                                            <rect key="frame" x="-3" y="-3" width="300" height="448"/>
                                                                             <clipView key="contentView" id="8jf-EO-NNc">
-                                                                                <rect key="frame" x="1" y="0.0" width="298" height="500"/>
+                                                                                <rect key="frame" x="1" y="0.0" width="298" height="447"/>
                                                                                 <autoresizingMask key="autoresizingMask"/>
                                                                                 <subviews>
                                                                                     <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnSelection="YES" multipleSelection="NO" autosaveColumns="NO" rowSizeStyle="automatic" headerView="eAy-4h-DUM" viewBased="YES" id="eTa-2Y-2P0">
-                                                                                        <rect key="frame" x="0.0" y="0.0" width="298" height="477"/>
+                                                                                        <rect key="frame" x="0.0" y="0.0" width="298" height="424"/>
                                                                                         <autoresizingMask key="autoresizingMask"/>
                                                                                         <size key="intercellSpacing" width="3" height="2"/>
                                                                                         <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -1197,7 +1197,7 @@
                                                                         </connections>
                                                                     </button>
                                                                     <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="A25-tv-A6N">
-                                                                        <rect key="frame" x="12" y="0.0" width="40" height="40"/>
+                                                                        <rect key="frame" x="72" y="0.0" width="40" height="40"/>
                                                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                                                         <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="IcoMoon_Monitor_WBG" imagePosition="only" alignment="center" imageScaling="proportionallyUpOrDown" inset="2" id="AkM-Wv-KPa">
                                                                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -1208,7 +1208,7 @@
                                                                         </connections>
                                                                     </button>
                                                                     <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Mho-qR-E7F">
-                                                                        <rect key="frame" x="70" y="0.0" width="40" height="40"/>
+                                                                        <rect key="frame" x="122" y="0.0" width="40" height="40"/>
                                                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                                                         <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="IcoMoon_Repeat_WBG" imagePosition="only" alignment="center" imageScaling="proportionallyUpOrDown" inset="2" id="N3S-9d-ybC">
                                                                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -1216,17 +1216,6 @@
                                                                         </buttonCell>
                                                                         <connections>
                                                                             <action selector="changeOverlayStyleBtnTD:" target="XfG-lQ-9wD" id="5tw-AM-rv8"/>
-                                                                        </connections>
-                                                                    </button>
-                                                                    <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Vh9-if-rhn">
-                                                                        <rect key="frame" x="129" y="0.0" width="40" height="40"/>
-                                                                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
-                                                                        <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="IcoMoon_Share2_WBG" imagePosition="only" alignment="center" imageScaling="proportionallyUpOrDown" inset="2" id="Lge-7Z-20c">
-                                                                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                                                            <font key="font" metaFont="system"/>
-                                                                        </buttonCell>
-                                                                        <connections>
-                                                                            <action selector="shareFootprintsRepositoryBtnTD:" target="XfG-lQ-9wD" id="iFc-Vu-vGI"/>
                                                                         </connections>
                                                                     </button>
                                                                     <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="t92-a9-OXZ">
@@ -1271,7 +1260,7 @@
                                                                         </textFieldCell>
                                                                     </textField>
                                                                     <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="V6q-uH-T6z">
-                                                                        <rect key="frame" x="185" y="0.0" width="40" height="40"/>
+                                                                        <rect key="frame" x="20" y="0.0" width="40" height="40"/>
                                                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                                                         <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="IcoMoon_User_WBG" imagePosition="only" alignment="center" imageScaling="proportionallyUpOrDown" inset="2" id="Bdw-6q-0Hs">
                                                                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -1279,6 +1268,17 @@
                                                                         </buttonCell>
                                                                         <connections>
                                                                             <action selector="userLocationBtnTD:" target="XfG-lQ-9wD" id="CsY-0R-N8l"/>
+                                                                        </connections>
+                                                                    </button>
+                                                                    <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Vh9-if-rhn">
+                                                                        <rect key="frame" x="172" y="0.0" width="40" height="40"/>
+                                                                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                                                                        <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="IcoMoon_Share2_WBG" imagePosition="only" alignment="center" imageScaling="proportionallyUpOrDown" inset="2" id="Lge-7Z-20c">
+                                                                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                                                            <font key="font" metaFont="system"/>
+                                                                        </buttonCell>
+                                                                        <connections>
+                                                                            <action selector="shareFootprintsRepositoryBtnTD:" target="XfG-lQ-9wD" id="iFc-Vu-vGI"/>
                                                                         </connections>
                                                                     </button>
                                                                 </subviews>

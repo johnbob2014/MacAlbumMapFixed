@@ -172,7 +172,7 @@ class FootprintsRepository: NSObject,NSCoding {
     
     // MARK: - Export To and Import From GPX File
     
-    func exportToGPXFile(filePath: String) -> Bool{
+    func exportToGPXFile(filePath: String,enhancedGPX: Bool = false) -> Bool{
         var gpx_String = ""
         
         // xml版本及编码
@@ -227,6 +227,9 @@ class FootprintsRepository: NSObject,NSCoding {
         // AlbumMaps特有属性 足迹包半径
         gpx_String += String.init(format:"\n    <radius>%.2f</radius>",radius)
         
+        // AlbumMaps特有属性 地点统计信息
+        gpx_String += String.init(format:"\n    <placemarkStatisticalInfo>%@</placemarkStatisticalInfo>",placemarkStatisticalInfo)
+        
         // 添加wpt
         for fp in footprintAnnotations {
             if fp.isUserManuallyAdded {
@@ -243,7 +246,7 @@ class FootprintsRepository: NSObject,NSCoding {
         
         // 添加trkpt
         for fp in footprintAnnotations {
-            gpx_String += fp.gpx_trk_trkseg_trkpt_String()
+            gpx_String += fp.gpx_trk_trkseg_trkpt_String(enhancedGPX: enhancedGPX)
         }
         
         // 回缩，结束trkseg
@@ -295,6 +298,9 @@ class FootprintsRepository: NSObject,NSCoding {
                 if value is String || value is NSString { footprintsRepository.footprintsRepositoryType = FootprintsRepositoryType(rawValue: Int((value as! NSString).intValue))! }
             case "radius":
                 if value is String || value is NSString { footprintsRepository.radius = (value as! NSString).doubleValue }
+            case "placemarkStatisticalInfo":
+                if value is String || value is NSString { footprintsRepository.placemarkStatisticalInfo = value as! String }
+                
             case "wpt":
                 // 添加wpt
                 var wptNSDicArray = NSArray.init()
@@ -307,8 +313,8 @@ class FootprintsRepository: NSObject,NSCoding {
                 
                 for wptNSDic in wptNSDicArray {
                     if wptNSDic is NSDictionary{
-                        let wptDic = wptNSDic as! Dictionary<String,String>
-                        let fp = FootprintAnnotation.footprintAnnotationFromGPXPointDictionary(pointDictionary: wptDic, isUserManuallyAdded: true)
+                        //let wptDic = wptNSDic as! Dictionary<String,String>
+                        let fp = FootprintAnnotation.footprintAnnotationFromGPXPointDictionary(pointDictionary: wptNSDic as! NSDictionary, isUserManuallyAdded: true)
                         userManuallyAddedFootprintArray.append(fp)
                     }
                 }
@@ -339,8 +345,8 @@ class FootprintsRepository: NSObject,NSCoding {
                             
                             for trkptNSDic in trkptNSDicArray {
                                 if trkptNSDic is NSDictionary {
-                                    let trkptDic = trkptNSDic as! Dictionary<String,String>
-                                    let fp = FootprintAnnotation.footprintAnnotationFromGPXPointDictionary(pointDictionary: trkptDic, isUserManuallyAdded: false)
+                                    //let trkptDic = trkptNSDic as! Dictionary<String,String>
+                                    let fp = FootprintAnnotation.footprintAnnotationFromGPXPointDictionary(pointDictionary: trkptNSDic as! NSDictionary, isUserManuallyAdded: false)
                                     footprintArray.append(fp)
                                 }
                             }

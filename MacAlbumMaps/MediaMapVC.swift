@@ -606,23 +606,23 @@ class MediaMapVC: NSViewController,MKMapViewDelegate,NSOutlineViewDelegate,NSOut
     
     // MARK: - 分享足迹包
     @IBAction func shareFootprintsRepositoryBtnTD(_ sender: NSButton) {
-        let fpt = appCachesPath + "/test22.gpx"
+        let fpt = appCachesPath + "/test55.gpx"
         
-        if let fr = self.createFootprintsRepository(withThumbnailArray: false){
-            if MAMCoreDataManager.addFRInfo(fr: fr){
-                browserTableView.reloadData()
-            }
-            
-            fr.exportToGPXFile(filePath: fpt)
-            
-        }
-        
-        
-        
-//        print(fpt)
-//        if let fp = FootprintsRepository.importFromGPXFile(filePath: fpt){
-//            self.showFootprintsRepository(fr: fp)
+//        if let fr = self.createFootprintsRepository(withThumbnailArray: true){
+//            if MAMCoreDataManager.addFRInfo(fr: fr){
+//                browserTableView.reloadData()
+//            }
+//            
+//            fr.exportToGPXFile(filePath: fpt,enhancedGPX: true)
+//            
 //        }
+        
+        
+        
+        print(fpt)
+        if let fp = FootprintsRepository.importFromGPXFile(filePath: fpt){
+            self.showFootprintsRepository(fr: fp)
+        }
     }
 
     // MARK: - 右侧Annotation序号
@@ -752,7 +752,7 @@ class MediaMapVC: NSViewController,MKMapViewDelegate,NSOutlineViewDelegate,NSOut
         var statisticalString = ""
         
         let piDic = MAMCoreDataManager.placemarkInfoDictionary(mediaInfos: mediaInfos)
-        statisticalString += NSLocalizedString("Location statistical info: ", comment: "地点统计信息：") + "\n"
+        //statisticalString += NSLocalizedString("Location statistical info: ", comment: "地点统计信息：") + "\n"
         statisticalString += NSLocalizedString("Country: ", comment: "国家：") + "\(piDic[.kCountryArray]!.count)\n"
         statisticalString += NSLocalizedString("AdministrativeArea: ", comment: "省：") + "\(piDic[.kAdministrativeAreaArray]!.count)\n"
         statisticalString += NSLocalizedString("Locality: ", comment: "市：") + "\(piDic[.kLocalityArray]!.count)\n"
@@ -766,7 +766,7 @@ class MediaMapVC: NSViewController,MKMapViewDelegate,NSOutlineViewDelegate,NSOut
     func showMediaInfos(mediaInfos: [MediaInfo],mapMode: MapMode,mergeDistance: CLLocationDistance) {
         
         statisticalInfoTVString = self.calculateStatisticalInfos(mediaInfos: mediaInfos)
-        currentPlacemarkStatisticalInfo = statisticalInfoTVString
+        currentPlacemarkStatisticalInfo = statisticalInfoTVString.replacingOccurrences(of: "\n", with: ",")
         
         var groupArray: Array<Array<GCLocationAnalyserProtocol>>? = nil
         if mapMode == MapMode.Moment {
@@ -883,7 +883,8 @@ class MediaMapVC: NSViewController,MKMapViewDelegate,NSOutlineViewDelegate,NSOut
         mainMapView.addAnnotations(fr.footprintAnnotations)
         currentIDAnnotations = fr.footprintAnnotations
         
-        print(fr.radius)
+        statisticalInfoTVString = fr.placemarkStatisticalInfo
+        
         if fr.radius > 0 {
             self.addCircleOverlays(annotations: currentIDAnnotations, radius: fr.radius)
             currentMergeDistance = fr.radius * 2.0
