@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1E00118F1E760AEF00AC7D6A /* FootprintsRepositoryEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E00118D1E760AEF00AC7D6A /* FootprintsRepositoryEditor.swift */; };
+		1E0011901E760AEF00AC7D6A /* FootprintsRepositoryEditor.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1E00118E1E760AEF00AC7D6A /* FootprintsRepositoryEditor.xib */; };
 		1E30F21D1E74321B00098946 /* XMLDictionary.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E30F21C1E74321B00098946 /* XMLDictionary.m */; };
 		1E4269D11E61BD02002087EA /* Date+Assistant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E4269D01E61BD02002087EA /* Date+Assistant.swift */; };
 		1E46B3111E625EE5000C6379 /* FileManager+Assistant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E46B3101E625EE5000C6379 /* FileManager+Assistant.swift */; };
@@ -78,6 +80,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1E00118D1E760AEF00AC7D6A /* FootprintsRepositoryEditor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FootprintsRepositoryEditor.swift; path = MAMVisualVCs/FootprintsRepositoryEditor.swift; sourceTree = "<group>"; };
+		1E00118E1E760AEF00AC7D6A /* FootprintsRepositoryEditor.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = FootprintsRepositoryEditor.xib; path = MAMVisualVCs/FootprintsRepositoryEditor.xib; sourceTree = "<group>"; };
 		1E30F21B1E74321B00098946 /* XMLDictionary.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XMLDictionary.h; sourceTree = "<group>"; };
 		1E30F21C1E74321B00098946 /* XMLDictionary.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMLDictionary.m; sourceTree = "<group>"; };
 		1E4269D01E61BD02002087EA /* Date+Assistant.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Date+Assistant.swift"; path = "GenericExtensions/Date+Assistant.swift"; sourceTree = "<group>"; };
@@ -176,6 +180,15 @@
 				6826725DC6F90CA237FDBBDA /* Pods-MacAlbumMaps.release.xcconfig */,
 			);
 			name = Pods;
+			sourceTree = "<group>";
+		};
+		1E00118C1E760AAD00AC7D6A /* MAMVisualVCs */ = {
+			isa = PBXGroup;
+			children = (
+				1E00118D1E760AEF00AC7D6A /* FootprintsRepositoryEditor.swift */,
+				1E00118E1E760AEF00AC7D6A /* FootprintsRepositoryEditor.xib */,
+			);
+			name = MAMVisualVCs;
 			sourceTree = "<group>";
 		};
 		1E30F21A1E74321B00098946 /* XMLDictionary */ = {
@@ -325,6 +338,7 @@
 		4B8FB5AA1E554EFB00400F58 /* MacAlbumMaps */ = {
 			isa = PBXGroup;
 			children = (
+				1E00118C1E760AAD00AC7D6A /* MAMVisualVCs */,
 				4B665B7A1E652B87008F5095 /* MAMResources */,
 				1ECA41B91E61604F0068CB44 /* GenericExtensions */,
 				4B88D0851E5E8ADE008A69BC /* GenericClasses */,
@@ -440,6 +454,7 @@
 				4B543D3A1E6659C90017E12C /* IcoMoon_MapMarker_WBG.png in Resources */,
 				4B543D431E6659C90017E12C /* IcoMoon_Share_WBG.png in Resources */,
 				4B543D381E6659C90017E12C /* IcoMoon_Heart-Fill_WBG.png in Resources */,
+				1E0011901E760AEF00AC7D6A /* FootprintsRepositoryEditor.xib in Resources */,
 				4B543D3E1E6659C90017E12C /* IcoMoon_Play_WBG.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -537,6 +552,7 @@
 				4B8B244B1E6F9BE0006C3D37 /* NSData+NSHash.m in Sources */,
 				4B2E5F0A1E695D1000866737 /* ContrastDisplayContext.swift in Sources */,
 				4B2E5F0F1E695D1000866737 /* DynamicColor+Mixing.swift in Sources */,
+				1E00118F1E760AEF00AC7D6A /* FootprintsRepositoryEditor.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

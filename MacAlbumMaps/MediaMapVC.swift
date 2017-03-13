@@ -621,7 +621,11 @@ class MediaMapVC: NSViewController,MKMapViewDelegate,NSOutlineViewDelegate,NSOut
         
         print(fpt)
         if let fp = FootprintsRepository.importFromGPXFile(filePath: fpt){
-            self.showFootprintsRepository(fr: fp)
+            //self.showFootprintsRepository(fr: fp)
+            let fpEditor = FootprintsRepositoryEditor()
+            fpEditor.fr = fp
+            self.presentViewControllerAsModalWindow(fpEditor)
+            //self.presentViewControllerAsSheet(fpEditor)
         }
     }
 
