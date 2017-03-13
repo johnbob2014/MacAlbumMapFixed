@@ -17,6 +17,8 @@
 		1ECA41BB1E6160CE0068CB44 /* CLPlacemark+Assistant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ECA41BA1E6160CE0068CB44 /* CLPlacemark+Assistant.swift */; };
 		3D6B5AB6A20AF244E2674E9F /* Pods_MacAlbumMaps.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9BEBD2E7F4F52E4B845D5AEA /* Pods_MacAlbumMaps.framework */; };
 		4B2CD3AE1E65589100AA1B9E /* GCTreeNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B2CD3AD1E65589100AA1B9E /* GCTreeNode.swift */; };
+		4B2D74F61E766D560027C712 /* GCThumbnailCollectionViewItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B2D74F41E766D560027C712 /* GCThumbnailCollectionViewItem.swift */; };
+		4B2D74F71E766D560027C712 /* GCThumbnailCollectionViewItem.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4B2D74F51E766D560027C712 /* GCThumbnailCollectionViewItem.xib */; };
 		4B2E3D651E5EE031003A913B /* MAMSettingManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B2E3D641E5EE031003A913B /* MAMSettingManager.swift */; };
 		4B2E5F091E695D1000866737 /* Array.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B2E5EFB1E695D1000866737 /* Array.swift */; };
 		4B2E5F0A1E695D1000866737 /* ContrastDisplayContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B2E5EFC1E695D1000866737 /* ContrastDisplayContext.swift */; };
@@ -33,6 +35,8 @@
 		4B2E5F151E695D1000866737 /* HSL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B2E5F071E695D1000866737 /* HSL.swift */; };
 		4B2E5F161E695D1000866737 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B2E5F081E695D1000866737 /* Utils.swift */; };
 		4B2E5F181E695EF600866737 /* DynamicColor+Assistant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B2E5F171E695EF600866737 /* DynamicColor+Assistant.swift */; };
+		4B2F9CA41E769C3E009968D3 /* cross.png in Resources */ = {isa = PBXBuildFile; fileRef = 4B2F9CA21E769C3E009968D3 /* cross.png */; };
+		4B2F9CA51E769C3E009968D3 /* plus.png in Resources */ = {isa = PBXBuildFile; fileRef = 4B2F9CA31E769C3E009968D3 /* plus.png */; };
 		4B339BD71E5C131F00401B0C /* CoordinateInfo+AlecrimCoreDataAttributes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B339BCE1E5C131F00401B0C /* CoordinateInfo+AlecrimCoreDataAttributes.swift */; };
 		4B339BDA1E5C131F00401B0C /* FootprintsRepositoryInfo+AlecrimCoreDataAttributes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B339BD11E5C131F00401B0C /* FootprintsRepositoryInfo+AlecrimCoreDataAttributes.swift */; };
 		4B339BDD1E5C131F00401B0C /* MediaInfo+AlecrimCoreDataAttributes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B339BD41E5C131F00401B0C /* MediaInfo+AlecrimCoreDataAttributes.swift */; };
@@ -77,6 +81,8 @@
 		4B8FB5B11E554EFB00400F58 /* MacAlbumMaps.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 4B8FB5AF1E554EFB00400F58 /* MacAlbumMaps.xcdatamodeld */; };
 		4B8FB5B31E554EFB00400F58 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4B8FB5B21E554EFB00400F58 /* Assets.xcassets */; };
 		4B8FB5B61E554EFB00400F58 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4B8FB5B41E554EFB00400F58 /* Main.storyboard */; };
+		4BEBAD9A1E76441700A1C0DA /* FootprintAnnotationTableCellView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4BEBAD991E76441700A1C0DA /* FootprintAnnotationTableCellView.xib */; };
+		4BEBAD9C1E76448F00A1C0DA /* FootprintAnnotationTableCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BEBAD9B1E76448F00A1C0DA /* FootprintAnnotationTableCellView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -91,6 +97,8 @@
 		1ECA41B81E6118100068CB44 /* MacAlbumMaps.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MacAlbumMaps.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1ECA41BA1E6160CE0068CB44 /* CLPlacemark+Assistant.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "CLPlacemark+Assistant.swift"; path = "GenericExtensions/CLPlacemark+Assistant.swift"; sourceTree = "<group>"; };
 		4B2CD3AD1E65589100AA1B9E /* GCTreeNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GCTreeNode.swift; sourceTree = "<group>"; };
+		4B2D74F41E766D560027C712 /* GCThumbnailCollectionViewItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GCThumbnailCollectionViewItem.swift; path = GCThumbnailCollectionViewItem/GCThumbnailCollectionViewItem.swift; sourceTree = "<group>"; };
+		4B2D74F51E766D560027C712 /* GCThumbnailCollectionViewItem.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = GCThumbnailCollectionViewItem.xib; path = GCThumbnailCollectionViewItem/GCThumbnailCollectionViewItem.xib; sourceTree = "<group>"; };
 		4B2E3D641E5EE031003A913B /* MAMSettingManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MAMSettingManager.swift; path = MAMModels/MAMSettingManager.swift; sourceTree = "<group>"; };
 		4B2E5EFB1E695D1000866737 /* Array.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Array.swift; sourceTree = "<group>"; };
 		4B2E5EFC1E695D1000866737 /* ContrastDisplayContext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContrastDisplayContext.swift; sourceTree = "<group>"; };
@@ -107,6 +115,8 @@
 		4B2E5F071E695D1000866737 /* HSL.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HSL.swift; sourceTree = "<group>"; };
 		4B2E5F081E695D1000866737 /* Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
 		4B2E5F171E695EF600866737 /* DynamicColor+Assistant.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "DynamicColor+Assistant.swift"; path = "MacAlbumMaps/GenericExtensions/DynamicColor+Assistant.swift"; sourceTree = SOURCE_ROOT; };
+		4B2F9CA21E769C3E009968D3 /* cross.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cross.png; sourceTree = "<group>"; };
+		4B2F9CA31E769C3E009968D3 /* plus.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = plus.png; sourceTree = "<group>"; };
 		4B339BCE1E5C131F00401B0C /* CoordinateInfo+AlecrimCoreDataAttributes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CoordinateInfo+AlecrimCoreDataAttributes.swift"; sourceTree = "<group>"; };
 		4B339BD11E5C131F00401B0C /* FootprintsRepositoryInfo+AlecrimCoreDataAttributes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "FootprintsRepositoryInfo+AlecrimCoreDataAttributes.swift"; sourceTree = "<group>"; };
 		4B339BD41E5C131F00401B0C /* MediaInfo+AlecrimCoreDataAttributes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "MediaInfo+AlecrimCoreDataAttributes.swift"; sourceTree = "<group>"; };
@@ -156,6 +166,8 @@
 		4B8FB5B21E554EFB00400F58 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		4B8FB5B51E554EFB00400F58 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		4B8FB5B71E554EFB00400F58 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		4BEBAD991E76441700A1C0DA /* FootprintAnnotationTableCellView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = FootprintAnnotationTableCellView.xib; path = MAMVisualVCs/FootprintAnnotationTableCellView.xib; sourceTree = "<group>"; };
+		4BEBAD9B1E76448F00A1C0DA /* FootprintAnnotationTableCellView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FootprintAnnotationTableCellView.swift; path = MAMVisualVCs/FootprintAnnotationTableCellView.swift; sourceTree = "<group>"; };
 		6826725DC6F90CA237FDBBDA /* Pods-MacAlbumMaps.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MacAlbumMaps.release.xcconfig"; path = "Pods/Target Support Files/Pods-MacAlbumMaps/Pods-MacAlbumMaps.release.xcconfig"; sourceTree = "<group>"; };
 		8975812DC64039374319AC5B /* Pods-MacAlbumMaps.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MacAlbumMaps.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MacAlbumMaps/Pods-MacAlbumMaps.debug.xcconfig"; sourceTree = "<group>"; };
 		9BEBD2E7F4F52E4B845D5AEA /* Pods_MacAlbumMaps.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MacAlbumMaps.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -187,6 +199,8 @@
 			children = (
 				1E00118D1E760AEF00AC7D6A /* FootprintsRepositoryEditor.swift */,
 				1E00118E1E760AEF00AC7D6A /* FootprintsRepositoryEditor.xib */,
+				4BEBAD9B1E76448F00A1C0DA /* FootprintAnnotationTableCellView.swift */,
+				4BEBAD991E76441700A1C0DA /* FootprintAnnotationTableCellView.xib */,
 			);
 			name = MAMVisualVCs;
 			sourceTree = "<group>";
@@ -212,6 +226,15 @@
 				1E46B3121E625F00000C6379 /* URL+Assistant.swift */,
 			);
 			name = GenericExtensions;
+			sourceTree = "<group>";
+		};
+		4B2D74F31E766CE10027C712 /* GCThumbnailCollectionViewItem */ = {
+			isa = PBXGroup;
+			children = (
+				4B2D74F41E766D560027C712 /* GCThumbnailCollectionViewItem.swift */,
+				4B2D74F51E766D560027C712 /* GCThumbnailCollectionViewItem.xib */,
+			);
+			name = GCThumbnailCollectionViewItem;
 			sourceTree = "<group>";
 		};
 		4B2E5EFA1E695D1000866737 /* DynamicColor */ = {
@@ -250,6 +273,8 @@
 		4B665B7A1E652B87008F5095 /* MAMResources */ = {
 			isa = PBXGroup;
 			children = (
+				4B2F9CA21E769C3E009968D3 /* cross.png */,
+				4B2F9CA31E769C3E009968D3 /* plus.png */,
 				4B543D1F1E6659C90017E12C /* IcoMoon_Download_WBG.png */,
 				4B543D201E6659C90017E12C /* IcoMoon_Flag_WBG.png */,
 				4B543D211E6659C90017E12C /* IcoMoon_Glasses_WBG.png */,
@@ -295,6 +320,7 @@
 		4B88D0851E5E8ADE008A69BC /* GenericClasses */ = {
 			isa = PBXGroup;
 			children = (
+				4B2D74F31E766CE10027C712 /* GCThumbnailCollectionViewItem */,
 				1E30F21A1E74321B00098946 /* XMLDictionary */,
 				4B8B243C1E6F888C006C3D37 /* GCCoordinateTransformer */,
 				4B88D0861E5E8ADE008A69BC /* GCLocationAnalyser.swift */,
@@ -426,13 +452,17 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4BEBAD9A1E76441700A1C0DA /* FootprintAnnotationTableCellView.xib in Resources */,
+				4B2F9CA51E769C3E009968D3 /* plus.png in Resources */,
 				4B543D481E6659C90017E12C /* IcoMoon_User-Follow_WBG.png in Resources */,
+				4B2D74F71E766D560027C712 /* GCThumbnailCollectionViewItem.xib in Resources */,
 				4B543D491E6659C90017E12C /* IcoMoon_User-On_WBG.png in Resources */,
 				4B543D421E6659C90017E12C /* IcoMoon_Setting_WBG.png in Resources */,
 				4B543D401E6659C90017E12C /* IcoMoon_Plus_WBG.png in Resources */,
 				4B543D1D1E6655A40017E12C /* IcoMoon_Arrow-Right_WBG.png in Resources */,
 				4B543D441E6659C90017E12C /* IcoMoon_Share2_WBG.png in Resources */,
 				4B543D1C1E6655A40017E12C /* IcoMoon_Arrow-Left_WBG.png in Resources */,
+				4B2F9CA41E769C3E009968D3 /* cross.png in Resources */,
 				4B543D3B1E6659C90017E12C /* IcoMoon_Minus_WBG.png in Resources */,
 				4B543D411E6659C90017E12C /* IcoMoon_Repeat_WBG.png in Resources */,
 				4B8FB5B31E554EFB00400F58 /* Assets.xcassets in Resources */,
@@ -518,6 +548,7 @@
 				4B8FB5B11E554EFB00400F58 /* MacAlbumMaps.xcdatamodeld in Sources */,
 				4B88D08B1E5E90B4008A69BC /* FootprintAnnotation.swift in Sources */,
 				4B2E5F0C1E695D1000866737 /* DynamicColor+HSB.swift in Sources */,
+				4B2D74F61E766D560027C712 /* GCThumbnailCollectionViewItem.swift in Sources */,
 				4B88D0891E5E8ADE008A69BC /* GCMediaLibraryLoader.swift in Sources */,
 				1E30F21D1E74321B00098946 /* XMLDictionary.m in Sources */,
 				4B88D0831E5E8A6D008A69BC /* MediaInfoGroupAnnotation.swift in Sources */,
@@ -550,6 +581,7 @@
 				4B339BDA1E5C131F00401B0C /* FootprintsRepositoryInfo+AlecrimCoreDataAttributes.swift in Sources */,
 				4B2E5F101E695D1000866737 /* DynamicColor+RGBA.swift in Sources */,
 				4B8B244B1E6F9BE0006C3D37 /* NSData+NSHash.m in Sources */,
+				4BEBAD9C1E76448F00A1C0DA /* FootprintAnnotationTableCellView.swift in Sources */,
 				4B2E5F0A1E695D1000866737 /* ContrastDisplayContext.swift in Sources */,
 				4B2E5F0F1E695D1000866737 /* DynamicColor+Mixing.swift in Sources */,
 				1E00118F1E760AEF00AC7D6A /* FootprintsRepositoryEditor.swift in Sources */,

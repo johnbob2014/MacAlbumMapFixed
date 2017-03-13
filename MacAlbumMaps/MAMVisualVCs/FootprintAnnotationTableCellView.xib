@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="11762" systemVersion="16C68" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+    <dependencies>
+        <deployment identifier="macosx"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="11762"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <customObject id="-2" userLabel="File's Owner"/>
+        <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
+        <customObject id="-3" userLabel="Application" customClass="NSObject"/>
+        <tableCellView identifier="FootprintAnnotationTableCellView" id="y5g-6h-Ofl" customClass="FootprintAnnotationTableCellView" customModule="MacAlbumMaps" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="360" height="160"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hgc-IE-Bdo">
+                    <rect key="frame" x="3" y="138" width="42" height="17"/>
+                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="titleTF" id="Yvy-Cr-eyh">
+                        <font key="font" metaFont="system"/>
+                        <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                    </textFieldCell>
+                </textField>
+                <scrollView wantsLayer="YES" autohidesScrollers="YES" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LaE-Nm-zct">
+                    <rect key="frame" x="5" y="5" width="350" height="128"/>
+                    <clipView key="contentView" drawsBackground="NO" id="UvT-FX-fMQ">
+                        <rect key="frame" x="1" y="1" width="348" height="126"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <collectionView id="WtD-t8-N1J">
+                                <rect key="frame" x="0.0" y="0.0" width="348" height="126"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumInteritemSpacing="10" minimumLineSpacing="10" scrollDirection="horizontal" id="tzG-pk-BNG">
+                                    <size key="itemSize" width="100" height="100"/>
+                                </collectionViewFlowLayout>
+                                <color key="primaryBackgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
+                            </collectionView>
+                        </subviews>
+                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                    </clipView>
+                    <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="YES" id="vuQ-Ll-bgF">
+                        <rect key="frame" x="1" y="144" width="233" height="15"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </scroller>
+                    <scroller key="verticalScroller" hidden="YES" verticalHuggingPriority="750" doubleValue="1" horizontal="NO" id="Aes-IW-kCa">
+                        <rect key="frame" x="234" y="1" width="15" height="143"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </scroller>
+                </scrollView>
+                <button translatesAutoresizingMaskIntoConstraints="NO" id="0MW-S9-l8c">
+                    <rect key="frame" x="335" y="135" width="20" height="20"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="20" id="9ow-4l-gn4"/>
+                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="20" id="Arv-gU-Oy0"/>
+                        <constraint firstAttribute="width" constant="20" id="SG2-CP-4h7"/>
+                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="20" id="ohO-GT-4Oa"/>
+                    </constraints>
+                    <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="cross" imagePosition="only" alignment="center" imageScaling="proportionallyUpOrDown" inset="2" id="EHT-3z-oAQ">
+                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                        <font key="font" metaFont="system"/>
+                    </buttonCell>
+                    <connections>
+                        <action selector="removeBtnTD:" target="y5g-6h-Ofl" id="d6Q-UX-FzU"/>
+                    </connections>
+                </button>
+            </subviews>
+            <constraints>
+                <constraint firstItem="LaE-Nm-zct" firstAttribute="top" secondItem="hgc-IE-Bdo" secondAttribute="bottom" constant="5" id="S3R-hx-Meu"/>
+                <constraint firstAttribute="bottom" secondItem="LaE-Nm-zct" secondAttribute="bottom" constant="5" id="Ttz-Q2-D30"/>
+                <constraint firstItem="LaE-Nm-zct" firstAttribute="leading" secondItem="y5g-6h-Ofl" secondAttribute="leading" constant="5" id="Ud6-pa-kpP"/>
+                <constraint firstItem="0MW-S9-l8c" firstAttribute="top" secondItem="y5g-6h-Ofl" secondAttribute="top" constant="5" id="XHe-pz-yvd"/>
+                <constraint firstItem="hgc-IE-Bdo" firstAttribute="leading" secondItem="y5g-6h-Ofl" secondAttribute="leading" constant="5" id="Yxu-VQ-NAU"/>
+                <constraint firstItem="hgc-IE-Bdo" firstAttribute="top" secondItem="y5g-6h-Ofl" secondAttribute="top" constant="5" id="dX8-Qe-p2J"/>
+                <constraint firstAttribute="trailing" secondItem="LaE-Nm-zct" secondAttribute="trailing" constant="5" id="gJz-nb-O92"/>
+                <constraint firstAttribute="trailing" secondItem="0MW-S9-l8c" secondAttribute="trailing" constant="5" id="rBE-3d-70x"/>
+            </constraints>
+            <connections>
+                <outlet property="removeBtn" destination="0MW-S9-l8c" id="qou-61-vtB"/>
+                <outlet property="thumbnailCollectionView" destination="WtD-t8-N1J" id="rUn-Fp-hdx"/>
+                <outlet property="titleTF" destination="hgc-IE-Bdo" id="nJj-rJ-RXo"/>
+            </connections>
+            <point key="canvasLocation" x="115" y="-222"/>
+        </tableCellView>
+    </objects>
+    <resources>
+        <image name="cross" width="88" height="88"/>
+    </resources>
+</document>

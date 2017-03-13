@@ -606,27 +606,30 @@ class MediaMapVC: NSViewController,MKMapViewDelegate,NSOutlineViewDelegate,NSOut
     
     // MARK: - 分享足迹包
     @IBAction func shareFootprintsRepositoryBtnTD(_ sender: NSButton) {
-        let fpt = appCachesPath + "/test55.gpx"
+        //let fpt = appCachesPath + "/test55.gpx"
         
-//        if let fr = self.createFootprintsRepository(withThumbnailArray: true){
-//            if MAMCoreDataManager.addFRInfo(fr: fr){
-//                browserTableView.reloadData()
-//            }
-//            
-//            fr.exportToGPXFile(filePath: fpt,enhancedGPX: true)
-//            
-//        }
-        
-        
-        
-        print(fpt)
-        if let fp = FootprintsRepository.importFromGPXFile(filePath: fpt){
-            //self.showFootprintsRepository(fr: fp)
+        if let fr = self.createFootprintsRepository(withThumbnailArray: true){
+            if MAMCoreDataManager.addFRInfo(fr: fr){
+                browserTableView.reloadData()
+            }
+            
             let fpEditor = FootprintsRepositoryEditor()
-            fpEditor.fr = fp
+            fpEditor.fr = fr
             self.presentViewControllerAsModalWindow(fpEditor)
-            //self.presentViewControllerAsSheet(fpEditor)
+            //fr.exportToGPXFile(filePath: fpt,enhancedGPX: true)
+            
         }
+        
+        
+        
+//        print(fpt)
+//        if let fp = FootprintsRepository.importFromGPXFile(filePath: fpt){
+//            //self.showFootprintsRepository(fr: fp)
+//            let fpEditor = FootprintsRepositoryEditor()
+//            fpEditor.fr = fp
+//            self.presentViewControllerAsModalWindow(fpEditor)
+//            //self.presentViewControllerAsSheet(fpEditor)
+//        }
     }
 
     // MARK: - 右侧Annotation序号
