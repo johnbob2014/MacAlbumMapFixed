@@ -47,4 +47,19 @@ class MAMSettingManager: NSObject {
         }
     }
     
+    /// 是否曾经登陆
+    class var hasPurchasedShareAndBrowse: Bool{
+        get{
+            if let ever = NSUserDefaultsController.shared().defaults.value(forKey: "hasPurchasedShareAndBrowse"){
+                return ever as! Bool
+            }else{
+                return true
+            }
+        }
+        set{
+            NSUserDefaultsController.shared().defaults.setValue(newValue, forKey: "hasPurchasedShareAndBrowse")
+            NSUserDefaultsController.shared().defaults.synchronize()
+        }
+    }
+
 }

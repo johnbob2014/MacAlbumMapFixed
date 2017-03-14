@@ -18,14 +18,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     func applicationDidFinishLaunching(_ aNotification: Notification) {
         // Insert code here to initialize your application
         
-        let totalCount = appContext.footprintsRepositoryInfos.count()
-        var succeededCount = 0
-        for frInfo in appContext.footprintsRepositoryInfos{
-            if MAMCoreDataManager.removeFRInfo(frInfo: frInfo){
-                succeededCount += 1
-            }
-        }
-        print("\(succeededCount)/\(totalCount)")
     }
 
     func applicationWillTerminate(_ aNotification: Notification) {

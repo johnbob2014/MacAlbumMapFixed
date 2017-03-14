@@ -13,7 +13,6 @@ import MediaLibrary
 class MediaMapVC: NSViewController,MKMapViewDelegate,NSOutlineViewDelegate,NSOutlineViewDataSource,NSTabViewDelegate,NSTableViewDelegate,NSTableViewDataSource{
     
     // MARK: - 属性
-    @IBOutlet var locationTreeController: NSTreeController!
     
     @IBOutlet weak var mainMapView: MKMapView!
     
@@ -30,14 +29,19 @@ class MediaMapVC: NSViewController,MKMapViewDelegate,NSOutlineViewDelegate,NSOut
             
             currentMergeDistance = 0.0
             
+            
+            
             switch indexOfTabViewItem {
             case 0:
+                placemarkInfoTF.stringValue = NSLocalizedString("Choose date range", comment: "请选择日期范围")
                 currentMapMode = MapMode.Moment
                 self.showMediaInfoButtons()
             case 1:
+                placemarkInfoTF.stringValue = NSLocalizedString("Choose a location", comment: "请选择地点")
                 currentMapMode = MapMode.Location
                 self.showMediaInfoButtons()
             case 2:
+                placemarkInfoTF.stringValue = NSLocalizedString("Choose a footprints repository", comment: "请选择足迹包")
                 currentMapMode = MapMode.Browser
                 browserTableView.reloadData()
                 self.hideMediaInfoButtons()
@@ -49,14 +53,14 @@ class MediaMapVC: NSViewController,MKMapViewDelegate,NSOutlineViewDelegate,NSOut
     
     func showMediaInfoButtons() {
         eliminateCheckBtn.isHidden = false
-        shareCheckBtn.isHidden = false
+        //shareCheckBtn.isHidden = false
         favoriteCoordinateInfoBtn.isHidden = false
         favoriteMediaBtn.isHidden = false
     }
     
     func hideMediaInfoButtons() {
         eliminateCheckBtn.isHidden = true
-        shareCheckBtn.isHidden = true
+        //shareCheckBtn.isHidden = true
         favoriteCoordinateInfoBtn.isHidden = true
         favoriteMediaBtn.isHidden = true
     }
@@ -237,6 +241,8 @@ class MediaMapVC: NSViewController,MKMapViewDelegate,NSOutlineViewDelegate,NSOut
         super.viewDidLoad()
         // Do view setup here.
         
+        self.title = NSLocalizedString("Mac Album Maps", comment: "相册地图 - MacOS")
+        
         self.addNotificationObserver()
         
         self.initMapView()
@@ -297,6 +303,8 @@ class MediaMapVC: NSViewController,MKMapViewDelegate,NSOutlineViewDelegate,NSOut
         }
         
         changeOverlayStyleBtn.tag = 0
+        
+        shareCheckBtn.isHidden = true
     }
     
     private func updateMediaInfos(){
@@ -521,9 +529,9 @@ class MediaMapVC: NSViewController,MKMapViewDelegate,NSOutlineViewDelegate,NSOut
     func didReceiveNotification(noti: NSNotification) {
         for (infoKey,info) in noti.userInfo! {
             switch infoKey as! String {
-            case "Placemark_Updating_Info_String":
+            case "StatusBar_String":
                 placemarkInfoTF.stringValue = info as! String
-            case "Scan_Photos_Result_String":
+            case "User_Detail_Info_String":
                 statisticalInfoTVString = info as! String
             default:
                 break
@@ -606,19 +614,23 @@ class MediaMapVC: NSViewController,MKMapViewDelegate,NSOutlineViewDelegate,NSOut
     
     // MARK: - 分享足迹包
     @IBAction func shareFootprintsRepositoryBtnTD(_ sender: NSButton) {
-        
-        if let fr = self.createFootprintsRepository(withThumbnailArray: true){
-            
-            if MAMCoreDataManager.addFRInfo(fr: fr){
-                browserTableView.reloadData()
+        if MAMSettingManager.hasPurchasedShareAndBrowse {
+            if let fr = self.createFootprintsRepository(withThumbnailArray: true){
+                
+                if MAMCoreDataManager.addFRInfo(fr: fr){
+                    browserTableView.reloadData()
+                }
+                
+                let fpEditor = FootprintsRepositoryEditor()
+                fpEditor.fr = fr
+                self.presentViewControllerAsModalWindow(fpEditor)
             }
-            
-            let fpEditor = FootprintsRepositoryEditor()
-            fpEditor.fr = fr
-            self.presentViewControllerAsModalWindow(fpEditor)
+        }else{
+            placemarkInfoTF.stringValue = NSLocalizedString("Did not purchase ShareAndBrowse function.", comment: "尚未购买 ShareAndBrowse 功能！")
         }
     }
     
+    // MARK: - 导入足迹包
     @IBAction func importBtnTD(_ sender: NSButton) {
         mapModeTabView.selectTabViewItem(at: 2)
         
@@ -636,6 +648,15 @@ class MediaMapVC: NSViewController,MKMapViewDelegate,NSOutlineViewDelegate,NSOut
                 //print(FileManager.default.fileExists(atPath: filePath))
                 if let fr = FootprintsRepository.importFromGPXFile(filePath: filePath){
                     self.showFootprintsRepository(fr: fr)
+                    
+                    // 购买 ShareAndBrowse 后才保存足迹包
+                    if MAMSettingManager.hasPurchasedShareAndBrowse {
+                        fr.footprintsRepositoryType = .Received
+                        if MAMCoreDataManager.addFRInfo(fr: fr){
+                            placemarkInfoTF.stringValue = NSLocalizedString("Successfully import footprints repository: ", comment: "导入足迹包成功：") + fr.title
+                            browserTableView.reloadData()
+                        }
+                    }
                 }
             }
         }
@@ -770,11 +791,11 @@ class MediaMapVC: NSViewController,MKMapViewDelegate,NSOutlineViewDelegate,NSOut
         
         let piDic = MAMCoreDataManager.placemarkInfoDictionary(mediaInfos: mediaInfos)
         //statisticalString += NSLocalizedString("Location statistical info: ", comment: "地点统计信息：") + "\n"
-        statisticalString += NSLocalizedString("Country: ", comment: "国家：") + "\(piDic[.kCountryArray]!.count)\n"
-        statisticalString += NSLocalizedString("AdministrativeArea: ", comment: "省：") + "\(piDic[.kAdministrativeAreaArray]!.count)\n"
-        statisticalString += NSLocalizedString("Locality: ", comment: "市：") + "\(piDic[.kLocalityArray]!.count)\n"
-        statisticalString += NSLocalizedString("SubLocality: ", comment: "县乡：") + "\(piDic[.kSubLocalityArray]!.count)\n"
-        statisticalString += NSLocalizedString("Thoroughfare: ", comment: "村镇街道：") + "\(piDic[.kThoroughfareArray]!.count)"
+        statisticalString += "∙" + NSLocalizedString("Country: ", comment: "国家：") + "\(piDic[.kCountryArray]!.count)\n"
+        statisticalString += "∙" + NSLocalizedString("AdministrativeArea: ", comment: "省：") + "\(piDic[.kAdministrativeAreaArray]!.count)\n"
+        statisticalString += "∙" + NSLocalizedString("Locality: ", comment: "市：") + "\(piDic[.kLocalityArray]!.count)\n"
+        statisticalString += "∙" + NSLocalizedString("SubLocality: ", comment: "县乡：") + "\(piDic[.kSubLocalityArray]!.count)\n"
+        statisticalString += "∙" + NSLocalizedString("Thoroughfare: ", comment: "村镇街道：") + "\(piDic[.kThoroughfareArray]!.count)"
         
         return statisticalString
     }

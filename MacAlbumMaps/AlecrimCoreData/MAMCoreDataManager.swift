@@ -368,16 +368,20 @@ class MAMCoreDataManager: NSObject {
         var scanPhotosResult = ""
         do {
             try appContext.save()
-            scanPhotosResult += NSLocalizedString("Scan photos result:", comment: "添加结果:") + "\n"
-            scanPhotosResult += NSLocalizedString("New CoordinateInfo Count:", comment: "新添加座标点数:") + "\(addCoordinateInfoCount)" + "\n"
-            scanPhotosResult += NSLocalizedString("New MediaInfo Count:", comment: "新添加媒体数:") + "\(addMediaInfoCount)" + "\n"
-            scanPhotosResult += NSLocalizedString("Total CoordinateInfo Count:", comment: "总座标点数:") + "\(appContext.coordinateInfos.count())" + "\n"
-            scanPhotosResult += NSLocalizedString("Total MediaInfo Count:", comment: "总媒体数:") + "\(appContext.mediaInfos.count())"
+            //scanPhotosResult += NSLocalizedString("Scan photos result:", comment: "添加结果:") + "\n"
+            scanPhotosResult += "∙" + NSLocalizedString("New Media Count: ", comment: "新添加媒体数: ") + "\(addMediaInfoCount)" + "\n"
+            scanPhotosResult += "∙" + NSLocalizedString("Total Media Count: ", comment: "总媒体数: ") + "\(appContext.mediaInfos.count())" + "\n"
+            scanPhotosResult += "∙" + NSLocalizedString("New Coordinate Count: ", comment: "新添加座标点数: ") + "\(addCoordinateInfoCount)" + "\n"
+            scanPhotosResult += "∙" + NSLocalizedString("Total Coordinate Count: ", comment: "总座标点数: ") + "\(appContext.coordinateInfos.count())" + "\n"
+            
+            scanPhotosResult += "∙" + NSLocalizedString("Latest date: ", comment: "最新日期: ") + latestMD.stringWithDefaultFormat()
         } catch  {
             scanPhotosResult += NSLocalizedString("Failed!", comment: "失败!")
         }
         
-        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "App_Running_Info"), object: nil, userInfo: ["Scan_Photos_Result_String":scanPhotosResult])
+        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "App_Running_Info"), object: nil, userInfo: ["User_Detail_Info_String":scanPhotosResult])
+        
+        
     }
     
     // MARK: - 地址信息解析工具
@@ -392,8 +396,8 @@ class MAMCoreDataManager: NSObject {
             if coordinateInfos.count == 0{
                 // 已经全部解析完成
                 DispatchQueue.main.async {
-                    let infoString = NSLocalizedString("Total Coordinate:", comment: "座标点总计：") + "\(total) " + NSLocalizedString("Parsing is complete!", comment: "地址信息已全部解析完成！")
-                    NotificationCenter.default.post(name: NSNotification.Name(rawValue: "App_Running_Info"), object: nil, userInfo: ["Placemark_Updating_Info_String":infoString])
+                    let infoString = NSLocalizedString("Total Coordinate Count:", comment: "座标点总计：") + "\(total) " + NSLocalizedString("Parsing is complete!", comment: "地址信息已全部解析完成！")
+                    NotificationCenter.default.post(name: NSNotification.Name(rawValue: "App_Running_Info"), object: nil, userInfo: ["StatusBar_String":infoString])
                 }
             }
             
@@ -403,11 +407,11 @@ class MAMCoreDataManager: NSObject {
                 
                 coordinateInfo.updatePlacemark(geocoder: geocoder){
                     (succeeded,placemarkString) -> Void in
-                    var infoString = NSLocalizedString("Total:", comment: "总计：") + "\(total) " + NSLocalizedString("Now parsing:", comment: "正在解析：") + "\(reverseGeocodeSucceedCount+index+1) "
+                    var infoString = NSLocalizedString("Parsing coordinate: ", comment: "正在解析座标：") + "\(reverseGeocodeSucceedCount+index+1)/\(total)"
                     infoString += succeeded ? placemarkString! : NSLocalizedString("Parse failed!", comment: "解析失败！")
                     
                     DispatchQueue.main.async {
-                        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "App_Running_Info"), object: nil, userInfo: ["Placemark_Updating_Info_String":infoString])
+                        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "App_Running_Info"), object: nil, userInfo: ["StatusBar_String":infoString])
                     }
 
                 }
@@ -733,6 +737,20 @@ class MAMCoreDataManager: NSObject {
         }
         
         return succeeded
+    }
+    
+    /// 移除所有 FootprintsRepositoryInfo
+    ///
+    /// - Returns: (成功数,总数) 元组
+    class func removeAllFRInfos() -> (Int,Int) {
+        let totalCount = appContext.footprintsRepositoryInfos.count()
+        var succeededCount = 0
+        for frInfo in appContext.footprintsRepositoryInfos{
+            if MAMCoreDataManager.removeFRInfo(frInfo: frInfo){
+                succeededCount += 1
+            }
+        }
+        return (succeededCount,totalCount)
     }
 }
 
