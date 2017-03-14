@@ -47,15 +47,13 @@
                         <autoresizingMask key="autoresizingMask"/>
                     </scroller>
                 </scrollView>
-                <button translatesAutoresizingMaskIntoConstraints="NO" id="0MW-S9-l8c">
-                    <rect key="frame" x="335" y="135" width="20" height="20"/>
+                <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="0MW-S9-l8c">
+                    <rect key="frame" x="284" y="128" width="77" height="31"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="20" id="9ow-4l-gn4"/>
-                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="20" id="Arv-gU-Oy0"/>
-                        <constraint firstAttribute="width" constant="20" id="SG2-CP-4h7"/>
-                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="20" id="ohO-GT-4Oa"/>
+                        <constraint firstAttribute="width" constant="65" id="SG2-CP-4h7"/>
                     </constraints>
-                    <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="cross" imagePosition="only" alignment="center" imageScaling="proportionallyUpOrDown" inset="2" id="EHT-3z-oAQ">
+                    <buttonCell key="cell" type="push" title="Remove" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyUpOrDown" inset="2" id="EHT-3z-oAQ">
                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                         <font key="font" metaFont="system"/>
                     </buttonCell>
@@ -82,7 +80,4 @@
             <point key="canvasLocation" x="115" y="-222"/>
         </tableCellView>
     </objects>
-    <resources>
-        <image name="cross" width="88" height="88"/>
-    </resources>
 </document>

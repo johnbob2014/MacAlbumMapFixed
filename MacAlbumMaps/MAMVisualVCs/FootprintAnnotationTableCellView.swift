@@ -12,25 +12,30 @@ class FootprintAnnotationTableCellView: NSTableCellView,NSCollectionViewDelegate
     
     @IBOutlet weak var titleTF: NSTextField!
     
-    
-    
     @IBOutlet weak var thumbnailCollectionView: NSCollectionView!
     
     @IBOutlet weak var removeBtn: NSButton!
     @IBAction func removeBtnTD(_ sender: NSButton) {
-        self.print("remove fa")
+        //self.print("remove fa")
+        removeAction?()
     }
     
+    var removeAction: (() -> Void)?
     
     var footprintAnnotation = FootprintAnnotation(){
         didSet{
             
             titleTF.stringValue = footprintAnnotation.customTitle + "  " + footprintAnnotation.dateString
             
-            thumbnailCollectionView.delegate = self
-            thumbnailCollectionView.dataSource = self
-            thumbnailCollectionView.register(GCThumbnailCollectionViewItem.self, forItemWithIdentifier: "GCThumbnailCollectionViewItem")
-            thumbnailCollectionView.reloadData()
+            if footprintAnnotation.thumbnailArray.count > 0 {
+                thumbnailCollectionView.delegate = self
+                thumbnailCollectionView.dataSource = self
+                thumbnailCollectionView.register(GCThumbnailCollectionViewItem.self, forItemWithIdentifier: "GCThumbnailCollectionViewItem")
+                thumbnailCollectionView.reloadData()
+            }else{
+                thumbnailCollectionView.isHidden = true
+            }
+            
         }
     }
         
@@ -46,10 +51,20 @@ class FootprintAnnotationTableCellView: NSTableCellView,NSCollectionViewDelegate
     
     func collectionView(_ collectionView: NSCollectionView, itemForRepresentedObjectAt indexPath: IndexPath) -> NSCollectionViewItem {
         let item = collectionView.makeItem(withIdentifier: "GCThumbnailCollectionViewItem", for: indexPath)
-        let thumbanilData = footprintAnnotation.thumbnailArray[indexPath.item]
         
+        let thumbanilData = footprintAnnotation.thumbnailArray[indexPath.item]
         if let thumbnail = NSImage.init(data: thumbanilData){
             item.representedObject = thumbnail
+        }
+        
+        if item is GCThumbnailCollectionViewItem {
+            let thumbnailItem = item as! GCThumbnailCollectionViewItem
+            thumbnailItem.removeAction = {
+                
+                self.footprintAnnotation.thumbnailArray.remove(at: indexPath.item)
+                
+                collectionView.reloadData()
+            }
         }
         
         return item

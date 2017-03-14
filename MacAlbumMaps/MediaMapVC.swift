@@ -606,9 +606,9 @@ class MediaMapVC: NSViewController,MKMapViewDelegate,NSOutlineViewDelegate,NSOut
     
     // MARK: - 分享足迹包
     @IBAction func shareFootprintsRepositoryBtnTD(_ sender: NSButton) {
-        //let fpt = appCachesPath + "/test55.gpx"
         
         if let fr = self.createFootprintsRepository(withThumbnailArray: true){
+            
             if MAMCoreDataManager.addFRInfo(fr: fr){
                 browserTableView.reloadData()
             }
@@ -616,21 +616,31 @@ class MediaMapVC: NSViewController,MKMapViewDelegate,NSOutlineViewDelegate,NSOut
             let fpEditor = FootprintsRepositoryEditor()
             fpEditor.fr = fr
             self.presentViewControllerAsModalWindow(fpEditor)
-            //fr.exportToGPXFile(filePath: fpt,enhancedGPX: true)
-            
         }
-        
-        
-        
-//        print(fpt)
-//        if let fp = FootprintsRepository.importFromGPXFile(filePath: fpt){
-//            //self.showFootprintsRepository(fr: fp)
-//            let fpEditor = FootprintsRepositoryEditor()
-//            fpEditor.fr = fp
-//            self.presentViewControllerAsModalWindow(fpEditor)
-//            //self.presentViewControllerAsSheet(fpEditor)
-//        }
     }
+    
+    @IBAction func importBtnTD(_ sender: NSButton) {
+        mapModeTabView.selectTabViewItem(at: 2)
+        
+        let openPanel = NSOpenPanel.init()
+        openPanel.directoryURL = URL.documentURL
+        openPanel.allowsMultipleSelection = false
+        openPanel.canChooseDirectories = false
+        openPanel.canChooseFiles = true
+        openPanel.allowedFileTypes = ["gpx"]
+        openPanel.allowsOtherFileTypes = true
+        
+        if openPanel.runModal() == NSModalResponseOK{
+            if let filePath = openPanel.urls.first?.absoluteString{
+                print("Import from: " + filePath)
+                //print(FileManager.default.fileExists(atPath: filePath))
+                if let fr = FootprintsRepository.importFromGPXFile(filePath: filePath){
+                    self.showFootprintsRepository(fr: fr)
+                }
+            }
+        }
+    }
+    
 
     // MARK: - 右侧Annotation序号
     @IBOutlet weak var indexOfCurrentAnnotationLabel: NSTextField!
@@ -1094,10 +1104,11 @@ class MediaMapVC: NSViewController,MKMapViewDelegate,NSOutlineViewDelegate,NSOut
         footprintsRepository.footprintAnnotations = footprintAnnotations
         footprintsRepository.footprintsRepositoryType = FootprintsRepositoryType.Sent
         footprintsRepository.creationDate = Date.init(timeIntervalSinceNow: 0.0)
-        footprintsRepository.title = currentStartDate.stringWithFormat(format: "yyyy-MM-dd") + " ~ " + currentEndDate.stringWithFormat(format: "yyyy-MM-dd")
         footprintsRepository.placemarkStatisticalInfo = currentPlacemarkStatisticalInfo
         
-        if currentMapMode == MapMode.Location {
+        if currentMapMode == MapMode.Moment{
+            footprintsRepository.title = currentStartDate.stringWithDefaultFormat() + " ~ " + currentEndDate.stringWithDefaultFormat()
+        }else if currentMapMode == MapMode.Location {
             footprintsRepository.radius = currentMergeDistance / 2.0
             footprintsRepository.title = currentPlacemark
         }

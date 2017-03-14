@@ -10,10 +10,12 @@ import Cocoa
 
 class GCThumbnailCollectionViewItem: NSCollectionViewItem {
 
+    var removeAction: (() -> Void)?
     
     @IBOutlet weak var removeBtn: NSButton!
     @IBAction func removeBtnTD(_ sender: Any) {
-        print("removeBtnTD")
+        //print("removeBtnTD")
+        removeAction?()
     }
     
     override func viewDidLoad() {

@@ -8,7 +8,9 @@
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="FootprintsRepositoryEditor" customModule="MacAlbumMaps" customModuleProvider="target">
             <connections>
-                <outlet property="fasTV" destination="BFh-96-H5g" id="xGt-Ir-6yB"/>
+                <outlet property="footprintsTV" destination="BFh-96-H5g" id="aBH-tR-sqE"/>
+                <outlet property="includeThumbnailsCheckBtn" destination="3ua-f8-IMd" id="jh8-AI-NGD"/>
+                <outlet property="normalGPXBtn" destination="mNG-Nc-Mq5" id="6uS-MN-WEL"/>
                 <outlet property="placemarkStatisticalInfoTF" destination="ta5-bC-R3e" id="fbH-Hd-hZt"/>
                 <outlet property="titleTF" destination="WDX-dz-gAG" id="Evb-Lu-hOJ"/>
                 <outlet property="view" destination="Hz6-mo-xeY" id="0bl-1N-x8E"/>
@@ -61,16 +63,22 @@
                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                         <font key="font" metaFont="system"/>
                     </buttonCell>
+                    <connections>
+                        <action selector="enhancedGPXBtnTD:" target="-2" id="CU1-h1-UOQ"/>
+                    </connections>
                 </button>
                 <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="mNG-Nc-Mq5">
-                    <rect key="frame" x="202" y="13" width="132" height="32"/>
+                    <rect key="frame" x="262" y="13" width="72" height="32"/>
                     <constraints>
-                        <constraint firstAttribute="width" constant="120" id="Tcv-tE-mU4"/>
+                        <constraint firstAttribute="width" constant="60" id="Tcv-tE-mU4"/>
                     </constraints>
                     <buttonCell key="cell" type="push" title="GPX" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="aE2-Vw-CZx">
                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                         <font key="font" metaFont="system"/>
                     </buttonCell>
+                    <connections>
+                        <action selector="normalGPXBtnTD:" target="-2" id="Pcl-ml-kS4"/>
+                    </connections>
                 </button>
                 <scrollView wantsLayer="YES" autohidesScrollers="YES" horizontalLineScroll="19" horizontalPageScroll="10" verticalLineScroll="19" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8bl-fZ-cCJ">
                     <rect key="frame" x="20" y="61" width="440" height="490"/>
@@ -148,10 +156,20 @@
                         <autoresizingMask key="autoresizingMask"/>
                     </scroller>
                 </scrollView>
+                <button translatesAutoresizingMaskIntoConstraints="NO" id="3ua-f8-IMd">
+                    <rect key="frame" x="18" y="22" width="137" height="18"/>
+                    <buttonCell key="cell" type="check" title="Include thumbnails" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="c7T-BG-GvR">
+                        <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                        <font key="font" metaFont="system"/>
+                    </buttonCell>
+                    <connections>
+                        <action selector="includeThumbnailsCheckBtnTD:" target="-2" id="uT2-0H-Owl"/>
+                    </connections>
+                </button>
             </subviews>
             <constraints>
                 <constraint firstAttribute="trailing" secondItem="6P5-8q-dKT" secondAttribute="trailing" constant="20" symbolic="YES" id="0XU-QH-bDF"/>
-                <constraint firstItem="mNG-Nc-Mq5" firstAttribute="top" secondItem="8bl-fZ-cCJ" secondAttribute="bottom" constant="20" symbolic="YES" id="2co-OD-aGR"/>
+                <constraint firstItem="6P5-8q-dKT" firstAttribute="top" secondItem="8bl-fZ-cCJ" secondAttribute="bottom" constant="20" id="0yW-rS-dGU"/>
                 <constraint firstItem="mNG-Nc-Mq5" firstAttribute="centerY" secondItem="6P5-8q-dKT" secondAttribute="centerY" id="3Sn-qV-oyy"/>
                 <constraint firstAttribute="trailing" secondItem="SkO-GY-iTP" secondAttribute="trailing" constant="20" symbolic="YES" id="Eyi-7R-YDr"/>
                 <constraint firstItem="8bl-fZ-cCJ" firstAttribute="top" secondItem="84X-Uf-Rgc" secondAttribute="bottom" constant="8" symbolic="YES" id="F1C-03-cRv"/>
@@ -162,6 +180,8 @@
                 <constraint firstItem="YzF-iX-DCV" firstAttribute="leading" secondItem="ORJ-fp-gwW" secondAttribute="leading" id="bBg-vx-eep"/>
                 <constraint firstItem="84X-Uf-Rgc" firstAttribute="leading" secondItem="ta5-bC-R3e" secondAttribute="leading" id="c9A-JJ-2BD"/>
                 <constraint firstItem="ORJ-fp-gwW" firstAttribute="leading" secondItem="Hz6-mo-xeY" secondAttribute="leading" constant="20" id="d1I-OE-40U"/>
+                <constraint firstItem="3ua-f8-IMd" firstAttribute="leading" secondItem="Hz6-mo-xeY" secondAttribute="leading" constant="20" symbolic="YES" id="fAz-5h-tAb"/>
+                <constraint firstItem="3ua-f8-IMd" firstAttribute="centerY" secondItem="mNG-Nc-Mq5" secondAttribute="centerY" id="gAj-6j-l3I"/>
                 <constraint firstItem="ORJ-fp-gwW" firstAttribute="top" secondItem="Hz6-mo-xeY" secondAttribute="top" constant="20" id="gFn-0A-zOx"/>
                 <constraint firstAttribute="trailing" secondItem="8bl-fZ-cCJ" secondAttribute="trailing" constant="20" symbolic="YES" id="hPX-Ey-9vb"/>
                 <constraint firstItem="8bl-fZ-cCJ" firstAttribute="leading" secondItem="Hz6-mo-xeY" secondAttribute="leading" constant="20" symbolic="YES" id="miM-Wi-BIG"/>
