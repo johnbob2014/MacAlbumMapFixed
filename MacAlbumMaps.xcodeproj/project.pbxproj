@@ -40,6 +40,7 @@
 		4B339BD71E5C131F00401B0C /* CoordinateInfo+AlecrimCoreDataAttributes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B339BCE1E5C131F00401B0C /* CoordinateInfo+AlecrimCoreDataAttributes.swift */; };
 		4B339BDA1E5C131F00401B0C /* FootprintsRepositoryInfo+AlecrimCoreDataAttributes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B339BD11E5C131F00401B0C /* FootprintsRepositoryInfo+AlecrimCoreDataAttributes.swift */; };
 		4B339BDD1E5C131F00401B0C /* MediaInfo+AlecrimCoreDataAttributes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B339BD41E5C131F00401B0C /* MediaInfo+AlecrimCoreDataAttributes.swift */; };
+		4B3B677F1E79187B007ACB6D /* GCInAppPurchaser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B3B677E1E79187B007ACB6D /* GCInAppPurchaser.swift */; };
 		4B543D1B1E6655A40017E12C /* IcoMoon_Arrow-Bottom_WBG.png in Resources */ = {isa = PBXBuildFile; fileRef = 4B543D171E6655A40017E12C /* IcoMoon_Arrow-Bottom_WBG.png */; };
 		4B543D1C1E6655A40017E12C /* IcoMoon_Arrow-Left_WBG.png in Resources */ = {isa = PBXBuildFile; fileRef = 4B543D181E6655A40017E12C /* IcoMoon_Arrow-Left_WBG.png */; };
 		4B543D1D1E6655A40017E12C /* IcoMoon_Arrow-Right_WBG.png in Resources */ = {isa = PBXBuildFile; fileRef = 4B543D191E6655A40017E12C /* IcoMoon_Arrow-Right_WBG.png */; };
@@ -68,6 +69,7 @@
 		4B543D4A1E6659C90017E12C /* IcoMoon_Video_WBG.png in Resources */ = {isa = PBXBuildFile; fileRef = 4B543D341E6659C90017E12C /* IcoMoon_Video_WBG.png */; };
 		4B656F471E5D0C1F0074BFA1 /* MAMCoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B656F461E5D0C1F0074BFA1 /* MAMCoreDataManager.swift */; };
 		4B665B7C1E652B94008F5095 /* AppIcon.icns in Resources */ = {isa = PBXBuildFile; fileRef = 4B665B7B1E652B94008F5095 /* AppIcon.icns */; };
+		4B68BB9A1E78D34500A6D297 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4B68BB991E78D34500A6D297 /* StoreKit.framework */; };
 		4B76B3391E567CD2003BED65 /* MediaMapVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B76B3381E567CD2003BED65 /* MediaMapVC.swift */; };
 		4B88D0831E5E8A6D008A69BC /* MediaInfoGroupAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B88D0821E5E8A6D008A69BC /* MediaInfoGroupAnnotation.swift */; };
 		4B88D0881E5E8ADE008A69BC /* GCLocationAnalyser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B88D0861E5E8ADE008A69BC /* GCLocationAnalyser.swift */; };
@@ -120,6 +122,7 @@
 		4B339BCE1E5C131F00401B0C /* CoordinateInfo+AlecrimCoreDataAttributes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CoordinateInfo+AlecrimCoreDataAttributes.swift"; sourceTree = "<group>"; };
 		4B339BD11E5C131F00401B0C /* FootprintsRepositoryInfo+AlecrimCoreDataAttributes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "FootprintsRepositoryInfo+AlecrimCoreDataAttributes.swift"; sourceTree = "<group>"; };
 		4B339BD41E5C131F00401B0C /* MediaInfo+AlecrimCoreDataAttributes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "MediaInfo+AlecrimCoreDataAttributes.swift"; sourceTree = "<group>"; };
+		4B3B677E1E79187B007ACB6D /* GCInAppPurchaser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GCInAppPurchaser.swift; sourceTree = "<group>"; };
 		4B543D171E6655A40017E12C /* IcoMoon_Arrow-Bottom_WBG.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "IcoMoon_Arrow-Bottom_WBG.png"; path = "MAMResources/IcoMoon_Arrow-Bottom_WBG.png"; sourceTree = "<group>"; };
 		4B543D181E6655A40017E12C /* IcoMoon_Arrow-Left_WBG.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "IcoMoon_Arrow-Left_WBG.png"; path = "MAMResources/IcoMoon_Arrow-Left_WBG.png"; sourceTree = "<group>"; };
 		4B543D191E6655A40017E12C /* IcoMoon_Arrow-Right_WBG.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "IcoMoon_Arrow-Right_WBG.png"; path = "MAMResources/IcoMoon_Arrow-Right_WBG.png"; sourceTree = "<group>"; };
@@ -148,6 +151,7 @@
 		4B543D341E6659C90017E12C /* IcoMoon_Video_WBG.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = IcoMoon_Video_WBG.png; path = MAMResources/IcoMoon_Video_WBG.png; sourceTree = "<group>"; };
 		4B656F461E5D0C1F0074BFA1 /* MAMCoreDataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MAMCoreDataManager.swift; sourceTree = "<group>"; };
 		4B665B7B1E652B94008F5095 /* AppIcon.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; name = AppIcon.icns; path = MAMResources/AppIcon.icns; sourceTree = "<group>"; };
+		4B68BB991E78D34500A6D297 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		4B76B3381E567CD2003BED65 /* MediaMapVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MediaMapVC.swift; sourceTree = "<group>"; };
 		4B88D0821E5E8A6D008A69BC /* MediaInfoGroupAnnotation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MediaInfoGroupAnnotation.swift; path = MAMModels/MediaInfoGroupAnnotation.swift; sourceTree = "<group>"; };
 		4B88D0861E5E8ADE008A69BC /* GCLocationAnalyser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GCLocationAnalyser.swift; sourceTree = "<group>"; };
@@ -179,6 +183,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3D6B5AB6A20AF244E2674E9F /* Pods_MacAlbumMaps.framework in Frameworks */,
+				4B68BB9A1E78D34500A6D297 /* StoreKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -324,6 +329,7 @@
 				1E30F21A1E74321B00098946 /* XMLDictionary */,
 				4B8B243C1E6F888C006C3D37 /* GCCoordinateTransformer */,
 				4B88D0861E5E8ADE008A69BC /* GCLocationAnalyser.swift */,
+				4B3B677E1E79187B007ACB6D /* GCInAppPurchaser.swift */,
 				4B88D0871E5E8ADE008A69BC /* GCMediaLibraryLoader.swift */,
 				4B2CD3AD1E65589100AA1B9E /* GCTreeNode.swift */,
 				1E4C894C1E6D8ADF001AD00C /* GCStarAnnotationView.swift */,
@@ -384,6 +390,7 @@
 		D4C260E6018A492B02384509 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				4B68BB991E78D34500A6D297 /* StoreKit.framework */,
 				9BEBD2E7F4F52E4B845D5AEA /* Pods_MacAlbumMaps.framework */,
 			);
 			name = Frameworks;
@@ -426,6 +433,11 @@
 						CreatedOnToolsVersion = 8.2.1;
 						DevelopmentTeam = 9R3WHNFTF3;
 						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.InAppPurchase = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -573,6 +585,7 @@
 				4B2E5F161E695D1000866737 /* Utils.swift in Sources */,
 				4B2E5F151E695D1000866737 /* HSL.swift in Sources */,
 				4B8B244C1E6F9BE0006C3D37 /* NSString+NSHash.m in Sources */,
+				4B3B677F1E79187B007ACB6D /* GCInAppPurchaser.swift in Sources */,
 				4B8B243F1E6F888C006C3D37 /* GCCoordinateTransformer.m in Sources */,
 				1E46B3111E625EE5000C6379 /* FileManager+Assistant.swift in Sources */,
 				4B2E5F0E1E695D1000866737 /* DynamicColor+Lab.swift in Sources */,

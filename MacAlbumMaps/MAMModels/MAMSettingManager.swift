@@ -28,8 +28,8 @@ enum MKOverlayColorTitle: String {
     case Next = "Next"
 }
 
-let appCachesURL = URL.cachesURL.appendingPathComponent("com.ZhangBaoGuo.MacAlbumMaps")
-let appCachesPath = appCachesURL.absoluteString
+let appApplicationSupportURL = URL.appApplicationSupportURL.appendingPathComponent("com.ZhangBaoGuo.MacAlbumMaps")
+let appApplicationSupportPath = appApplicationSupportURL.absoluteString
 
 class MAMSettingManager: NSObject {
     /// 是否曾经登陆

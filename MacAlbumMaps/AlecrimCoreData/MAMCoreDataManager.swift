@@ -169,7 +169,7 @@ extension MediaInfo: GCLocationAnalyserProtocol{
 
 extension FootprintsRepositoryInfo{
     var filePath: String {
-        return appCachesPath + "/" + self.identifier!
+        return appApplicationSupportPath + "/" + self.identifier!
     }
 }
 
@@ -661,7 +661,7 @@ class MAMCoreDataManager: NSObject {
     
     /// 添加 FootprintsRepositoryInfo
     class func addFRInfo(fr: FootprintsRepository) -> Bool {
-        if FileManager.directoryExists(directoryPath: appCachesPath, autoCreate: true) == false {
+        if FileManager.directoryExists(directoryPath: appApplicationSupportPath, autoCreate: true) == false {
             print("无法创建存储文件夹，添加足迹包失败！")
             return false
         }
@@ -671,7 +671,7 @@ class MAMCoreDataManager: NSObject {
             return false
         }else{
             
-            let filePath = appCachesPath + "/" + fr.identifier
+            let filePath = appApplicationSupportPath + "/" + fr.identifier
             
             if fr.exportToMFRFile(filePath: filePath) {
                 

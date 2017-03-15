@@ -67,14 +67,14 @@ class GCMediaLibraryLoader: NSObject {
         
         // Reference returns nil but starts the asynchronous loading.
         if ((self.mediaLibrary.mediaSources) == nil){
-            print("Start loading")
+            print("GCMediaLibraryLoader: 开始加载媒体库")
         }
     }
     
     deinit {
         // Make sure to remove us as an observer before "mediaLibrary" is released.
         self.mediaLibrary.removeObserver(self, forKeyPath: MLMediaLibraryPropertyKeys.mediaSourcesKey, context: &mediaSourcesContext)
-        print("removeObserver")
+        // print("removeObserver")
     }
     
         
@@ -128,7 +128,7 @@ class GCMediaLibraryLoader: NSObject {
                 }
             }
             */
-            print("GCMediaLibraryLoader: Load Complete")
+            print("GCMediaLibraryLoader: 媒体库加载完毕")
             
             if (self.loadCompletionHandler != nil) {
                 self.loadCompletionHandler!(self.rootMediaGroup.mediaObjects!)

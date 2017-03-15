@@ -12,12 +12,48 @@ let appContext = AppDelegate().managedObjectContext
 
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {
-
-
-
+    
     func applicationDidFinishLaunching(_ aNotification: Notification) {
         // Insert code here to initialize your application
         
+//        let result = MAMCoreDataManager.removeAllFRInfos()
+//        print(result)
+        
+//        if FileManager.directoryExists(directoryPath: appApplicationSupportPath, autoCreate: true){
+//            print(appApplicationSupportPath)
+//        }else{
+//            print("无法创建 ~/Library/Application Support/<app-identifier> 文件夹")
+//        }
+        
+        let purchaser = GCInAppPurchaser()
+        
+//        purchaser.restoreCompletionHandler = { productID in
+//            if let id = productID {
+//                print("Restore succeeded: " + id)
+//            }else{
+//                print("Restore failed!")
+//            }
+//        }
+//        purchaser.restore()
+        
+        purchaser.didReceiveValidProductIdentifiers = { productIDs in
+            if let ids = productIDs{
+                print(ids)
+            }else{
+                print("No requested products in App Store!")
+            }
+        }
+        
+        purchaser.purchaseCompletionHandler = { productID in
+            if let id = productID {
+                print("Purchase succeeded: " + id)
+            }else{
+                print("Purchase failed!")
+            }
+        }
+        
+        purchaser.purchase(productsIdentifierQuantityDictionary: ["com.ZhangBaoGuo.MacAlbumMaps.ShareAndBrows":1])
+
     }
 
     func applicationWillTerminate(_ aNotification: Notification) {

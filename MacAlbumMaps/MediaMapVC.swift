@@ -82,7 +82,7 @@ class MediaMapVC: NSViewController,MKMapViewDelegate,NSOutlineViewDelegate,NSOut
             }
         }
         didSet{
-            print("didSet: indexOfCurrentAnnotation")
+            //print("didSet: indexOfCurrentAnnotation")
             if indexOfCurrentAnnotation >= 0 && indexOfCurrentAnnotation < currentIDAnnotations.count{
                 
                 // 显示序号
@@ -442,6 +442,17 @@ class MediaMapVC: NSViewController,MKMapViewDelegate,NSOutlineViewDelegate,NSOut
         return view
     }
     
+    func tableView(_ tableView: NSTableView, rowActionsForRow row: Int, edge: NSTableRowActionEdge) -> [NSTableViewRowAction] {
+        
+        let rowAction = NSTableViewRowAction.init(style: NSTableViewRowActionStyle.destructive, title: "Remove"){ (rowAction, indexPath) in
+            let info = self.frInfos[indexPath]
+            if MAMCoreDataManager.removeFRInfo(frInfo: info){
+                self.browserTableView.reloadData()
+            }
+        }
+        
+        return [rowAction]
+    }
     
     // MARK: - 左侧主控按钮
     
@@ -635,7 +646,7 @@ class MediaMapVC: NSViewController,MKMapViewDelegate,NSOutlineViewDelegate,NSOut
         mapModeTabView.selectTabViewItem(at: 2)
         
         let openPanel = NSOpenPanel.init()
-        openPanel.directoryURL = URL.documentURL
+        //openPanel.directoryURL = URL.documentURL
         openPanel.allowsMultipleSelection = false
         openPanel.canChooseDirectories = false
         openPanel.canChooseFiles = true
@@ -863,7 +874,7 @@ class MediaMapVC: NSViewController,MKMapViewDelegate,NSOutlineViewDelegate,NSOut
             self.mainMapView.addAnnotation(mediaGroupAnno)
             
             if groupIndex == 0 {
-                print("根据 currentMergeDistance 缩放地图")
+                //print("根据 currentMergeDistance 缩放地图")
                 let span = MKCoordinateSpan.init(latitudeDelta: currentMergeDistance / 10000.0, longitudeDelta: currentMergeDistance / 10000.0)
                 mainMapView.setRegion(MKCoordinateRegion.init(center: mediaGroupAnno.coordinate, span: span), animated: true)
                 
@@ -871,8 +882,6 @@ class MediaMapVC: NSViewController,MKMapViewDelegate,NSOutlineViewDelegate,NSOut
             
             // 更新数组
             self.currentMediaInfoGroupAnnotations.append(mediaGroupAnno)
-            //self.currentFootprintAnnotations.append(footprintAnno)
-            
             
         }
         
@@ -885,28 +894,6 @@ class MediaMapVC: NSViewController,MKMapViewDelegate,NSOutlineViewDelegate,NSOut
         }else if mapMode == MapMode.Location{
             self.addCircleOverlays(annotations: self.currentIDAnnotations, radius: mergeDistance / 2.0)
         }
-        
-//        let footprintsRepository = FootprintsRepository()
-//        footprintsRepository.creationDate = Date.init(timeIntervalSinceNow: 0.0)
-//        footprintsRepository.footprintAnnotations = currentFootprintAnnotations
-//        footprintsRepository.title = "test11"
-        
-        //MAMCoreDataManager.addFR(fr: footprintsRepository)
-        
-        
-        //FileManager.directoryExists(directoryPath:MAMSettingManager.appCachesURL.absoluteString, autoCreate: true)
-        
-        //let file = MAMSettingManager.appCachesURL.appendingPathComponent("test3.mfr").absoluteString
-        //let su = footprintsRepository.exportToMFRFile(filePath: file)
-        //print(file)
-        //print(su)
-//        let data = NSKeyedArchiver.archivedData(withRootObject: footprintsRepository)
-//        print(data)
-        //print(footprintsRepository)
-        //print(file)
-        
-        //let newfr = FootprintsRepository.importFromMFRFile(filePath: file)
-       // print(newfr)
     }
     
     var currentFootprintsRepository: FootprintsRepository?
@@ -1119,7 +1106,7 @@ class MediaMapVC: NSViewController,MKMapViewDelegate,NSOutlineViewDelegate,NSOut
             footprintAnnotations.append(footprintAnno)
         }
         
-        print(footprintAnnotations)
+        //print(footprintAnnotations)
         
         let footprintsRepository = FootprintsRepository()
         footprintsRepository.footprintAnnotations = footprintAnnotations
@@ -1207,7 +1194,7 @@ class MediaMapVC: NSViewController,MKMapViewDelegate,NSOutlineViewDelegate,NSOut
     }
     
     func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
-        print("mapView didSelect")
+        //print("mapView didSelect")
         if let currentSelectedAnnotationIndex = self.currentIDAnnotations.index(where: { $0 === view.annotation }){
             self.indexOfCurrentAnnotation = currentSelectedAnnotationIndex.hashValue
         }
