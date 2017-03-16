@@ -661,10 +661,10 @@ class MAMCoreDataManager: NSObject {
     
     /// 添加 FootprintsRepositoryInfo
     class func addFRInfo(fr: FootprintsRepository) -> Bool {
-        if FileManager.directoryExists(directoryPath: appApplicationSupportPath, autoCreate: true) == false {
-            print("无法创建存储文件夹，添加足迹包失败！")
-            return false
-        }
+//        if FileManager.directoryExists(directoryPath: appApplicationSupportPath, autoCreate: true) == false {
+//            print("无法创建存储文件夹，添加足迹包失败！")
+//            return false
+//        }
         
         if let existsInfo = appContext.footprintsRepositoryInfos.first(where: { $0.identifier == fr.identifier }){
             print("已经存在相同的足迹包，添加失败！ ID:\(existsInfo.identifier)")
@@ -695,7 +695,7 @@ class MAMCoreDataManager: NSObject {
                 
                 do {
                     try appContext.save()
-                    print("足迹包 \(info.title) 添加成功\n\(info.filePath)")
+                    print("足迹包 \(info.title) 添加成功，存储位置：\n\(info.filePath)")
                     return true
                     
                 } catch {

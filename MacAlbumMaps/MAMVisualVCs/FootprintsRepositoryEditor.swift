@@ -22,29 +22,39 @@ class FootprintsRepositoryEditor: NSViewController,NSTableViewDelegate,NSTableVi
         if sender.state == 0{
             // 关闭缩略图
             normalGPXBtn.isEnabled = true
+            
+            enhancedGPXBtn.isEnabled = false
+            footprintsTV.isEnabled = false
         }else{
             // 启用缩略图
             normalGPXBtn.isEnabled = false
+            
+            enhancedGPXBtn.isEnabled = true
+            footprintsTV.isEnabled = true
         }
-        
-        footprintsTV.reloadData()
     }
     
     
     @IBOutlet weak var normalGPXBtn: NSButton!
     @IBAction func normalGPXBtnTD(_ sender: NSButton) {
-            }
+        self.exportToGPXFile(enhancedGPX: false)
+    }
     
+    @IBOutlet weak var enhancedGPXBtn: NSButton!
     @IBAction func enhancedGPXBtnTD(_ sender: NSButton) {
+        self.exportToGPXFile(enhancedGPX: true)
+    }
+    
+    func exportToGPXFile(enhancedGPX: Bool) -> Void {
         if let window = self.view.window{
             let savePanel = self.savePanel()
             
             savePanel.beginSheetModal(for: window) { (result) in
                 if result == NSFileHandlingPanelOKButton {
-                    if let filePath = savePanel.url?.absoluteString{
+                    if let filePath = savePanel.url?.path{
                         print("Export To: " + filePath)
-                        let succeeded = self.fr.exportToGPXFile(filePath: filePath,enhancedGPX: true)
-                        print("Export: " + (succeeded ? "1":"0"))
+                        let succeeded = self.fr.exportToGPXFile(filePath: filePath,enhancedGPX: enhancedGPX)
+                        print("Export " + (succeeded ? "succeeded.":"failed!"))
                     }
                 }
                 
@@ -54,7 +64,8 @@ class FootprintsRepositoryEditor: NSViewController,NSTableViewDelegate,NSTableVi
     
     func savePanel() -> NSSavePanel {
         let savePanel = NSSavePanel.init()
-        savePanel.nameFieldLabel = fr.title + ".gpx"
+        
+        savePanel.nameFieldStringValue = fr.title + ".gpx"
         savePanel.message = NSLocalizedString("Select path to save footprints repository as gpx file", comment: "选择文件保存位置")
         savePanel.allowedFileTypes = ["gpx"]
         savePanel.allowsOtherFileTypes = true
@@ -84,15 +95,11 @@ class FootprintsRepositoryEditor: NSViewController,NSTableViewDelegate,NSTableVi
     }
     
     func tableView(_ tableView: NSTableView, heightOfRow row: Int) -> CGFloat {
-        if includeThumbnailsCheckBtn.state == 1 {
-            let fp = fr.footprintAnnotations[row]
-            if fp.thumbnailArray.count > 0 {
-                return 160
-            }else{
-                return 40
-            }
+        let fp = fr.footprintAnnotations[row]
+        if fp.thumbnailArray.count > 0 {
+            return 160
         }else{
-            return 40
+            return 30
         }
     }
     

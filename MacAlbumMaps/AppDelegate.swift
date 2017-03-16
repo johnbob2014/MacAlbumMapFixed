@@ -102,6 +102,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             }
         }
         
+        print("AppDelegate applicationDocumentsDirectory:" + self.applicationDocumentsDirectory.path)
+        
         // Create the coordinator and store
         var coordinator: NSPersistentStoreCoordinator? = nil
         if failError == nil {

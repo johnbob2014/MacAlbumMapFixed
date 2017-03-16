@@ -11,7 +11,6 @@
 		1E0011901E760AEF00AC7D6A /* FootprintsRepositoryEditor.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1E00118E1E760AEF00AC7D6A /* FootprintsRepositoryEditor.xib */; };
 		1E30F21D1E74321B00098946 /* XMLDictionary.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E30F21C1E74321B00098946 /* XMLDictionary.m */; };
 		1E4269D11E61BD02002087EA /* Date+Assistant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E4269D01E61BD02002087EA /* Date+Assistant.swift */; };
-		1E46B3111E625EE5000C6379 /* FileManager+Assistant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E46B3101E625EE5000C6379 /* FileManager+Assistant.swift */; };
 		1E46B3131E625F00000C6379 /* URL+Assistant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E46B3121E625F00000C6379 /* URL+Assistant.swift */; };
 		1E4C894D1E6D8ADF001AD00C /* GCStarAnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E4C894C1E6D8ADF001AD00C /* GCStarAnnotationView.swift */; };
 		1ECA41BB1E6160CE0068CB44 /* CLPlacemark+Assistant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ECA41BA1E6160CE0068CB44 /* CLPlacemark+Assistant.swift */; };
@@ -93,7 +92,6 @@
 		1E30F21B1E74321B00098946 /* XMLDictionary.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XMLDictionary.h; sourceTree = "<group>"; };
 		1E30F21C1E74321B00098946 /* XMLDictionary.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMLDictionary.m; sourceTree = "<group>"; };
 		1E4269D01E61BD02002087EA /* Date+Assistant.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Date+Assistant.swift"; path = "GenericExtensions/Date+Assistant.swift"; sourceTree = "<group>"; };
-		1E46B3101E625EE5000C6379 /* FileManager+Assistant.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "FileManager+Assistant.swift"; path = "GenericExtensions/FileManager+Assistant.swift"; sourceTree = "<group>"; };
 		1E46B3121E625F00000C6379 /* URL+Assistant.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "URL+Assistant.swift"; path = "GenericExtensions/URL+Assistant.swift"; sourceTree = "<group>"; };
 		1E4C894C1E6D8ADF001AD00C /* GCStarAnnotationView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GCStarAnnotationView.swift; sourceTree = "<group>"; };
 		1ECA41B81E6118100068CB44 /* MacAlbumMaps.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MacAlbumMaps.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -227,7 +225,6 @@
 				4B2E5F171E695EF600866737 /* DynamicColor+Assistant.swift */,
 				1ECA41BA1E6160CE0068CB44 /* CLPlacemark+Assistant.swift */,
 				1E4269D01E61BD02002087EA /* Date+Assistant.swift */,
-				1E46B3101E625EE5000C6379 /* FileManager+Assistant.swift */,
 				1E46B3121E625F00000C6379 /* URL+Assistant.swift */,
 			);
 			name = GenericExtensions;
@@ -587,7 +584,6 @@
 				4B8B244C1E6F9BE0006C3D37 /* NSString+NSHash.m in Sources */,
 				4B3B677F1E79187B007ACB6D /* GCInAppPurchaser.swift in Sources */,
 				4B8B243F1E6F888C006C3D37 /* GCCoordinateTransformer.m in Sources */,
-				1E46B3111E625EE5000C6379 /* FileManager+Assistant.swift in Sources */,
 				4B2E5F0E1E695D1000866737 /* DynamicColor+Lab.swift in Sources */,
 				4B2E3D651E5EE031003A913B /* MAMSettingManager.swift in Sources */,
 				4B2E5F0D1E695D1000866737 /* DynamicColor+HSL.swift in Sources */,

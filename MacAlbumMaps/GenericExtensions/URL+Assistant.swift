@@ -14,7 +14,8 @@ extension URL{
 //    }
     
     static var appApplicationSupportURL: URL{
-        return FileManager.default.urls(for: .applicationSupportDirectory, in: .userDomainMask).last!
+        let urls = FileManager.default.urls(for: .applicationSupportDirectory, in: .userDomainMask)
+        return urls[urls.count - 1]
     }
     
 //    static var cachesURL: URL{

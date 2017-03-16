@@ -654,10 +654,11 @@ class MediaMapVC: NSViewController,MKMapViewDelegate,NSOutlineViewDelegate,NSOut
         openPanel.allowsOtherFileTypes = true
         
         if openPanel.runModal() == NSModalResponseOK{
-            if let filePath = openPanel.urls.first?.absoluteString{
+            if let filePath = openPanel.urls.first?.path{
                 print("Import from: " + filePath)
                 //print(FileManager.default.fileExists(atPath: filePath))
                 if let fr = FootprintsRepository.importFromGPXFile(filePath: filePath){
+                    print("Import succeeded!")
                     self.showFootprintsRepository(fr: fr)
                     
                     // 购买 ShareAndBrowse 后才保存足迹包
@@ -668,6 +669,8 @@ class MediaMapVC: NSViewController,MKMapViewDelegate,NSOutlineViewDelegate,NSOut
                             browserTableView.reloadData()
                         }
                     }
+                }else{
+                    print("Import failed!")
                 }
             }
         }

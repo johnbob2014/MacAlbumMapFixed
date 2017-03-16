@@ -8,6 +8,7 @@
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="FootprintsRepositoryEditor" customModule="MacAlbumMaps" customModuleProvider="target">
             <connections>
+                <outlet property="enhancedGPXBtn" destination="6P5-8q-dKT" id="PHk-LK-ggr"/>
                 <outlet property="footprintsTV" destination="BFh-96-H5g" id="aBH-tR-sqE"/>
                 <outlet property="includeThumbnailsCheckBtn" destination="3ua-f8-IMd" id="jh8-AI-NGD"/>
                 <outlet property="normalGPXBtn" destination="mNG-Nc-Mq5" id="6uS-MN-WEL"/>

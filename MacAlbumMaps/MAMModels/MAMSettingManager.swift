@@ -29,7 +29,10 @@ enum MKOverlayColorTitle: String {
 }
 
 let appApplicationSupportURL = URL.appApplicationSupportURL.appendingPathComponent("com.ZhangBaoGuo.MacAlbumMaps")
-let appApplicationSupportPath = appApplicationSupportURL.absoluteString
+
+//这里是个巨大的坑？？？
+//let appApplicationSupportPath = appApplicationSupportURL.absoluteString
+let appApplicationSupportPath = appApplicationSupportURL.path
 
 class MAMSettingManager: NSObject {
     /// 是否曾经登陆
