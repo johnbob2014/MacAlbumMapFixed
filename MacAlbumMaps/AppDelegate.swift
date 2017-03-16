@@ -25,35 +25,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 //            print("无法创建 ~/Library/Application Support/<app-identifier> 文件夹")
 //        }
         
-        let purchaser = GCInAppPurchaser()
-        
-//        purchaser.restoreCompletionHandler = { productID in
-//            if let id = productID {
-//                print("Restore succeeded: " + id)
-//            }else{
-//                print("Restore failed!")
-//            }
-//        }
-//        purchaser.restore()
-        
-        purchaser.didReceiveValidProductIdentifiers = { productIDs in
-            if let ids = productIDs{
-                print(ids)
-            }else{
-                print("No requested products in App Store!")
-            }
-        }
-        
-        purchaser.purchaseCompletionHandler = { productID in
-            if let id = productID {
-                print("Purchase succeeded: " + id)
-            }else{
-                print("Purchase failed!")
-            }
-        }
-        
-        purchaser.purchase(productsIdentifierQuantityDictionary: ["com.ZhangBaoGuo.MacAlbumMaps.ShareAndBrows":1])
-
+        MAMSettingManager.hasPurchasedShareAndBrowse = false
     }
 
     func applicationWillTerminate(_ aNotification: Notification) {

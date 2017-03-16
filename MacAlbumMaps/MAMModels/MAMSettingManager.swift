@@ -56,7 +56,7 @@ class MAMSettingManager: NSObject {
             if let ever = NSUserDefaultsController.shared().defaults.value(forKey: "hasPurchasedShareAndBrowse"){
                 return ever as! Bool
             }else{
-                return true
+                return false
             }
         }
         set{

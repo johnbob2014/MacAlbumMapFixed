@@ -101,21 +101,32 @@ class GCInAppPurchaser: NSObject,SKProductsRequestDelegate,SKPaymentTransactionO
     
     // MARK: - Result
     func completePurchaseTransaction(transaction: SKPaymentTransaction,succeeded: Bool){
-        if succeeded {
-            purchaseCompletionHandler?(transaction.payment.productIdentifier)
-        }else{
-            purchaseCompletionHandler?(nil)
+        
+        DispatchQueue.main.async {
+            if succeeded {
+                self.purchaseCompletionHandler?(transaction.payment.productIdentifier)
+            }else{
+                self.purchaseCompletionHandler?(nil)
+            }
         }
         
         SKPaymentQueue.default().finishTransaction(transaction)
     }
     
     func completeRestoreTransaction(transaction: SKPaymentTransaction?,succeeded: Bool){
-        if succeeded {
-            restoreCompletionHandler?(transaction!.payment.productIdentifier)
+        
+        DispatchQueue.main.async {
+            if succeeded {
+                self.restoreCompletionHandler?(transaction!.payment.productIdentifier)
+                
+            }else{
+                self.restoreCompletionHandler?(nil)
+            }
+        }
+        
+        
+        if transaction != nil{
             SKPaymentQueue.default().finishTransaction(transaction!)
-        }else{
-            restoreCompletionHandler?(nil)
         }
     }
 

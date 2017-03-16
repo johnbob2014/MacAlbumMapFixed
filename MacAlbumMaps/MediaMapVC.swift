@@ -542,8 +542,11 @@ class MediaMapVC: NSViewController,MKMapViewDelegate,NSOutlineViewDelegate,NSOut
             switch infoKey as! String {
             case "StatusBar_String":
                 placemarkInfoTF.stringValue = info as! String
-            case "User_Detail_Info_String":
-                statisticalInfoTVString = info as! String
+            case "Long_Info_String":
+                //statisticalInfoTVString = info as! String
+                if let window = self.view.window{
+                    NSAlert.createSimpleAlertAndBeginSheetModal(messageText: info as! String, for: window)
+                }
             default:
                 break
             }
@@ -638,6 +641,9 @@ class MediaMapVC: NSViewController,MKMapViewDelegate,NSOutlineViewDelegate,NSOut
             }
         }else{
             placemarkInfoTF.stringValue = NSLocalizedString("Did not purchase ShareAndBrowse function.", comment: "尚未购买 ShareAndBrowse 功能！")
+            
+            let pruchase = PurchaseShareAndBrowseVC()
+            self.presentViewControllerAsModalWindow(pruchase)
         }
     }
     
@@ -671,6 +677,10 @@ class MediaMapVC: NSViewController,MKMapViewDelegate,NSOutlineViewDelegate,NSOut
                     }
                 }else{
                     print("Import failed!")
+                    
+                    if let window = self.view.window{
+                        NSAlert.createSimpleAlertAndBeginSheetModal(messageText: NSLocalizedString("Import failed!", comment: "导入失败！"), for: window)
+                    }
                 }
             }
         }
@@ -853,9 +863,10 @@ class MediaMapVC: NSViewController,MKMapViewDelegate,NSOutlineViewDelegate,NSOut
                     
                     if let placeName = mediaInfo.coordinateInfo?.localizedPlaceString_Placemark{
                         mediaGroupAnno.annoTitle = placeName.placemarkBriefName()
-                    }else{
-                        mediaGroupAnno.annoTitle = NSLocalizedString("(Parsing location)", comment: "（正在解析位置）")
                     }
+//                    else{
+//                        mediaGroupAnno.annoTitle = mediaInfo.coordinateInfo?//NSLocalizedString("(Parsing location)", comment: "（正在解析位置）")
+//                    }
                     
                     if mapMode == MapMode.Moment {
                         mediaGroupAnno.annoSubtitle = creationDate.stringWithDefaultFormat()
@@ -869,6 +880,10 @@ class MediaMapVC: NSViewController,MKMapViewDelegate,NSOutlineViewDelegate,NSOut
                         mediaGroupAnno.annoSubtitle += " ~ " + creationDate.stringWithFormat(format: "yyyy-MM-dd")
                     }
 
+                }
+                
+                if mediaGroupAnno.annoTitle.isEmpty{
+                    mediaGroupAnno.annoTitle = mediaGroupAnno.annoSubtitle
                 }
                 
             }
@@ -1063,6 +1078,10 @@ class MediaMapVC: NSViewController,MKMapViewDelegate,NSOutlineViewDelegate,NSOut
     func createFootprintsRepository(withThumbnailArray: Bool) -> FootprintsRepository? {
         
         if currentMediaInfoGroupAnnotations.isEmpty{
+            if let window = self.view.window{
+                NSAlert.createSimpleAlertAndBeginSheetModal(messageText: NSLocalizedString("No photos yet. Can not create footprint repository.",comment:"没有添加照片信息，无法创建足迹包！"), for: window)
+            }
+            
             print("没有添加照片信息，无法创建足迹包！")
             return nil
         }

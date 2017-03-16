@@ -366,20 +366,21 @@ class MAMCoreDataManager: NSObject {
         }
         
         var scanPhotosResult = ""
+        scanPhotosResult += NSLocalizedString("Scan medias result:", comment: "扫描媒体结果:") + "\n\n"
+        
         do {
             try appContext.save()
-            //scanPhotosResult += NSLocalizedString("Scan photos result:", comment: "添加结果:") + "\n"
             scanPhotosResult += "∙" + NSLocalizedString("New Media Count: ", comment: "新添加媒体数: ") + "\(addMediaInfoCount)" + "\n"
             scanPhotosResult += "∙" + NSLocalizedString("Total Media Count: ", comment: "总媒体数: ") + "\(appContext.mediaInfos.count())" + "\n"
             scanPhotosResult += "∙" + NSLocalizedString("New Coordinate Count: ", comment: "新添加座标点数: ") + "\(addCoordinateInfoCount)" + "\n"
             scanPhotosResult += "∙" + NSLocalizedString("Total Coordinate Count: ", comment: "总座标点数: ") + "\(appContext.coordinateInfos.count())" + "\n"
             
-            scanPhotosResult += "∙" + NSLocalizedString("Latest date: ", comment: "最新日期: ") + latestMD.stringWithDefaultFormat()
+            scanPhotosResult += "\n" + NSLocalizedString("Latest date: ", comment: "最新日期: ") + latestMD.stringWithDefaultFormat()
         } catch  {
             scanPhotosResult += NSLocalizedString("Failed!", comment: "失败!")
         }
         
-        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "App_Running_Info"), object: nil, userInfo: ["User_Detail_Info_String":scanPhotosResult])
+        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "App_Running_Info"), object: nil, userInfo: ["Long_Info_String":scanPhotosResult])
         
         
     }

@@ -34,7 +34,6 @@ class FootprintsRepositoryEditor: NSViewController,NSTableViewDelegate,NSTableVi
         }
     }
     
-    
     @IBOutlet weak var normalGPXBtn: NSButton!
     @IBAction func normalGPXBtnTD(_ sender: NSButton) {
         self.exportToGPXFile(enhancedGPX: false)
@@ -47,7 +46,14 @@ class FootprintsRepositoryEditor: NSViewController,NSTableViewDelegate,NSTableVi
     
     func exportToGPXFile(enhancedGPX: Bool) -> Void {
         if let window = self.view.window{
-            let savePanel = self.savePanel()
+            let savePanel = NSSavePanel.init()
+            
+            savePanel.nameFieldStringValue = fr.title + ".gpx"
+            savePanel.message = NSLocalizedString("Select path to save footprints repository as gpx file", comment: "选择文件保存位置")
+            savePanel.allowedFileTypes = ["gpx"]
+            savePanel.allowsOtherFileTypes = true
+            savePanel.isExtensionHidden = false
+            savePanel.canCreateDirectories = true
             
             savePanel.beginSheetModal(for: window) { (result) in
                 if result == NSFileHandlingPanelOKButton {
@@ -55,24 +61,14 @@ class FootprintsRepositoryEditor: NSViewController,NSTableViewDelegate,NSTableVi
                         print("Export To: " + filePath)
                         let succeeded = self.fr.exportToGPXFile(filePath: filePath,enhancedGPX: enhancedGPX)
                         print("Export " + (succeeded ? "succeeded.":"failed!"))
+                        let alert = NSAlert.init()
+                        alert.messageText = succeeded ? NSLocalizedString("Export succeeded.", comment: "导出成功。") : NSLocalizedString("Export failed!", comment: "导出失败！")
+                        alert.beginSheetModal(for: window)
                     }
                 }
                 
             }
         }
-    }
-    
-    func savePanel() -> NSSavePanel {
-        let savePanel = NSSavePanel.init()
-        
-        savePanel.nameFieldStringValue = fr.title + ".gpx"
-        savePanel.message = NSLocalizedString("Select path to save footprints repository as gpx file", comment: "选择文件保存位置")
-        savePanel.allowedFileTypes = ["gpx"]
-        savePanel.allowsOtherFileTypes = true
-        savePanel.isExtensionHidden = false
-        savePanel.canCreateDirectories = true
-        
-        return savePanel
     }
     
     var fr = FootprintsRepository()
@@ -83,12 +79,11 @@ class FootprintsRepositoryEditor: NSViewController,NSTableViewDelegate,NSTableVi
         self.title = NSLocalizedString("Export Footprints Repository", comment: "导出足迹包")
         
         titleTF.stringValue = fr.title
-        placemarkStatisticalInfoTF.string = fr.placemarkStatisticalInfo
+        placemarkStatisticalInfoTF.string = fr.placemarkStatisticalInfo.replacingOccurrences(of: "∙", with: "\n")
         footprintsTV.register(NSNib.init(nibNamed: "FootprintAnnotationTableCellView", bundle: nil), forIdentifier: "FootprintAnnotationTableCellView")
         
         normalGPXBtn.isEnabled = false
     }
-    
     
     func numberOfRows(in tableView: NSTableView) -> Int {
         return fr.footprintAnnotations.count
@@ -104,7 +99,7 @@ class FootprintsRepositoryEditor: NSViewController,NSTableViewDelegate,NSTableVi
     }
     
     func tableView(_ tableView: NSTableView, viewFor tableColumn: NSTableColumn?, row: Int) -> NSView? {
-        //var faTCV: FootprintAnnotationTableCellView?
+        
         if let view = tableView.make(withIdentifier: "FootprintAnnotationTableCellView", owner: self){
             
             let faTCV = view as! FootprintAnnotationTableCellView
@@ -116,15 +111,13 @@ class FootprintsRepositoryEditor: NSViewController,NSTableViewDelegate,NSTableVi
                 tableView .removeRows(at: [row], withAnimation: NSTableViewAnimationOptions.effectFade)
                 self.fr.footprintAnnotations.remove(at: row)
                 tableView.reloadData()
-                print(self.fr.footprintAnnotations.count)
-                //tableView.reloadData(forRowIndexes: IndexSet.init(integersIn: row + 1..<self.fr.footprintAnnotations.count), columnIndexes: [0])
+                //print(self.fr.footprintAnnotations.count)
             }
             
             return faTCV
         }else{
             return nil
         }
-        
         
     }
 }
