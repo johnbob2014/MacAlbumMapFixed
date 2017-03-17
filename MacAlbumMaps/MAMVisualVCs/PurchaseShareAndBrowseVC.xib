@@ -10,6 +10,7 @@
         <customObject id="-2" userLabel="File's Owner" customClass="PurchaseShareAndBrowseVC" customModule="MacAlbumMaps" customModuleProvider="target">
             <connections>
                 <outlet property="checkButtonsContainer" destination="fT6-UX-8Ce" id="uQh-ZK-St7"/>
+                <outlet property="priceLabel" destination="7Do-3v-I6C" id="SQf-O3-gnA"/>
                 <outlet property="progressIndicator" destination="ShX-Ui-gz6" id="Ori-Kq-nif"/>
                 <outlet property="view" destination="Hz6-mo-xeY" id="0bl-1N-x8E"/>
             </connections>
@@ -171,6 +172,14 @@ Gw
                 <progressIndicator wantsLayer="YES" horizontalHuggingPriority="750" verticalHuggingPriority="750" maxValue="100" displayedWhenStopped="NO" bezeled="NO" indeterminate="YES" style="spinning" translatesAutoresizingMaskIntoConstraints="NO" id="ShX-Ui-gz6">
                     <rect key="frame" x="259" y="92" width="32" height="32"/>
                 </progressIndicator>
+                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7Do-3v-I6C">
+                    <rect key="frame" x="66" y="49" width="44" height="19"/>
+                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Price" id="Gu3-Vf-JY3">
+                        <font key="font" metaFont="systemHeavy" size="15"/>
+                        <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                    </textFieldCell>
+                </textField>
             </subviews>
             <constraints>
                 <constraint firstItem="fT6-UX-8Ce" firstAttribute="top" secondItem="tFu-y0-vvC" secondAttribute="top" id="08w-Kg-wU2"/>
@@ -198,7 +207,9 @@ Gw
                 <constraint firstItem="tFu-y0-vvC" firstAttribute="top" secondItem="EfA-Jw-wBF" secondAttribute="bottom" constant="8" symbolic="YES" id="hG9-DM-WgQ"/>
                 <constraint firstItem="ShX-Ui-gz6" firstAttribute="centerY" secondItem="Hz6-mo-xeY" secondAttribute="centerY" id="pBd-kp-gl9"/>
                 <constraint firstItem="jsQ-2b-aom" firstAttribute="centerY" secondItem="LQy-p8-3yG" secondAttribute="centerY" id="qTY-GG-g4B"/>
+                <constraint firstItem="7Do-3v-I6C" firstAttribute="top" secondItem="FFD-4n-5dP" secondAttribute="bottom" constant="5" id="xfx-fL-wUb"/>
                 <constraint firstAttribute="bottom" secondItem="xDs-BN-VS7" secondAttribute="bottom" constant="20" symbolic="YES" id="xqM-Vq-uz2"/>
+                <constraint firstItem="7Do-3v-I6C" firstAttribute="leading" secondItem="EfA-Jw-wBF" secondAttribute="leading" id="zC1-0m-6Uy"/>
             </constraints>
             <point key="canvasLocation" x="120" y="146.5"/>
         </customView>

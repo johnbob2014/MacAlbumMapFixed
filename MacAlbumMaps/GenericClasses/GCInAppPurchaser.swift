@@ -26,7 +26,7 @@ class GCInAppPurchaser: NSObject,SKProductsRequestDelegate,SKPaymentTransactionO
     private var productsRequest: SKProductsRequest?
     private var productsDictionary = Dictionary<String,Int>()
     
-    var didReceiveValidProductIdentifiers: ((_ invalidProductIdentifiers: [String]?) -> Void)?
+    var didReceiveProducts: ((_ products: [SKProduct]) -> Void)?
     var purchaseCompletionHandler: ((_ productIdentifier: String?) -> Void)?
     var restoreCompletionHandler: ((_ productIdentifier: String?) -> Void)?
     
@@ -49,17 +49,8 @@ class GCInAppPurchaser: NSObject,SKProductsRequestDelegate,SKPaymentTransactionO
     // MARK: - SKProductsRequestDelegate protocol method
     func productsRequest(_ request: SKProductsRequest, didReceive response: SKProductsResponse) {
         let products = response.products
-        
-        if products.count > 0 {
-            let validProductIdentifiers = products.map({ (product) -> String in
-                product.productIdentifier
-            })
-            didReceiveValidProductIdentifiers?(validProductIdentifiers)
-            
-            self.requestingPayment(products: products)
-        }else{
-            didReceiveValidProductIdentifiers?(nil)
-        }
+        didReceiveProducts?(products)
+        self.requestingPayment(products: products)
     }
     
     func requestingPayment(products: [SKProduct]) -> Void {

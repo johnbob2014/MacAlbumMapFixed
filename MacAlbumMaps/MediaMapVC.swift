@@ -29,8 +29,6 @@ class MediaMapVC: NSViewController,MKMapViewDelegate,NSOutlineViewDelegate,NSOut
             
             currentMergeDistance = 0.0
             
-            
-            
             switch indexOfTabViewItem {
             case 0:
                 placemarkInfoTF.stringValue = NSLocalizedString("Choose date range", comment: "请选择日期范围")
@@ -305,6 +303,8 @@ class MediaMapVC: NSViewController,MKMapViewDelegate,NSOutlineViewDelegate,NSOut
         changeOverlayStyleBtn.tag = 0
         
         shareCheckBtn.isHidden = true
+        
+        browserTableView.register(NSNib.init(nibNamed: "GCTableCellView", bundle: nil), forIdentifier: "GCTableCellView")
     }
     
     private func updateMediaInfos(){
@@ -417,7 +417,70 @@ class MediaMapVC: NSViewController,MKMapViewDelegate,NSOutlineViewDelegate,NSOut
     }
     
     func tableView(_ tableView: NSTableView, viewFor tableColumn: NSTableColumn?, row: Int) -> NSView? {
-        let view = tableView.make(withIdentifier: (tableColumn?.identifier)!, owner: self) as! NSTableCellView
+        let view = tableView.make(withIdentifier: "GCTableCellView", owner: self)
+        
+        if view is GCTableCellView{
+            let cellView = view as! GCTableCellView
+            let info = self.frInfos[row]
+            
+            var imageName = ""
+            if let footprintsRepositoryTypeNumber = info.footprintsRepositoryType{
+                let footprintsRepositoryType = FootprintsRepositoryType(rawValue: footprintsRepositoryTypeNumber.intValue)
+                switch footprintsRepositoryType! {
+                case .Unknown:
+                    break
+                case .Sent:
+                    imageName = "IcoMoon_Share2_WBG.png"
+                case .Received:
+                    imageName = "IcoMoon_Download_WBG.png"
+                case .Recorded:
+                    break
+                case .Edited:
+                    break
+                }
+            }
+            
+            if !imageName.isEmpty{
+                cellView.thumbnailImageView.image = NSImage.init(named: imageName)
+            }
+            
+            cellView.titleTextField.stringValue = info.title!
+            cellView.removeAction = {
+                if MAMCoreDataManager.removeFRInfo(frInfo: info){
+                    self.browserTableView.reloadData()
+                }
+            }
+            cellView.subTitleTextField.isHidden = true
+            
+        }else if view is NSTableCellView{
+            (view as! NSTableCellView).textField?.stringValue = self.tileString(row: row)
+        }
+        
+        return view
+    }
+    
+//    func tableView(_ tableView: NSTableView, willDisplayCell cell: Any, for tableColumn: NSTableColumn?, row: Int) {
+//        let tfCell = cell as! NSTextFieldCell
+//        tfCell.title = self.tileString(row: row)
+//        
+//    }
+    
+    func tableView(_ tableView: NSTableView, heightOfRow row: Int) -> CGFloat {
+        return 50
+    }
+    
+//    func tableView(_ tableView: NSTableView, dataCellFor tableColumn: NSTableColumn?, row: Int) -> NSCell? {
+//        if let dataCell = tableColumn?.dataCell(forRow: row){
+//            let cell = dataCell as! NSCell
+//            cell.stringValue = self.tileString(row: row)
+//            return cell
+//        }else{
+//            return nil
+//        }
+//        //return NSCell.init(textCell: "oik")//self.tileString(row: row))
+//    }
+    
+    func tileString(row: Int) -> String {
         let info = frInfos[row]
         
         var headerString = ""
@@ -437,22 +500,25 @@ class MediaMapVC: NSViewController,MKMapViewDelegate,NSOutlineViewDelegate,NSOut
             }
         }
         
-        view.textField?.stringValue = headerString + info.title!
-        
-        return view
+        return headerString + info.title!
     }
     
-    func tableView(_ tableView: NSTableView, rowActionsForRow row: Int, edge: NSTableRowActionEdge) -> [NSTableViewRowAction] {
-        
-        let rowAction = NSTableViewRowAction.init(style: NSTableViewRowActionStyle.destructive, title: "Remove"){ (rowAction, indexPath) in
-            let info = self.frInfos[indexPath]
-            if MAMCoreDataManager.removeFRInfo(frInfo: info){
-                self.browserTableView.reloadData()
-            }
-        }
-        
-        return [rowAction]
-    }
+//    func tableView(_ tableView: NSTableView, shouldEdit tableColumn: NSTableColumn?, row: Int) -> Bool {
+//        return false
+//    }
+//    
+//    func tableView(_ tableView: NSTableView, rowActionsForRow row: Int, edge: NSTableRowActionEdge) -> [NSTableViewRowAction] {
+//        
+//        let rowAction = NSTableViewRowAction.init(style: NSTableViewRowActionStyle.destructive, title: "Remove"){ (rowAction, indexPath) in
+//            let info = self.frInfos[indexPath]
+//            if MAMCoreDataManager.removeFRInfo(frInfo: info){
+//                self.browserTableView.reloadData()
+//            }
+//        }
+//        
+//        
+//        return [rowAction]
+//    }
     
     // MARK: - 左侧主控按钮
     
@@ -805,7 +871,14 @@ class MediaMapVC: NSViewController,MKMapViewDelegate,NSOutlineViewDelegate,NSOut
         }
         
     }
+    
+    // MARK: - 列表
 
+    @IBAction func itemsBtnTD(_ sender: NSButton) {
+        let simple = SimpleCollectionVC()
+        self.presentViewControllerAsModalWindow(simple)
+    }
+    
 
 
     // MARK: - 相册地图核心方法

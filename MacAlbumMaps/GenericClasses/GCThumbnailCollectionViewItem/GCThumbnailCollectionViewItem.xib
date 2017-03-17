@@ -9,6 +9,7 @@
         <customObject id="-2" userLabel="File's Owner" customClass="GCThumbnailCollectionViewItem" customModule="MacAlbumMaps" customModuleProvider="target">
             <connections>
                 <outlet property="removeBtn" destination="Kli-wf-wRH" id="h2P-Gu-3GE"/>
+                <outlet property="titleTF" destination="50H-W7-4Ix" id="SyE-Je-brk"/>
                 <outlet property="view" destination="Hz6-mo-xeY" id="0bl-1N-x8E"/>
             </connections>
         </customObject>
@@ -22,7 +23,7 @@
                     <rect key="frame" x="0.0" y="0.0" width="100" height="100"/>
                     <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" id="puQ-eK-ycm"/>
                     <connections>
-                        <binding destination="-2" name="value" keyPath="self.representedObject" id="w43-eX-ItA"/>
+                        <binding destination="-2" name="value" keyPath="self.representedObject.thumbnail" id="eEy-2L-Gtf"/>
                     </connections>
                 </imageView>
                 <button translatesAutoresizingMaskIntoConstraints="NO" id="Kli-wf-wRH">
@@ -39,6 +40,21 @@
                         <action selector="removeBtnTD:" target="-2" id="vfu-YA-pQz"/>
                     </connections>
                 </button>
+                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="50H-W7-4Ix">
+                    <rect key="frame" x="35" y="5" width="31" height="17"/>
+                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Title" id="XXT-Ec-ouU">
+                        <font key="font" metaFont="system"/>
+                        <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                    </textFieldCell>
+                    <connections>
+                        <binding destination="-2" name="value" keyPath="self.representedObject.title" id="x0p-bz-lrG">
+                            <dictionary key="options">
+                                <bool key="NSAllowsEditingMultipleValuesSelection" value="NO"/>
+                            </dictionary>
+                        </binding>
+                    </connections>
+                </textField>
             </subviews>
             <constraints>
                 <constraint firstItem="KWM-Qa-S8L" firstAttribute="top" secondItem="Hz6-mo-xeY" secondAttribute="top" id="F9z-En-2BR"/>
@@ -46,7 +62,9 @@
                 <constraint firstAttribute="trailing" secondItem="Kli-wf-wRH" secondAttribute="trailing" id="G4g-tI-fHW"/>
                 <constraint firstItem="Kli-wf-wRH" firstAttribute="top" secondItem="Hz6-mo-xeY" secondAttribute="top" id="Hkd-nJ-xcQ"/>
                 <constraint firstAttribute="trailing" secondItem="KWM-Qa-S8L" secondAttribute="trailing" id="dRi-qt-Uwd"/>
+                <constraint firstAttribute="bottom" secondItem="50H-W7-4Ix" secondAttribute="bottom" constant="5" id="hHf-4i-79h"/>
                 <constraint firstItem="KWM-Qa-S8L" firstAttribute="leading" secondItem="Hz6-mo-xeY" secondAttribute="leading" id="jTI-Es-eeM"/>
+                <constraint firstItem="50H-W7-4Ix" firstAttribute="centerX" secondItem="Hz6-mo-xeY" secondAttribute="centerX" id="z0s-1D-0dt"/>
             </constraints>
             <point key="canvasLocation" x="-58" y="83"/>
         </customView>

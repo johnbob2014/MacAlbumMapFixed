@@ -25,7 +25,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 //            print("无法创建 ~/Library/Application Support/<app-identifier> 文件夹")
 //        }
         
-        MAMSettingManager.hasPurchasedShareAndBrowse = false
+        //MAMCoreDataManager.latestModificationDate = Date.init(timeIntervalSinceNow: -10*24*3600)
     }
 
     func applicationWillTerminate(_ aNotification: Notification) {

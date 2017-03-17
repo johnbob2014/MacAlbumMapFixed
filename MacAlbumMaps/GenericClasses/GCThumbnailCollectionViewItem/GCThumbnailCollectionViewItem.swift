@@ -18,10 +18,13 @@ class GCThumbnailCollectionViewItem: NSCollectionViewItem {
         removeAction?()
     }
     
+    @IBOutlet weak var titleTF: NSTextField!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do view setup here.
         removeBtn.alphaValue = 0.6
+        titleTF.stringValue = ""
     }
     
 }

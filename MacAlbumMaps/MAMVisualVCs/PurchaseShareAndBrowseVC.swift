@@ -38,9 +38,10 @@ class PurchaseShareAndBrowseVC: NSViewController {
     @IBAction func purchaseAction(_ sender: NSButton) {
         self.showProgressIndicator()
         
-        purchaser.didReceiveValidProductIdentifiers = { productIDs in
-            if let ids = productIDs{
-                print(ids)
+        purchaser.didReceiveProducts = { products in
+            if products.count > 0{
+                print("Valid Products Count: \(products.count)")
+                self.priceLabel.stringValue = NSLocalizedString("Price: ",comment:"价格：") + String.init(format: "%.2f", products.first!.price.floatValue)
             }else{
                 print("No requested products in App Store!")
             }
@@ -61,6 +62,8 @@ class PurchaseShareAndBrowseVC: NSViewController {
         purchaser.purchase(productsIdentifierQuantityDictionary: ["com.ZhangBaoGuo.MacAlbumMaps.ShareAndBrowse":1])
     }
     
+    @IBOutlet weak var priceLabel: NSTextField!
+    
     @IBOutlet weak var progressIndicator: NSProgressIndicator!
     
     func showProgressIndicator()  {
@@ -79,7 +82,10 @@ class PurchaseShareAndBrowseVC: NSViewController {
         self.title = NSLocalizedString("Purchase and Restore",comment:"购买和恢复")
         
         checkButtonsContainer.isHidden = true
+        
         progressIndicator.isHidden = true
+        
+        priceLabel.isHidden = true
     }
     
     func checkSucceeded(_ succeeded: Bool){

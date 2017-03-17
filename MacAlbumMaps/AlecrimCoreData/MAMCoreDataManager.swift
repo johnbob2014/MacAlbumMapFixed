@@ -34,6 +34,10 @@ extension CoordinateInfo : MKAnnotation{
         return GCCoordinateTransformer.transformToMars(fromEarth:self.coordinateWGS84)
     }
     
+    public var title: String?{
+        return self.localizedPlaceString_Placemark?.placemarkBriefName()
+    }
+    
     /// WGS84座标
     var coordinateWGS84: CLLocationCoordinate2D {
         return CLLocationCoordinate2DMake((self.latitude?.doubleValue)!, (self.longitude?.doubleValue)!)
@@ -113,21 +117,26 @@ extension MediaInfo: GCLocationAnalyserProtocol{
         return CLLocation.init(latitude: self.coordinateWGS84.latitude, longitude: self.coordinateWGS84.longitude)
     }
     
+    var mediaTitle: String{
+        var name = self.name
+        if name == nil {
+            if let urlString = self.urlString{
+                name = URL.init(string: urlString)!.lastPathComponent
+            }else{
+                name = ""
+            }
+        }
+        return name!
+    }
+    
     /// 详细信息字符串
     var detailInfomation: String{
         get{
             var detail = ""
             
             // 添加照片信息
-            var name = self.name
-            if name == nil {
-                if let urlString = self.urlString{
-                    name = URL.init(string: urlString)!.lastPathComponent
-                }else{
-                    name = ""
-                }
-            }
-            detail += NSLocalizedString("Name: ",comment: "名称：") + name! + "\n"
+            
+            detail += NSLocalizedString("Name: ",comment: "名称：") + mediaTitle + "\n"
             
             if let contentType = self.contentType{
                 detail += NSLocalizedString("Content Type: ",comment: "类型：") + contentType + "\n"

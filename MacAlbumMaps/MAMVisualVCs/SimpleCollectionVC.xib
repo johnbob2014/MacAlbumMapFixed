@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="11762" systemVersion="16C68" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+    <dependencies>
+        <deployment identifier="macosx"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="11762"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <customObject id="-2" userLabel="File's Owner" customClass="SimpleCollectionVC" customModule="MacAlbumMaps" customModuleProvider="target">
+            <connections>
+                <outlet property="itemCollectionView" destination="GqP-a1-RQr" id="sDc-kc-0EB"/>
+                <outlet property="itemPopUpButton" destination="GFk-W7-EdQ" id="5H2-nV-YHI"/>
+                <outlet property="view" destination="Hz6-mo-xeY" id="0bl-1N-x8E"/>
+            </connections>
+        </customObject>
+        <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
+        <customObject id="-3" userLabel="Application" customClass="NSObject"/>
+        <customView id="Hz6-mo-xeY">
+            <rect key="frame" x="0.0" y="0.0" width="500" height="550"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+            <subviews>
+                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="anb-9d-D11">
+                    <rect key="frame" x="18" y="513" width="91" height="17"/>
+                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Select an item" id="whw-D4-e1k">
+                        <font key="font" metaFont="system"/>
+                        <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                    </textFieldCell>
+                </textField>
+                <scrollView wantsLayer="YES" autohidesScrollers="YES" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="w9c-fn-QeQ">
+                    <rect key="frame" x="20" y="20" width="460" height="483"/>
+                    <clipView key="contentView" drawsBackground="NO" id="w2V-t0-TyU">
+                        <rect key="frame" x="1" y="1" width="458" height="481"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <collectionView id="GqP-a1-RQr">
+                                <rect key="frame" x="0.0" y="0.0" width="458" height="481"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <collectionViewGridLayout key="collectionViewLayout" id="2qz-Lk-1Kx"/>
+                                <color key="primaryBackgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="-2" id="BHZ-3a-Y4J"/>
+                                    <outlet property="delegate" destination="-2" id="Oy4-jP-iOU"/>
+                                </connections>
+                            </collectionView>
+                        </subviews>
+                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                    </clipView>
+                    <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="YES" id="PKN-Gd-JYt">
+                        <rect key="frame" x="1" y="144" width="233" height="15"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </scroller>
+                    <scroller key="verticalScroller" hidden="YES" verticalHuggingPriority="750" doubleValue="1" horizontal="NO" id="O6y-xU-Iig">
+                        <rect key="frame" x="234" y="1" width="15" height="143"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </scroller>
+                </scrollView>
+                <popUpButton verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="GFk-W7-EdQ">
+                    <rect key="frame" x="113" y="508" width="133" height="26"/>
+                    <popUpButtonCell key="cell" type="push" title="Favorite Medias" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" selectedItem="sf0-xh-Fx4" id="Abd-vm-Ood">
+                        <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
+                        <font key="font" metaFont="menu"/>
+                        <menu key="menu" id="fvW-WT-aVn">
+                            <items>
+                                <menuItem title="Favorite Medias" state="on" id="sf0-xh-Fx4"/>
+                                <menuItem title="Item 2" id="05p-uR-y4h"/>
+                                <menuItem title="Item 3" id="nlC-QT-8kl"/>
+                            </items>
+                        </menu>
+                    </popUpButtonCell>
+                    <connections>
+                        <action selector="itemPopUpButtonTD:" target="-2" id="tbR-L8-pRq"/>
+                    </connections>
+                </popUpButton>
+            </subviews>
+            <constraints>
+                <constraint firstItem="GFk-W7-EdQ" firstAttribute="leading" secondItem="anb-9d-D11" secondAttribute="trailing" constant="8" symbolic="YES" id="6mD-Sc-zj4"/>
+                <constraint firstAttribute="bottom" secondItem="w9c-fn-QeQ" secondAttribute="bottom" constant="20" symbolic="YES" id="F4U-a8-kY0"/>
+                <constraint firstItem="anb-9d-D11" firstAttribute="top" secondItem="Hz6-mo-xeY" secondAttribute="top" constant="20" symbolic="YES" id="Ojp-Be-pu3"/>
+                <constraint firstItem="w9c-fn-QeQ" firstAttribute="top" secondItem="GFk-W7-EdQ" secondAttribute="bottom" constant="8" symbolic="YES" id="QeI-2j-7Uh"/>
+                <constraint firstItem="w9c-fn-QeQ" firstAttribute="leading" secondItem="Hz6-mo-xeY" secondAttribute="leading" constant="20" symbolic="YES" id="Zag-js-wI4"/>
+                <constraint firstAttribute="trailing" secondItem="w9c-fn-QeQ" secondAttribute="trailing" constant="20" symbolic="YES" id="c1K-jI-CPJ"/>
+                <constraint firstItem="GFk-W7-EdQ" firstAttribute="centerY" secondItem="anb-9d-D11" secondAttribute="centerY" id="eCC-2M-O2w"/>
+                <constraint firstItem="anb-9d-D11" firstAttribute="leading" secondItem="Hz6-mo-xeY" secondAttribute="leading" constant="20" symbolic="YES" id="evB-9J-VT3"/>
+            </constraints>
+            <point key="canvasLocation" x="104" y="315"/>
+        </customView>
+    </objects>
+</document>

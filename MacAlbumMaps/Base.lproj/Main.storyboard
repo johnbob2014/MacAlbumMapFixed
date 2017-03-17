@@ -961,7 +961,7 @@
                                                                             <rect key="frame" x="5" y="5" width="284" height="469"/>
                                                                             <clipView key="contentView" id="8jf-EO-NNc">
                                                                                 <rect key="frame" x="1" y="0.0" width="282" height="468"/>
-                                                                                <autoresizingMask key="autoresizingMask"/>
+                                                                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                                                 <subviews>
                                                                                     <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnSelection="YES" multipleSelection="NO" autosaveColumns="NO" rowSizeStyle="automatic" headerView="eAy-4h-DUM" viewBased="YES" id="eTa-2Y-2P0">
                                                                                         <rect key="frame" x="0.0" y="0.0" width="282" height="445"/>
@@ -983,26 +983,22 @@
                                                                                                 </textFieldCell>
                                                                                                 <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                                                                 <prototypeCellViews>
-                                                                                                    <tableCellView id="fMd-Wh-jy2">
+                                                                                                    <tableCellView id="ntR-dg-QhS" customClass="GCTableCellView" customModule="MacAlbumMaps" customModuleProvider="target">
                                                                                                         <rect key="frame" x="1" y="1" width="279" height="17"/>
                                                                                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                                                                         <subviews>
-                                                                                                            <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1XO-hH-eki">
+                                                                                                            <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8Sj-BB-G1Q">
                                                                                                                 <rect key="frame" x="0.0" y="0.0" width="279" height="17"/>
-                                                                                                                <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="Table View Cell" id="0ev-JZ-8Ji">
+                                                                                                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                                                                                                                <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="Table View Cell" id="QNV-Ra-gVV">
                                                                                                                     <font key="font" metaFont="system"/>
                                                                                                                     <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                                                                                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                                                                                                 </textFieldCell>
                                                                                                             </textField>
                                                                                                         </subviews>
-                                                                                                        <constraints>
-                                                                                                            <constraint firstItem="1XO-hH-eki" firstAttribute="leading" secondItem="fMd-Wh-jy2" secondAttribute="leading" constant="2" id="AO8-0B-eg7"/>
-                                                                                                            <constraint firstItem="1XO-hH-eki" firstAttribute="centerX" secondItem="fMd-Wh-jy2" secondAttribute="centerX" id="Vt6-FH-vwC"/>
-                                                                                                            <constraint firstItem="1XO-hH-eki" firstAttribute="centerY" secondItem="fMd-Wh-jy2" secondAttribute="centerY" id="pNq-X1-SkT"/>
-                                                                                                        </constraints>
                                                                                                         <connections>
-                                                                                                            <outlet property="textField" destination="1XO-hH-eki" id="pek-Mv-vbL"/>
+                                                                                                            <outlet property="textField" destination="8Sj-BB-G1Q" id="RH3-6r-zOb"/>
                                                                                                         </connections>
                                                                                                     </tableCellView>
                                                                                                 </prototypeCellViews>
@@ -1175,17 +1171,6 @@
                                                                             <action selector="mapTypeBtnTD:" target="XfG-lQ-9wD" id="9CB-k5-evL"/>
                                                                         </connections>
                                                                     </button>
-                                                                    <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Mho-qR-E7F">
-                                                                        <rect key="frame" x="122" y="0.0" width="40" height="40"/>
-                                                                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
-                                                                        <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="IcoMoon_Repeat_WBG" imagePosition="only" alignment="center" imageScaling="proportionallyUpOrDown" inset="2" id="N3S-9d-ybC">
-                                                                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                                                            <font key="font" metaFont="system"/>
-                                                                        </buttonCell>
-                                                                        <connections>
-                                                                            <action selector="changeOverlayStyleBtnTD:" target="XfG-lQ-9wD" id="5tw-AM-rv8"/>
-                                                                        </connections>
-                                                                    </button>
                                                                     <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="t92-a9-OXZ">
                                                                         <rect key="frame" x="554" y="0.0" width="40" height="40"/>
                                                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
@@ -1258,6 +1243,17 @@
                                                                         </buttonCell>
                                                                         <connections>
                                                                             <action selector="importBtnTD:" target="XfG-lQ-9wD" id="ALP-xR-OON"/>
+                                                                        </connections>
+                                                                    </button>
+                                                                    <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Mho-qR-E7F">
+                                                                        <rect key="frame" x="122" y="0.0" width="40" height="40"/>
+                                                                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                                                                        <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="IcoMoon_Repeat_WBG" imagePosition="only" alignment="center" imageScaling="proportionallyUpOrDown" inset="2" id="N3S-9d-ybC">
+                                                                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                                                            <font key="font" metaFont="system"/>
+                                                                        </buttonCell>
+                                                                        <connections>
+                                                                            <action selector="changeOverlayStyleBtnTD:" target="XfG-lQ-9wD" id="5tw-AM-rv8"/>
                                                                         </connections>
                                                                     </button>
                                                                 </subviews>
@@ -1452,6 +1448,17 @@
                                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                         </textFieldCell>
                                     </textField>
+                                    <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="uZv-ME-SWx">
+                                        <rect key="frame" x="995" y="-1" width="20" height="20"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                        <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="NSListViewTemplate" imagePosition="overlaps" alignment="center" imageScaling="proportionallyDown" inset="2" id="vfS-SL-O3S">
+                                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                            <font key="font" metaFont="system"/>
+                                        </buttonCell>
+                                        <connections>
+                                            <action selector="itemsBtnTD:" target="XfG-lQ-9wD" id="K7J-hY-NBE"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <constraints>
                                     <constraint firstItem="y40-1f-zwn" firstAttribute="leading" secondItem="dzx-Ob-XrC" secondAttribute="leading" constant="5" id="9Lp-dq-WbA"/>
@@ -1511,6 +1518,7 @@
         <image name="IcoMoon_Repeat_WBG" width="200" height="200"/>
         <image name="IcoMoon_Share2_WBG" width="200" height="200"/>
         <image name="IcoMoon_User_WBG" width="200" height="200"/>
+        <image name="NSListViewTemplate" width="14" height="10"/>
         <sound name="Bottle"/>
     </resources>
 </document>

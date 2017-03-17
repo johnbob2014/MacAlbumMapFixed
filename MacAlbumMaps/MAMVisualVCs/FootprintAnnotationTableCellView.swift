@@ -16,7 +16,6 @@ class FootprintAnnotationTableCellView: NSTableCellView,NSCollectionViewDelegate
     
     @IBOutlet weak var removeBtn: NSButton!
     @IBAction func removeBtnTD(_ sender: NSButton) {
-        //self.print("remove fa")
         removeAction?()
     }
     
@@ -54,7 +53,7 @@ class FootprintAnnotationTableCellView: NSTableCellView,NSCollectionViewDelegate
         
         let thumbanilData = footprintAnnotation.thumbnailArray[indexPath.item]
         if let thumbnail = NSImage.init(data: thumbanilData){
-            item.representedObject = thumbnail
+            item.representedObject = ["thumbnail":thumbnail]
         }
         
         if item is GCThumbnailCollectionViewItem {
