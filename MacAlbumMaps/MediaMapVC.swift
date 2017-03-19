@@ -872,14 +872,18 @@ class MediaMapVC: NSViewController,MKMapViewDelegate,NSOutlineViewDelegate,NSOut
         
     }
     
-    // MARK: - 列表
+    // MARK: - 列表界面
 
     @IBAction func itemsBtnTD(_ sender: NSButton) {
         let simple = SimpleCollectionVC()
         self.presentViewControllerAsModalWindow(simple)
     }
     
-
+    // MARK: - 设置界面
+    @IBAction func settingsBtnTD(_ sender: NSButton) {
+        let simple = SettingsVC()
+        self.presentViewControllerAsModalWindow(simple)
+    }
 
     // MARK: - 相册地图核心方法
     

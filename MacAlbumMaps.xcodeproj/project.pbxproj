@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		1E00118F1E760AEF00AC7D6A /* FootprintsRepositoryEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E00118D1E760AEF00AC7D6A /* FootprintsRepositoryEditor.swift */; };
 		1E0011901E760AEF00AC7D6A /* FootprintsRepositoryEditor.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1E00118E1E760AEF00AC7D6A /* FootprintsRepositoryEditor.xib */; };
+		1E2C53081E7F367C00DD2081 /* SettingsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E2C53061E7F367C00DD2081 /* SettingsVC.swift */; };
+		1E2C53091E7F367C00DD2081 /* SettingsVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1E2C53071E7F367C00DD2081 /* SettingsVC.xib */; };
 		1E30F21D1E74321B00098946 /* XMLDictionary.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E30F21C1E74321B00098946 /* XMLDictionary.m */; };
 		1E4269D11E61BD02002087EA /* Date+Assistant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E4269D01E61BD02002087EA /* Date+Assistant.swift */; };
 		1E46B3131E625F00000C6379 /* URL+Assistant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E46B3121E625F00000C6379 /* URL+Assistant.swift */; };
@@ -96,6 +98,8 @@
 /* Begin PBXFileReference section */
 		1E00118D1E760AEF00AC7D6A /* FootprintsRepositoryEditor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FootprintsRepositoryEditor.swift; path = MAMVisualVCs/FootprintsRepositoryEditor.swift; sourceTree = "<group>"; };
 		1E00118E1E760AEF00AC7D6A /* FootprintsRepositoryEditor.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = FootprintsRepositoryEditor.xib; path = MAMVisualVCs/FootprintsRepositoryEditor.xib; sourceTree = "<group>"; };
+		1E2C53061E7F367C00DD2081 /* SettingsVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SettingsVC.swift; path = MAMVisualVCs/SettingsVC.swift; sourceTree = "<group>"; };
+		1E2C53071E7F367C00DD2081 /* SettingsVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = SettingsVC.xib; path = MAMVisualVCs/SettingsVC.xib; sourceTree = "<group>"; };
 		1E30F21B1E74321B00098946 /* XMLDictionary.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XMLDictionary.h; sourceTree = "<group>"; };
 		1E30F21C1E74321B00098946 /* XMLDictionary.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMLDictionary.m; sourceTree = "<group>"; };
 		1E4269D01E61BD02002087EA /* Date+Assistant.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Date+Assistant.swift"; path = "GenericExtensions/Date+Assistant.swift"; sourceTree = "<group>"; };
@@ -222,6 +226,8 @@
 				4B31ACD41E7A6C9D00AD3BA8 /* PurchaseShareAndBrowseVC.xib */,
 				4B29B5871E7BB750003ACEFE /* SimpleCollectionVC.swift */,
 				4B29B5881E7BB750003ACEFE /* SimpleCollectionVC.xib */,
+				1E2C53061E7F367C00DD2081 /* SettingsVC.swift */,
+				1E2C53071E7F367C00DD2081 /* SettingsVC.xib */,
 			);
 			name = MAMVisualVCs;
 			sourceTree = "<group>";
@@ -497,6 +503,7 @@
 				4B543D491E6659C90017E12C /* IcoMoon_User-On_WBG.png in Resources */,
 				4B543D421E6659C90017E12C /* IcoMoon_Setting_WBG.png in Resources */,
 				4B543D401E6659C90017E12C /* IcoMoon_Plus_WBG.png in Resources */,
+				1E2C53091E7F367C00DD2081 /* SettingsVC.xib in Resources */,
 				4B543D1D1E6655A40017E12C /* IcoMoon_Arrow-Right_WBG.png in Resources */,
 				4B543D441E6659C90017E12C /* IcoMoon_Share2_WBG.png in Resources */,
 				4B31ACD61E7A6C9D00AD3BA8 /* PurchaseShareAndBrowseVC.xib in Resources */,
@@ -628,6 +635,7 @@
 				4B8B244B1E6F9BE0006C3D37 /* NSData+NSHash.m in Sources */,
 				4BEBAD9C1E76448F00A1C0DA /* FootprintAnnotationTableCellView.swift in Sources */,
 				4B2E5F0A1E695D1000866737 /* ContrastDisplayContext.swift in Sources */,
+				1E2C53081E7F367C00DD2081 /* SettingsVC.swift in Sources */,
 				4B2E5F0F1E695D1000866737 /* DynamicColor+Mixing.swift in Sources */,
 				1E00118F1E760AEF00AC7D6A /* FootprintsRepositoryEditor.swift in Sources */,
 			);

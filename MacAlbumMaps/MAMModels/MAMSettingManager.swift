@@ -35,6 +35,82 @@ let appApplicationSupportURL = URL.appApplicationSupportURL.appendingPathCompone
 let appApplicationSupportPath = appApplicationSupportURL.path
 
 class MAMSettingManager: NSObject {
+    
+    /// 时刻模式分组距离
+    class var mergeDistanceForMoment: CLLocationDistance{
+        get{
+            var mergeDistance = NSUserDefaultsController.shared().defaults.double(forKey: "mergeDistanceForMoment")
+            if mergeDistance == 0.0 {
+                mergeDistance = 300
+            }
+            return mergeDistance
+        }
+        set{
+            NSUserDefaultsController.shared().defaults.setValue(newValue, forKey: "mergeDistanceForMoment")
+            NSUserDefaultsController.shared().defaults.synchronize()
+        }
+    }
+    
+    /// 地点模式分组距离
+    class var mergeDistanceForLocation: CLLocationDistance{
+        get{
+            var mergeDistance = NSUserDefaultsController.shared().defaults.double(forKey: "mergeDistanceForLocation")
+            if mergeDistance == 0.0 {
+                mergeDistance = 2000
+            }
+            return mergeDistance
+        }
+        set{
+            NSUserDefaultsController.shared().defaults.setValue(newValue, forKey: "mergeDistanceForLocation")
+            NSUserDefaultsController.shared().defaults.synchronize()
+        }
+    }
+    
+    /// 导航栏播放时间间隔，默认2.0秒
+    class var playTimeInterval: TimeInterval{
+        get{
+            var interval = NSUserDefaultsController.shared().defaults.double(forKey: "playTimeInterval")
+            if interval == 0.0 {
+                interval = 2.0
+            }
+            return interval
+        }
+        set{
+            NSUserDefaultsController.shared().defaults.setValue(newValue, forKey: "playTimeInterval")
+            NSUserDefaultsController.shared().defaults.synchronize()
+        }
+    }
+    
+    /// 是否自动以第一张图片作为分享缩略图，默认为否
+    class var autoUseFirstMediaAsThumbnail: Bool{
+        get{
+            if let autoUse = NSUserDefaultsController.shared().defaults.value(forKey: "autoUseFirstMediaAsThumbnail"){
+                return autoUse as! Bool
+            }else{
+                return false
+            }
+        }
+        set{
+            NSUserDefaultsController.shared().defaults.setValue(newValue, forKey: "autoUseFirstMediaAsThumbnail")
+            NSUserDefaultsController.shared().defaults.synchronize()
+        }
+    }
+    
+    /// 是否自动以全部图片作为分享缩略图，默认为否
+    class var autoUseAllMediasAsThumbnail: Bool{
+        get{
+            if let autoUse = NSUserDefaultsController.shared().defaults.value(forKey: "autoUseAllMediasAsThumbnail"){
+                return autoUse as! Bool
+            }else{
+                return false
+            }
+        }
+        set{
+            NSUserDefaultsController.shared().defaults.setValue(newValue, forKey: "autoUseAllMediasAsThumbnail")
+            NSUserDefaultsController.shared().defaults.synchronize()
+        }
+    }
+    
     /// 是否曾经登陆
     class var everLaunched: Bool{
         get{
@@ -50,7 +126,7 @@ class MAMSettingManager: NSObject {
         }
     }
     
-    /// 是否曾经登陆
+    /// 是否订购功能
     class var hasPurchasedShareAndBrowse: Bool{
         get{
             if let ever = NSUserDefaultsController.shared().defaults.value(forKey: "hasPurchasedShareAndBrowse"){

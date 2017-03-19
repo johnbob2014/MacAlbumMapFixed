@@ -961,7 +961,7 @@
                                                                             <rect key="frame" x="5" y="5" width="284" height="469"/>
                                                                             <clipView key="contentView" id="8jf-EO-NNc">
                                                                                 <rect key="frame" x="1" y="0.0" width="282" height="468"/>
-                                                                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                                                                <autoresizingMask key="autoresizingMask"/>
                                                                                 <subviews>
                                                                                     <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnSelection="YES" multipleSelection="NO" autosaveColumns="NO" rowSizeStyle="automatic" headerView="eAy-4h-DUM" viewBased="YES" id="eTa-2Y-2P0">
                                                                                         <rect key="frame" x="0.0" y="0.0" width="282" height="445"/>
@@ -1448,9 +1448,18 @@
                                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                         </textFieldCell>
                                     </textField>
-                                    <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="uZv-ME-SWx">
-                                        <rect key="frame" x="995" y="-1" width="20" height="20"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                    <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="51K-9T-neW">
+                                        <rect key="frame" x="1002" y="2" width="14" height="15"/>
+                                        <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="NSSmartBadgeTemplate" imagePosition="overlaps" alignment="center" imageScaling="proportionallyDown" inset="2" id="xcQ-LG-r1N">
+                                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                            <font key="font" metaFont="system"/>
+                                        </buttonCell>
+                                        <connections>
+                                            <action selector="settingsBtnTD:" target="XfG-lQ-9wD" id="GQH-qf-HrJ"/>
+                                        </connections>
+                                    </button>
+                                    <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="uZv-ME-SWx">
+                                        <rect key="frame" x="980" y="2" width="14" height="15"/>
                                         <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="NSListViewTemplate" imagePosition="overlaps" alignment="center" imageScaling="proportionallyDown" inset="2" id="vfS-SL-O3S">
                                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                             <font key="font" metaFont="system"/>
@@ -1461,10 +1470,14 @@
                                     </button>
                                 </subviews>
                                 <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="51K-9T-neW" secondAttribute="trailing" constant="8" id="8wZ-Ky-41S"/>
                                     <constraint firstItem="y40-1f-zwn" firstAttribute="leading" secondItem="dzx-Ob-XrC" secondAttribute="leading" constant="5" id="9Lp-dq-WbA"/>
                                     <constraint firstAttribute="trailing" secondItem="y40-1f-zwn" secondAttribute="trailing" id="Z2D-PW-zNH"/>
                                     <constraint firstItem="y40-1f-zwn" firstAttribute="top" secondItem="dzx-Ob-XrC" secondAttribute="top" id="lSj-tV-890"/>
+                                    <constraint firstItem="51K-9T-neW" firstAttribute="leading" secondItem="uZv-ME-SWx" secondAttribute="trailing" constant="8" id="oBG-Pk-fv3"/>
                                     <constraint firstAttribute="bottom" secondItem="y40-1f-zwn" secondAttribute="bottom" id="oFj-A6-Ux2"/>
+                                    <constraint firstItem="uZv-ME-SWx" firstAttribute="centerY" secondItem="dzx-Ob-XrC" secondAttribute="centerY" id="slh-33-gxo"/>
+                                    <constraint firstItem="51K-9T-neW" firstAttribute="centerY" secondItem="dzx-Ob-XrC" secondAttribute="centerY" id="ysC-dd-1Lx"/>
                                 </constraints>
                             </customView>
                         </subviews>
@@ -1519,6 +1532,7 @@
         <image name="IcoMoon_Share2_WBG" width="200" height="200"/>
         <image name="IcoMoon_User_WBG" width="200" height="200"/>
         <image name="NSListViewTemplate" width="14" height="10"/>
+        <image name="NSSmartBadgeTemplate" width="14" height="14"/>
         <sound name="Bottle"/>
     </resources>
 </document>
