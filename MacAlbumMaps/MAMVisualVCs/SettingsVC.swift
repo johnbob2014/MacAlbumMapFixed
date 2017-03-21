@@ -34,13 +34,8 @@ class SettingsVC: NSViewController {
         }
         
     }
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        // Do view setup here.
-        
-        self.title = NSLocalizedString("Settings",comment:"设置")
-        
+    
+    func loadSettins() -> Void {
         playTimeIntervalTF.stringValue = String.init(format: "%.2f", MAMSettingManager.playTimeInterval)
         mergeDistanceForMomentTF.stringValue = String.init(format: "%.2f", MAMSettingManager.mergeDistanceForMoment)
         mergeDistanceForLocationTF.stringValue = String.init(format: "%.2f", MAMSettingManager.mergeDistanceForLocation)
@@ -54,4 +49,41 @@ class SettingsVC: NSViewController {
         }
     }
     
+    
+    func saveSettings() -> Void {
+        let playTimeInterval = (playTimeIntervalTF.stringValue as NSString).doubleValue
+        if playTimeInterval > 0 {
+            MAMSettingManager.playTimeInterval = playTimeInterval
+        }
+        
+        let mergeDistanceForMoment = (mergeDistanceForMomentTF.stringValue.replacingOccurrences(of: ",", with: "") as NSString).doubleValue
+        if mergeDistanceForMoment > 0{
+            MAMSettingManager.mergeDistanceForMoment = mergeDistanceForMoment
+        }
+        
+        let mergeDistanceForLocation = (mergeDistanceForLocationTF.stringValue.replacingOccurrences(of: ",", with: "") as NSString).doubleValue
+        if mergeDistanceForLocation > 0{
+            MAMSettingManager.mergeDistanceForLocation = mergeDistanceForLocation
+        }
+    }
+    
+    var saveTimer: Timer?
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        // Do view setup here.
+        
+        self.title = NSLocalizedString("Settings",comment:"设置")
+        
+        self.loadSettins()
+        
+        saveTimer = Timer.scheduledTimer(withTimeInterval: 2.0, repeats: true) { _ in self.saveSettings()}
+    }
+    
+    override func viewDidDisappear() {
+        saveTimer?.fire()
+        saveTimer?.invalidate()
+        saveTimer = nil
+        
+        super.viewDidDisappear()
+    }
 }

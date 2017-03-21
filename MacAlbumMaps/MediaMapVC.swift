@@ -250,6 +250,12 @@ class MediaMapVC: NSViewController,MKMapViewDelegate,NSOutlineViewDelegate,NSOut
         self.updateMediaInfos()
     }
     
+    override func viewWillAppear() {
+        super.viewWillAppear()
+        
+        self.updateControls()
+    }
+    
     deinit {
         NotificationCenter.default.removeObserver(self)
     }
@@ -280,31 +286,31 @@ class MediaMapVC: NSViewController,MKMapViewDelegate,NSOutlineViewDelegate,NSOut
         self.startDatePicker.dateValue = Date.init(timeIntervalSinceNow: -7*24*60*60)
         self.endDatePicker.dateValue = Date.init(timeIntervalSinceNow: 0)
         
-        // 初始化分组距离
-        mergeDistanceForMomentTF.stringValue = "200"
-        mergeDistanceForLocationTF.stringValue = "1000"
-        
-        // 初始化NSOutlineView
-        let sortedMediaInfos = appContext.mediaInfos.sorted{ (infoA, infoB) -> Bool in
-            infoA.creationDate?.compare(infoB.creationDate as! Date) == ComparisonResult.orderedAscending
-        }
-
-        rootTreeNode = MAMCoreDataManager.placemarkHierarchicalInfoTreeNode(mediaInfos: sortedMediaInfos)
-        self.locationOutlineView.reloadData()
-        self.locationOutlineView.expandItem(rootTreeNode)
         
         // 初始化statisticalInfoTV
         if MAMSettingManager.everLaunched {
-            statisticalInfoTVString = self.calculateStatisticalInfos(mediaInfos: sortedMediaInfos)
+            //statisticalInfoTVString = self.calculateStatisticalInfos(mediaInfos: sortedMediaInfos)
         }else{
             placemarkInfoTF.stringValue = NSLocalizedString("Preparing data for first lanuch, wait please...", comment: "正在为首次使用准备数据，请耐心等待...")
         }
         
         changeOverlayStyleBtn.tag = 0
         
-        shareCheckBtn.isHidden = true
+        //shareCheckBtn.isHidden = true
         
         browserTableView.register(NSNib.init(nibNamed: "GCTableCellView", bundle: nil), forIdentifier: "GCTableCellView")
+    }
+    
+    func updateControls() {
+        // 分组距离
+        mergeDistanceForMomentTF.stringValue = String.init(format:"%.2f",MAMSettingManager.mergeDistanceForMoment)
+        mergeDistanceForLocationTF.stringValue = String.init(format:"%.2f",MAMSettingManager.mergeDistanceForLocation)
+        
+        // NSOutlineView
+        self.locationOutlineView.reloadData()
+        self.locationOutlineView.expandItem(rootTreeNode)
+        
+        browserTableView.reloadData()
     }
     
     private func updateMediaInfos(){
@@ -318,8 +324,6 @@ class MediaMapVC: NSViewController,MKMapViewDelegate,NSOutlineViewDelegate,NSOut
             self.goBtn.isEnabled = false
             self.loadProgressIndicator.isHidden = false
             self.loadProgressIndicator.startAnimation(self)
-            
-            
             
             MAMCoreDataManager.updateCoreData(from: loadedMediaObjects)
             
@@ -354,7 +358,15 @@ class MediaMapVC: NSViewController,MKMapViewDelegate,NSOutlineViewDelegate,NSOut
     
     // MARK: - 地址模式NSOutlineView
     @IBOutlet weak var locationOutlineView: NSOutlineView!
-    var rootTreeNode = GCTreeNode()
+    var rootTreeNode: GCTreeNode{
+        get{
+            let sortedMediaInfos = appContext.mediaInfos.sorted{ (infoA, infoB) -> Bool in
+                infoA.creationDate?.compare(infoB.creationDate as! Date) == ComparisonResult.orderedAscending
+            }
+            
+            return MAMCoreDataManager.placemarkHierarchicalInfoTreeNode(mediaInfos: sortedMediaInfos)
+        }
+    }
     
     // NSOutlineViewDataSource
     func outlineView(_ outlineView: NSOutlineView, numberOfChildrenOfItem item: Any?) -> Int {
@@ -521,8 +533,18 @@ class MediaMapVC: NSViewController,MKMapViewDelegate,NSOutlineViewDelegate,NSOut
         switch indexOfTabViewItem {
         case 0:
             // 时刻模式
+            
             currentStartDate = self.startDatePicker.dateValue
             currentEndDate = self.endDatePicker.dateValue
+            
+            if currentStartDate.compare(currentEndDate) == ComparisonResult.orderedDescending {
+                if let window = self.view.window{
+                    NSAlert.createSimpleAlertAndBeginSheetModal(messageText: NSLocalizedString("Please reselect date range.", comment: "请重新选择日期范围！"), for: window)
+                }
+                
+                break
+            }
+            
             filteredMediaInfos = appContext.mediaInfos.filter { $0.creationDate.isBetween(self.startDatePicker.dateValue..<self.endDatePicker.dateValue) }.sorted { (infoA, infoB) -> Bool in
                     infoA.creationDate?.compare(infoB.creationDate as! Date) == ComparisonResult.orderedAscending
             }
@@ -557,6 +579,10 @@ class MediaMapVC: NSViewController,MKMapViewDelegate,NSOutlineViewDelegate,NSOut
                 let frInfo = frInfos[browserTableView.selectedRow]
                 if let fr = FootprintsRepository.importFromMFRFile(filePath: frInfo.filePath){
                     self.showFootprintsRepository(fr: fr)
+                }else{
+                    if let window = self.view.window{
+                        NSAlert.createSimpleAlertAndBeginSheetModal(messageText: NSLocalizedString("Failed to retrieve selected footprints repository. The file may be removed.", comment: "获取足迹包失败，文件可能已被删除！"), for: window)
+                    }
                 }
             }
             
@@ -992,6 +1018,7 @@ class MediaMapVC: NSViewController,MKMapViewDelegate,NSOutlineViewDelegate,NSOut
         }
     }
     
+    // MARK: - 显示指定的足迹包
     var currentFootprintsRepository: FootprintsRepository?
     func showFootprintsRepository(fr: FootprintsRepository) -> Void {
         if fr.footprintAnnotations.count == 0{
@@ -1152,7 +1179,7 @@ class MediaMapVC: NSViewController,MKMapViewDelegate,NSOutlineViewDelegate,NSOut
         })
     }
     
-    /// 根据添加的 MediaInfoGroupAnnotation数组 生成足迹包
+    // MARK: - 根据添加的 MediaInfoGroupAnnotation数组 生成足迹包
     func createFootprintsRepository(withThumbnailArray: Bool) -> FootprintsRepository? {
         
         if currentMediaInfoGroupAnnotations.isEmpty{

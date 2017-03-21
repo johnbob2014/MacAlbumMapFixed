@@ -137,6 +137,9 @@ class FootprintsRepositoryEditor: NSViewController,NSTableViewDelegate,NSTableVi
                 
             }
         }
+        
+        let alertMessage = MAMCoreDataManager.addFRInfo(fr: fr) ? NSLocalizedString("Save succeeded.",comment:"分享自动保存成功。") : NSLocalizedString("Save failed.",comment:"分享自动保存失败！")
+        print(alertMessage)
     }
     
     
@@ -147,7 +150,7 @@ class FootprintsRepositoryEditor: NSViewController,NSTableViewDelegate,NSTableVi
         self.title = NSLocalizedString("Footprints Repository Editor", comment: "足迹包编辑器")
         
         titleTF.stringValue = fr.title
-        placemarkStatisticalInfoTF.string = fr.placemarkStatisticalInfo.replacingOccurrences(of: "∙", with: "\n")
+        placemarkStatisticalInfoTF.string = fr.placemarkStatisticalInfo.trimmingCharacters(in: CharacterSet.init(charactersIn: ".")).replacingOccurrences(of: "∙", with: "\n")
         footprintsTV.register(NSNib.init(nibNamed: "FootprintAnnotationTableCellView", bundle: nil), forIdentifier: "FootprintAnnotationTableCellView")
         
         
