@@ -8,6 +8,11 @@
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="SettingsVC" customModule="MacAlbumMaps" customModuleProvider="target">
             <connections>
+                <outlet property="autoUseAllMediasAsThumbnailBtn" destination="0PT-pe-kvG" id="BmT-jD-5Dn"/>
+                <outlet property="autoUseFirstMediaAsThumbnailBtn" destination="m7T-b1-Eod" id="CJR-Ix-4aP"/>
+                <outlet property="mergeDistanceForLocationTF" destination="CBV-7U-CQI" id="yRz-hD-E3v"/>
+                <outlet property="mergeDistanceForMomentTF" destination="yp7-IZ-h3N" id="Ovx-eH-Rbp"/>
+                <outlet property="playTimeIntervalTF" destination="IHx-8g-YKv" id="Oyf-gD-Let"/>
                 <outlet property="view" destination="Hz6-mo-xeY" id="0bl-1N-x8E"/>
             </connections>
         </customObject>
@@ -27,15 +32,15 @@
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <subviews>
                                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3uq-zY-bFd">
-                                        <rect key="frame" x="18" y="205" width="149" height="17"/>
-                                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Playing Time Interval (s)" id="xM9-BW-aWd">
+                                        <rect key="frame" x="18" y="205" width="131" height="17"/>
+                                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Play Time Interval (s)" id="xM9-BW-aWd">
                                             <font key="font" metaFont="system"/>
                                             <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                         </textFieldCell>
                                     </textField>
                                     <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="IHx-8g-YKv">
-                                        <rect key="frame" x="183" y="203" width="40" height="22"/>
+                                        <rect key="frame" x="165" y="203" width="40" height="22"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="40" id="xaH-Me-Tcs"/>
                                         </constraints>
@@ -45,9 +50,6 @@
                                             <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
                                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                         </textFieldCell>
-                                        <connections>
-                                            <binding destination="gjs-Jd-RAK" name="value" keyPath="values.playTimeInterval" id="5Mg-bT-HF4"/>
-                                        </connections>
                                     </textField>
                                 </subviews>
                                 <constraints>
@@ -82,9 +84,6 @@
                                             <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
                                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                         </textFieldCell>
-                                        <connections>
-                                            <binding destination="gjs-Jd-RAK" name="value" keyPath="values.mergeDistanceForMoment" id="V2r-rB-Crg"/>
-                                        </connections>
                                     </textField>
                                 </subviews>
                                 <constraints>
@@ -111,9 +110,6 @@
                                             <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
                                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                         </textFieldCell>
-                                        <connections>
-                                            <binding destination="gjs-Jd-RAK" name="value" keyPath="values.mergeDistanceForLocation" id="fUY-eC-uVR"/>
-                                        </connections>
                                     </textField>
                                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="P5C-ji-AHb">
                                         <rect key="frame" x="18" y="205" width="124" height="17"/>
@@ -137,19 +133,25 @@
                                 <rect key="frame" x="10" y="33" width="474" height="242"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <subviews>
-                                    <button translatesAutoresizingMaskIntoConstraints="NO" id="m7T-b1-Eod">
+                                    <button tag="1" translatesAutoresizingMaskIntoConstraints="NO" id="m7T-b1-Eod">
                                         <rect key="frame" x="19" y="183" width="224" height="18"/>
                                         <buttonCell key="cell" type="radio" title="Auto use first media as thumbnail" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="wex-gG-KHh">
                                             <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                             <font key="font" metaFont="system"/>
                                         </buttonCell>
+                                        <connections>
+                                            <action selector="radioButtonAction:" target="-2" id="MN5-YX-c33"/>
+                                        </connections>
                                     </button>
-                                    <button translatesAutoresizingMaskIntoConstraints="NO" id="0PT-pe-kvG">
+                                    <button tag="2" translatesAutoresizingMaskIntoConstraints="NO" id="0PT-pe-kvG">
                                         <rect key="frame" x="19" y="161" width="227" height="18"/>
-                                        <buttonCell key="cell" type="radio" title="Auto use all medias as thumbnails" bezelStyle="regularSquare" imagePosition="left" alignment="left" state="on" inset="2" id="bjv-lb-LXf">
+                                        <buttonCell key="cell" type="radio" title="Auto use all medias as thumbnails" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="bjv-lb-LXf">
                                             <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                             <font key="font" metaFont="system"/>
                                         </buttonCell>
+                                        <connections>
+                                            <action selector="radioButtonAction:" target="-2" id="1Hh-Sn-KFo"/>
+                                        </connections>
                                     </button>
                                     <button translatesAutoresizingMaskIntoConstraints="NO" id="vmp-7N-pYc">
                                         <rect key="frame" x="19" y="205" width="312" height="18"/>
@@ -157,6 +159,9 @@
                                             <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                             <font key="font" metaFont="system"/>
                                         </buttonCell>
+                                        <connections>
+                                            <action selector="radioButtonAction:" target="-2" id="Rwv-y2-PcV"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <constraints>

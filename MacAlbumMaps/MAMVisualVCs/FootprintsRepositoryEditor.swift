@@ -8,8 +8,17 @@
 
 import Cocoa
 
-class FootprintsRepositoryEditor: NSViewController,NSTableViewDelegate,NSTableViewDataSource {
+enum FootprintsRepositoryEditorStyle: Int {
+    case Import = 0
+    case Export
+}
+
+class FootprintsRepositoryEditor: NSViewController,NSTableViewDelegate,NSTableViewDataSource,NSTabViewDelegate {
     //@IBOutlet var arrayController: NSArrayController!
+    
+    var fr = FootprintsRepository()
+    
+    var style = FootprintsRepositoryEditorStyle.Import
     
     @IBOutlet weak var titleTF: NSTextField!
     
@@ -17,9 +26,66 @@ class FootprintsRepositoryEditor: NSViewController,NSTableViewDelegate,NSTableVi
     
     @IBOutlet weak var footprintsTV: NSTableView!
     
+    
+    @IBOutlet weak var styleTabView: NSTabView!
+    func tabView(_ tabView: NSTabView, didSelect tabViewItem: NSTabViewItem?) {
+        
+    }
+    
+    func checkShareAndBrowse() -> Bool {
+        if MAMSettingManager.hasPurchasedShareAndBrowse {
+            return true
+        }else{
+            let purchaseVC = PurchaseShareAndBrowseVC()
+            self.presentViewControllerAsModalWindow(purchaseVC)
+            
+            return false
+        }
+    }
+    
+    var saveAction: (() -> Void)?
+    @IBAction func saveBtnTD(_ sender: NSButton) {
+        if !self.checkShareAndBrowse() { return }
+        
+        var alertMessage = NSLocalizedString("Save failed.",comment:"保存失败！")
+        if MAMCoreDataManager.addFRInfo(fr: fr){
+            alertMessage = NSLocalizedString("Save succeeded.",comment:"保存成功。")
+            
+            saveAction?()
+        }
+        
+        if let window = self.view.window{
+            NSAlert.createSimpleAlertAndBeginSheetModal(messageText: alertMessage, for: window)
+        }
+        
+    }
+    
+    var showAction: (() -> Void)?
+    @IBAction func showBtnTD(_ sender: NSButton) {
+        showAction?()
+        self.dismiss(nil)
+    }
+    
     @IBOutlet weak var includeThumbnailsCheckBtn: NSButton!
     @IBAction func includeThumbnailsCheckBtnTD(_ sender: NSButton) {
-        if sender.state == 0{
+        self.switchThumbnailState(state: sender.state)
+    }
+    
+//    override init(footprintsRepository: FootprintsRepository,style: FootprintsRepositoryEditorStyle) {
+//        
+//        
+//        self.fr = footprintsRepository
+//    }
+    
+//    required init?(coder: NSCoder) {
+//        super.init(coder: coder)
+//    }
+    
+    /// 转换缩略图状态，0为关闭，1为启用
+    ///
+    /// - Parameter state: 0为关闭，1为启用
+    func switchThumbnailState(state: Int) -> Void {
+        if state == 0{
             // 关闭缩略图
             normalGPXBtn.isEnabled = true
             
@@ -45,6 +111,8 @@ class FootprintsRepositoryEditor: NSViewController,NSTableViewDelegate,NSTableVi
     }
     
     func exportToGPXFile(enhancedGPX: Bool) -> Void {
+        if !self.checkShareAndBrowse() { return }
+        
         if let window = self.view.window{
             let savePanel = NSSavePanel.init()
             
@@ -71,18 +139,32 @@ class FootprintsRepositoryEditor: NSViewController,NSTableViewDelegate,NSTableVi
         }
     }
     
-    var fr = FootprintsRepository()
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.title = NSLocalizedString("Export Footprints Repository", comment: "导出足迹包")
+        self.title = NSLocalizedString("Footprints Repository Editor", comment: "足迹包编辑器")
         
         titleTF.stringValue = fr.title
         placemarkStatisticalInfoTF.string = fr.placemarkStatisticalInfo.replacingOccurrences(of: "∙", with: "\n")
         footprintsTV.register(NSNib.init(nibNamed: "FootprintAnnotationTableCellView", bundle: nil), forIdentifier: "FootprintAnnotationTableCellView")
         
-        normalGPXBtn.isEnabled = false
+        
+        switch style {
+        case .Import:
+            styleTabView.selectTabViewItem(at: 0)
+        case .Export:
+            styleTabView.selectTabViewItem(at: 1)
+        }
+        
+        if fr.thumbnailCount > 0{
+            includeThumbnailsCheckBtn.isEnabled = true
+            self.switchThumbnailState(state: 1)
+        }else{
+            includeThumbnailsCheckBtn.isEnabled = false
+            self.switchThumbnailState(state: 0)
+        }
     }
     
     func numberOfRows(in tableView: NSTableView) -> Int {
@@ -94,7 +176,7 @@ class FootprintsRepositoryEditor: NSViewController,NSTableViewDelegate,NSTableVi
         if fp.thumbnailArray.count > 0 {
             return 160
         }else{
-            return 30
+            return 45
         }
     }
     

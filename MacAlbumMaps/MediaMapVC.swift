@@ -503,23 +503,6 @@ class MediaMapVC: NSViewController,MKMapViewDelegate,NSOutlineViewDelegate,NSOut
         return headerString + info.title!
     }
     
-//    func tableView(_ tableView: NSTableView, shouldEdit tableColumn: NSTableColumn?, row: Int) -> Bool {
-//        return false
-//    }
-//    
-//    func tableView(_ tableView: NSTableView, rowActionsForRow row: Int, edge: NSTableRowActionEdge) -> [NSTableViewRowAction] {
-//        
-//        let rowAction = NSTableViewRowAction.init(style: NSTableViewRowActionStyle.destructive, title: "Remove"){ (rowAction, indexPath) in
-//            let info = self.frInfos[indexPath]
-//            if MAMCoreDataManager.removeFRInfo(frInfo: info){
-//                self.browserTableView.reloadData()
-//            }
-//        }
-//        
-//        
-//        return [rowAction]
-//    }
-    
     // MARK: - 左侧主控按钮
     
     @IBOutlet weak var goBtn: NSButton!
@@ -694,23 +677,26 @@ class MediaMapVC: NSViewController,MKMapViewDelegate,NSOutlineViewDelegate,NSOut
     
     // MARK: - 分享足迹包
     @IBAction func shareFootprintsRepositoryBtnTD(_ sender: NSButton) {
-        if MAMSettingManager.hasPurchasedShareAndBrowse {
-            if let fr = self.createFootprintsRepository(withThumbnailArray: true){
-                
-                if MAMCoreDataManager.addFRInfo(fr: fr){
-                    browserTableView.reloadData()
-                }
-                
-                let fpEditor = FootprintsRepositoryEditor()
-                fpEditor.fr = fr
-                self.presentViewControllerAsModalWindow(fpEditor)
-            }
-        }else{
-            placemarkInfoTF.stringValue = NSLocalizedString("Did not purchase ShareAndBrowse function.", comment: "尚未购买 ShareAndBrowse 功能！")
+        if let fr = self.createFootprintsRepository(withThumbnailArray: true){
             
-            let pruchase = PurchaseShareAndBrowseVC()
-            self.presentViewControllerAsModalWindow(pruchase)
+//            if MAMCoreDataManager.addFRInfo(fr: fr){
+//                browserTableView.reloadData()
+//            }
+            
+            let frEditor = FootprintsRepositoryEditor()
+            frEditor.fr = fr
+            frEditor.style = .Export
+            self.presentViewControllerAsModalWindow(frEditor)
         }
+        
+//        if MAMSettingManager.hasPurchasedShareAndBrowse {
+//            
+//        }else{
+//            placemarkInfoTF.stringValue = NSLocalizedString("Did not purchase ShareAndBrowse function.", comment: "尚未购买 ShareAndBrowse 功能！")
+//            
+//            let pruchase = PurchaseShareAndBrowseVC()
+//            self.presentViewControllerAsModalWindow(pruchase)
+//        }
     }
     
     // MARK: - 导入足迹包
@@ -731,15 +717,30 @@ class MediaMapVC: NSViewController,MKMapViewDelegate,NSOutlineViewDelegate,NSOut
                 //print(FileManager.default.fileExists(atPath: filePath))
                 if let fr = FootprintsRepository.importFromGPXFile(filePath: filePath){
                     print("Import succeeded!")
-                    self.showFootprintsRepository(fr: fr)
+                    //self.showFootprintsRepository(fr: fr)
                     
-                    // 购买 ShareAndBrowse 后才保存足迹包
+                    fr.footprintsRepositoryType = .Received
+                    
+                    let frEditor = FootprintsRepositoryEditor()
+                    frEditor.fr = fr
+                    frEditor.style = .Import
+                    frEditor.saveAction = {
+                        self.browserTableView.reloadData()
+                    }
+                    frEditor.showAction = {
+                        self.showFootprintsRepository(fr: fr)
+                    }
+                    self.presentViewControllerAsModalWindow(frEditor)
+                    
+                    
+                    
                     if MAMSettingManager.hasPurchasedShareAndBrowse {
-                        fr.footprintsRepositoryType = .Received
-                        if MAMCoreDataManager.addFRInfo(fr: fr){
-                            placemarkInfoTF.stringValue = NSLocalizedString("Successfully import footprints repository: ", comment: "导入足迹包成功：") + fr.title
-                            browserTableView.reloadData()
-                        }
+                        
+                        
+//                        if MAMCoreDataManager.addFRInfo(fr: fr){
+//                            placemarkInfoTF.stringValue = NSLocalizedString("Successfully import footprints repository: ", comment: "导入足迹包成功：") + fr.title
+//                            browserTableView.reloadData()
+//                        }
                     }
                 }else{
                     print("Import failed!")
@@ -1184,21 +1185,28 @@ class MediaMapVC: NSViewController,MKMapViewDelegate,NSOutlineViewDelegate,NSOut
                 
                 // 添加缩略图
                 if withThumbnailArray {
-                    if let thumbnailURLString = mediaInfo.thumbnailURLString{
-                        if let thumbnailURL = URL.init(string: thumbnailURLString){
-                            
-                            var thumbnailData: Data?
-                            do {
-                                try thumbnailData = Data.init(contentsOf: thumbnailURL)
-                            } catch  {
+                    // 判断是否添加该张图片作为分享缩略图
+                    if MAMSettingManager.autoUseAllMediasAsThumbnail || ( infoIndex == 0 && MAMSettingManager.autoUseFirstMediaAsThumbnail) || (mediaInfo.actAsThumbnail?.boolValue)! {
+                        
+                        // 符合条件，添加缩略图
+                        if let thumbnailURLString = mediaInfo.thumbnailURLString{
+                            if let thumbnailURL = URL.init(string: thumbnailURLString){
                                 
-                            }
-                            
-                            if thumbnailData != nil{
-                                footprintAnno.thumbnailArray.append(thumbnailData!)
+                                var thumbnailData: Data?
+                                do {
+                                    try thumbnailData = Data.init(contentsOf: thumbnailURL)
+                                } catch  {
+                                    
+                                }
+                                
+                                if thumbnailData != nil{
+                                    footprintAnno.thumbnailArray.append(thumbnailData!)
+                                }
                             }
                         }
                     }
+                    
+                    
                 }
             }
             

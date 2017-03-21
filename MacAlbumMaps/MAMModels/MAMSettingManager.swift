@@ -96,13 +96,13 @@ class MAMSettingManager: NSObject {
         }
     }
     
-    /// 是否自动以全部图片作为分享缩略图，默认为否
+    /// 是否自动以全部图片作为分享缩略图，默认为是
     class var autoUseAllMediasAsThumbnail: Bool{
         get{
             if let autoUse = NSUserDefaultsController.shared().defaults.value(forKey: "autoUseAllMediasAsThumbnail"){
                 return autoUse as! Bool
             }else{
-                return false
+                return true
             }
         }
         set{
