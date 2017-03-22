@@ -17,24 +17,24 @@ import AlecrimCoreData
 
 extension MediaInfo {
 
-    static let actAsThumbnail = AlecrimCoreData.NullableAttribute<Bool>("actAsThumbnail")
-    static let contentType = AlecrimCoreData.NullableAttribute<String>("contentType")
+    static let actAsThumbnail = AlecrimCoreData.Attribute<Bool>("actAsThumbnail")
+    static let contentType = AlecrimCoreData.Attribute<String>("contentType")
     static let creationDate = AlecrimCoreData.NullableAttribute<Date>("creationDate")
-    static let eliminateThisMedia = AlecrimCoreData.NullableAttribute<Bool>("eliminateThisMedia")
+    static let eliminateThisMedia = AlecrimCoreData.Attribute<Bool>("eliminateThisMedia")
     static let faceListArray = AlecrimCoreData.NullableAttribute<Data>("faceListArray")
-    static let favorite = AlecrimCoreData.NullableAttribute<Bool>("favorite")
+    static let favorite = AlecrimCoreData.Attribute<Bool>("favorite")
     static let fileSize = AlecrimCoreData.NullableAttribute<Int64>("fileSize")
-    static let identifier = AlecrimCoreData.NullableAttribute<String>("identifier")
+    static let identifier = AlecrimCoreData.Attribute<String>("identifier")
     static let invalid = AlecrimCoreData.NullableAttribute<Bool>("invalid")
     static let mediaSourceIdentifier = AlecrimCoreData.NullableAttribute<String>("mediaSourceIdentifier")
-    static let mediaType = AlecrimCoreData.NullableAttribute<Int16>("mediaType")
+    static let mediaType = AlecrimCoreData.Attribute<Int16>("mediaType")
     static let modificationDate = AlecrimCoreData.NullableAttribute<Date>("modificationDate")
     static let name = AlecrimCoreData.NullableAttribute<String>("name")
     static let originalURLString = AlecrimCoreData.NullableAttribute<String>("originalURLString")
     static let thumbnailURLString = AlecrimCoreData.NullableAttribute<String>("thumbnailURLString")
     static let urlString = AlecrimCoreData.NullableAttribute<String>("urlString")
 
-    static let coordinateInfo = AlecrimCoreData.Attribute<CoordinateInfo>("coordinateInfo")
+    static let coordinateInfo = AlecrimCoreData.NullableAttribute<CoordinateInfo>("coordinateInfo")
 
 }
 
@@ -42,24 +42,24 @@ extension MediaInfo {
 
 extension AlecrimCoreData.AttributeProtocol where Self.ValueType: MediaInfo {
 
-    var actAsThumbnail: AlecrimCoreData.NullableAttribute<Bool> { return AlecrimCoreData.NullableAttribute<Bool>("actAsThumbnail", self) }
-    var contentType: AlecrimCoreData.NullableAttribute<String> { return AlecrimCoreData.NullableAttribute<String>("contentType", self) }
+    var actAsThumbnail: AlecrimCoreData.Attribute<Bool> { return AlecrimCoreData.Attribute<Bool>("actAsThumbnail", self) }
+    var contentType: AlecrimCoreData.Attribute<String> { return AlecrimCoreData.Attribute<String>("contentType", self) }
     var creationDate: AlecrimCoreData.NullableAttribute<Date> { return AlecrimCoreData.NullableAttribute<Date>("creationDate", self) }
-    var eliminateThisMedia: AlecrimCoreData.NullableAttribute<Bool> { return AlecrimCoreData.NullableAttribute<Bool>("eliminateThisMedia", self) }
+    var eliminateThisMedia: AlecrimCoreData.Attribute<Bool> { return AlecrimCoreData.Attribute<Bool>("eliminateThisMedia", self) }
     var faceListArray: AlecrimCoreData.NullableAttribute<Data> { return AlecrimCoreData.NullableAttribute<Data>("faceListArray", self) }
-    var favorite: AlecrimCoreData.NullableAttribute<Bool> { return AlecrimCoreData.NullableAttribute<Bool>("favorite", self) }
+    var favorite: AlecrimCoreData.Attribute<Bool> { return AlecrimCoreData.Attribute<Bool>("favorite", self) }
     var fileSize: AlecrimCoreData.NullableAttribute<Int64> { return AlecrimCoreData.NullableAttribute<Int64>("fileSize", self) }
-    var identifier: AlecrimCoreData.NullableAttribute<String> { return AlecrimCoreData.NullableAttribute<String>("identifier", self) }
+    var identifier: AlecrimCoreData.Attribute<String> { return AlecrimCoreData.Attribute<String>("identifier", self) }
     var invalid: AlecrimCoreData.NullableAttribute<Bool> { return AlecrimCoreData.NullableAttribute<Bool>("invalid", self) }
     var mediaSourceIdentifier: AlecrimCoreData.NullableAttribute<String> { return AlecrimCoreData.NullableAttribute<String>("mediaSourceIdentifier", self) }
-    var mediaType: AlecrimCoreData.NullableAttribute<Int16> { return AlecrimCoreData.NullableAttribute<Int16>("mediaType", self) }
+    var mediaType: AlecrimCoreData.Attribute<Int16> { return AlecrimCoreData.Attribute<Int16>("mediaType", self) }
     var modificationDate: AlecrimCoreData.NullableAttribute<Date> { return AlecrimCoreData.NullableAttribute<Date>("modificationDate", self) }
     var name: AlecrimCoreData.NullableAttribute<String> { return AlecrimCoreData.NullableAttribute<String>("name", self) }
     var originalURLString: AlecrimCoreData.NullableAttribute<String> { return AlecrimCoreData.NullableAttribute<String>("originalURLString", self) }
     var thumbnailURLString: AlecrimCoreData.NullableAttribute<String> { return AlecrimCoreData.NullableAttribute<String>("thumbnailURLString", self) }
     var urlString: AlecrimCoreData.NullableAttribute<String> { return AlecrimCoreData.NullableAttribute<String>("urlString", self) }
 
-    var coordinateInfo: AlecrimCoreData.Attribute<CoordinateInfo> { return AlecrimCoreData.Attribute<CoordinateInfo>("coordinateInfo", self) }
+    var coordinateInfo: AlecrimCoreData.NullableAttribute<CoordinateInfo> { return AlecrimCoreData.NullableAttribute<CoordinateInfo>("coordinateInfo", self) }
 
 }
 

@@ -17,17 +17,17 @@ import AlecrimCoreData
 
 extension FootprintsRepositoryInfo {
 
-    static let averageSpeed = AlecrimCoreData.NullableAttribute<Double>("averageSpeed")
+    static let averageSpeed = AlecrimCoreData.Attribute<Double>("averageSpeed")
     static let creationDate = AlecrimCoreData.NullableAttribute<Date>("creationDate")
-    static let distance = AlecrimCoreData.NullableAttribute<Double>("distance")
-    static let duration = AlecrimCoreData.NullableAttribute<Double>("duration")
+    static let distance = AlecrimCoreData.Attribute<Double>("distance")
+    static let duration = AlecrimCoreData.Attribute<Double>("duration")
     static let endDate = AlecrimCoreData.NullableAttribute<Date>("endDate")
-    static let footprintsCount = AlecrimCoreData.NullableAttribute<Int32>("footprintsCount")
-    static let footprintsRepositoryType = AlecrimCoreData.NullableAttribute<Int16>("footprintsRepositoryType")
+    static let footprintsCount = AlecrimCoreData.Attribute<Int32>("footprintsCount")
+    static let footprintsRepositoryType = AlecrimCoreData.Attribute<Int16>("footprintsRepositoryType")
     static let identifier = AlecrimCoreData.Attribute<String>("identifier")
     static let modificatonDate = AlecrimCoreData.NullableAttribute<Date>("modificatonDate")
     static let placemarkStatisticalInfo = AlecrimCoreData.NullableAttribute<String>("placemarkStatisticalInfo")
-    static let radius = AlecrimCoreData.NullableAttribute<Double>("radius")
+    static let radius = AlecrimCoreData.Attribute<Double>("radius")
     static let startDate = AlecrimCoreData.NullableAttribute<Date>("startDate")
     static let title = AlecrimCoreData.NullableAttribute<String>("title")
 
@@ -37,17 +37,17 @@ extension FootprintsRepositoryInfo {
 
 extension AlecrimCoreData.AttributeProtocol where Self.ValueType: FootprintsRepositoryInfo {
 
-    var averageSpeed: AlecrimCoreData.NullableAttribute<Double> { return AlecrimCoreData.NullableAttribute<Double>("averageSpeed", self) }
+    var averageSpeed: AlecrimCoreData.Attribute<Double> { return AlecrimCoreData.Attribute<Double>("averageSpeed", self) }
     var creationDate: AlecrimCoreData.NullableAttribute<Date> { return AlecrimCoreData.NullableAttribute<Date>("creationDate", self) }
-    var distance: AlecrimCoreData.NullableAttribute<Double> { return AlecrimCoreData.NullableAttribute<Double>("distance", self) }
-    var duration: AlecrimCoreData.NullableAttribute<Double> { return AlecrimCoreData.NullableAttribute<Double>("duration", self) }
+    var distance: AlecrimCoreData.Attribute<Double> { return AlecrimCoreData.Attribute<Double>("distance", self) }
+    var duration: AlecrimCoreData.Attribute<Double> { return AlecrimCoreData.Attribute<Double>("duration", self) }
     var endDate: AlecrimCoreData.NullableAttribute<Date> { return AlecrimCoreData.NullableAttribute<Date>("endDate", self) }
-    var footprintsCount: AlecrimCoreData.NullableAttribute<Int32> { return AlecrimCoreData.NullableAttribute<Int32>("footprintsCount", self) }
-    var footprintsRepositoryType: AlecrimCoreData.NullableAttribute<Int16> { return AlecrimCoreData.NullableAttribute<Int16>("footprintsRepositoryType", self) }
+    var footprintsCount: AlecrimCoreData.Attribute<Int32> { return AlecrimCoreData.Attribute<Int32>("footprintsCount", self) }
+    var footprintsRepositoryType: AlecrimCoreData.Attribute<Int16> { return AlecrimCoreData.Attribute<Int16>("footprintsRepositoryType", self) }
     var identifier: AlecrimCoreData.Attribute<String> { return AlecrimCoreData.Attribute<String>("identifier", self) }
     var modificatonDate: AlecrimCoreData.NullableAttribute<Date> { return AlecrimCoreData.NullableAttribute<Date>("modificatonDate", self) }
     var placemarkStatisticalInfo: AlecrimCoreData.NullableAttribute<String> { return AlecrimCoreData.NullableAttribute<String>("placemarkStatisticalInfo", self) }
-    var radius: AlecrimCoreData.NullableAttribute<Double> { return AlecrimCoreData.NullableAttribute<Double>("radius", self) }
+    var radius: AlecrimCoreData.Attribute<Double> { return AlecrimCoreData.Attribute<Double>("radius", self) }
     var startDate: AlecrimCoreData.NullableAttribute<Date> { return AlecrimCoreData.NullableAttribute<Date>("startDate", self) }
     var title: AlecrimCoreData.NullableAttribute<String> { return AlecrimCoreData.NullableAttribute<String>("title", self) }
 

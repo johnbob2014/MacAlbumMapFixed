@@ -21,6 +21,7 @@
         <attribute name="name_Placemark" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="ocean_Placemark" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="postalCode_Placemark" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="reverseGeocodeFailureCount" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="reverseGeocodeSucceed" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="speed" attributeType="Double" defaultValueString="0.0" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="subAdministrativeArea_Placemark" optional="YES" attributeType="String" syncable="YES"/>
@@ -64,7 +65,7 @@
         <relationship name="coordinateInfo" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="CoordinateInfo" syncable="YES"/>
     </entity>
     <elements>
-        <element name="CoordinateInfo" positionX="3555" positionY="2808" width="128" height="448"/>
+        <element name="CoordinateInfo" positionX="3555" positionY="2808" width="128" height="465"/>
         <element name="FootprintsRepositoryInfo" positionX="3393" positionY="2664" width="128" height="240"/>
         <element name="MediaInfo" positionX="3987" positionY="2778" width="128" height="298"/>
     </elements>

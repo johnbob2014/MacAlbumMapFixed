@@ -42,15 +42,14 @@ class SettingsVC: NSViewController {
         
         if MAMSettingManager.autoUseFirstMediaAsThumbnail {
             autoUseFirstMediaAsThumbnailBtn.state = 1
-        }
-        
-        if MAMSettingManager.autoUseAllMediasAsThumbnail{
+        }else if MAMSettingManager.autoUseAllMediasAsThumbnail{
             autoUseAllMediasAsThumbnailBtn.state = 1
         }
     }
     
     
     func saveSettings() -> Void {
+        //print("saveSettings")
         let playTimeInterval = (playTimeIntervalTF.stringValue as NSString).doubleValue
         if playTimeInterval > 0 {
             MAMSettingManager.playTimeInterval = playTimeInterval
@@ -67,7 +66,7 @@ class SettingsVC: NSViewController {
         }
     }
     
-    var saveTimer: Timer?
+    //var saveTimer: Timer?
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do view setup here.
@@ -76,13 +75,17 @@ class SettingsVC: NSViewController {
         
         self.loadSettins()
         
-        saveTimer = Timer.scheduledTimer(withTimeInterval: 2.0, repeats: true) { _ in self.saveSettings()}
+        //saveTimer = Timer.scheduledTimer(withTimeInterval: 2.0, repeats: true) { _ in self.saveSettings()}
     }
     
     override func viewDidDisappear() {
-        saveTimer?.fire()
-        saveTimer?.invalidate()
-        saveTimer = nil
+        //print("Settings VC: viewDidDisappear")
+        //saveTimer?.fire()
+        //saveTimer?.invalidate()
+        //saveTimer = nil
+        self.saveSettings()
+        
+        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "App_Running_Info"), object: nil, userInfo: ["Needs_Update_View":""])
         
         super.viewDidDisappear()
     }

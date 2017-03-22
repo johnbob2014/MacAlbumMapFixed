@@ -155,7 +155,7 @@
                                     </button>
                                     <button translatesAutoresizingMaskIntoConstraints="NO" id="vmp-7N-pYc">
                                         <rect key="frame" x="19" y="205" width="312" height="18"/>
-                                        <buttonCell key="cell" type="radio" title="Use manually selected media(s) as thumbnail(s)" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="BQT-qi-5EE">
+                                        <buttonCell key="cell" type="radio" title="Use manually selected media(s) as thumbnail(s)" bezelStyle="regularSquare" imagePosition="left" alignment="left" state="on" inset="2" id="BQT-qi-5EE">
                                             <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                             <font key="font" metaFont="system"/>
                                         </buttonCell>

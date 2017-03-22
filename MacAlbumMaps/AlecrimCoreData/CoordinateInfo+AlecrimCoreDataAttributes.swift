@@ -18,34 +18,33 @@ import AlecrimCoreData
 extension CoordinateInfo {
 
     static let administrativeArea_Placemark = AlecrimCoreData.NullableAttribute<String>("administrativeArea_Placemark")
-    static let altitude = AlecrimCoreData.NullableAttribute<Double>("altitude")
+    static let altitude = AlecrimCoreData.Attribute<Double>("altitude")
     static let ccISOcountryCode_Placemark = AlecrimCoreData.NullableAttribute<String>("ccISOcountryCode_Placemark")
     static let country_Placemark = AlecrimCoreData.NullableAttribute<String>("country_Placemark")
     static let course = AlecrimCoreData.NullableAttribute<Double>("course")
     static let creationDate = AlecrimCoreData.NullableAttribute<Date>("creationDate")
     static let customTitle = AlecrimCoreData.NullableAttribute<String>("customTitle")
-    static let favorite = AlecrimCoreData.NullableAttribute<Bool>("favorite")
-    static let hidden = AlecrimCoreData.NullableAttribute<Bool>("hidden")
-    static let horizontalAccuracy = AlecrimCoreData.NullableAttribute<Double>("horizontalAccuracy")
+    static let favorite = AlecrimCoreData.Attribute<Bool>("favorite")
+    static let hidden = AlecrimCoreData.Attribute<Bool>("hidden")
+    static let horizontalAccuracy = AlecrimCoreData.Attribute<Double>("horizontalAccuracy")
     static let inlandWater_Placemark = AlecrimCoreData.NullableAttribute<String>("inlandWater_Placemark")
-    static let latitude = AlecrimCoreData.NullableAttribute<Double>("latitude")
-    static let level = AlecrimCoreData.NullableAttribute<Int32>("level")
+    static let latitude = AlecrimCoreData.Attribute<Double>("latitude")
+    static let level = AlecrimCoreData.Attribute<Int32>("level")
     static let locality_Placemark = AlecrimCoreData.NullableAttribute<String>("locality_Placemark")
     static let localizedPlaceString_Placemark = AlecrimCoreData.NullableAttribute<String>("localizedPlaceString_Placemark")
-    static let longitude = AlecrimCoreData.NullableAttribute<Double>("longitude")
+    static let longitude = AlecrimCoreData.Attribute<Double>("longitude")
     static let modificationDate = AlecrimCoreData.NullableAttribute<Date>("modificationDate")
     static let name_Placemark = AlecrimCoreData.NullableAttribute<String>("name_Placemark")
     static let ocean_Placemark = AlecrimCoreData.NullableAttribute<String>("ocean_Placemark")
     static let postalCode_Placemark = AlecrimCoreData.NullableAttribute<String>("postalCode_Placemark")
-    static let reverseGeocodeSucceed = AlecrimCoreData.NullableAttribute<Bool>("reverseGeocodeSucceed")
-    static let speed = AlecrimCoreData.NullableAttribute<Double>("speed")
+    static let reverseGeocodeFailureCount = AlecrimCoreData.NullableAttribute<Int16>("reverseGeocodeFailureCount")
+    static let reverseGeocodeSucceed = AlecrimCoreData.Attribute<Bool>("reverseGeocodeSucceed")
+    static let speed = AlecrimCoreData.Attribute<Double>("speed")
     static let subAdministrativeArea_Placemark = AlecrimCoreData.NullableAttribute<String>("subAdministrativeArea_Placemark")
     static let subLocality_Placemark = AlecrimCoreData.NullableAttribute<String>("subLocality_Placemark")
     static let subThoroughfare_Placemark = AlecrimCoreData.NullableAttribute<String>("subThoroughfare_Placemark")
     static let thoroughfare_Placemark = AlecrimCoreData.NullableAttribute<String>("thoroughfare_Placemark")
-    static let verticalAccuracy = AlecrimCoreData.NullableAttribute<Double>("verticalAccuracy")
-
-    static let mediaInfo = AlecrimCoreData.Attribute<Set<MediaInfo>>("mediaInfo")
+    static let verticalAccuracy = AlecrimCoreData.Attribute<Double>("verticalAccuracy")
 
 }
 
@@ -54,34 +53,33 @@ extension CoordinateInfo {
 extension AlecrimCoreData.AttributeProtocol where Self.ValueType: CoordinateInfo {
 
     var administrativeArea_Placemark: AlecrimCoreData.NullableAttribute<String> { return AlecrimCoreData.NullableAttribute<String>("administrativeArea_Placemark", self) }
-    var altitude: AlecrimCoreData.NullableAttribute<Double> { return AlecrimCoreData.NullableAttribute<Double>("altitude", self) }
+    var altitude: AlecrimCoreData.Attribute<Double> { return AlecrimCoreData.Attribute<Double>("altitude", self) }
     var ccISOcountryCode_Placemark: AlecrimCoreData.NullableAttribute<String> { return AlecrimCoreData.NullableAttribute<String>("ccISOcountryCode_Placemark", self) }
     var country_Placemark: AlecrimCoreData.NullableAttribute<String> { return AlecrimCoreData.NullableAttribute<String>("country_Placemark", self) }
     var course: AlecrimCoreData.NullableAttribute<Double> { return AlecrimCoreData.NullableAttribute<Double>("course", self) }
     var creationDate: AlecrimCoreData.NullableAttribute<Date> { return AlecrimCoreData.NullableAttribute<Date>("creationDate", self) }
     var customTitle: AlecrimCoreData.NullableAttribute<String> { return AlecrimCoreData.NullableAttribute<String>("customTitle", self) }
-    var favorite: AlecrimCoreData.NullableAttribute<Bool> { return AlecrimCoreData.NullableAttribute<Bool>("favorite", self) }
-    var hidden: AlecrimCoreData.NullableAttribute<Bool> { return AlecrimCoreData.NullableAttribute<Bool>("hidden", self) }
-    var horizontalAccuracy: AlecrimCoreData.NullableAttribute<Double> { return AlecrimCoreData.NullableAttribute<Double>("horizontalAccuracy", self) }
+    var favorite: AlecrimCoreData.Attribute<Bool> { return AlecrimCoreData.Attribute<Bool>("favorite", self) }
+    var hidden: AlecrimCoreData.Attribute<Bool> { return AlecrimCoreData.Attribute<Bool>("hidden", self) }
+    var horizontalAccuracy: AlecrimCoreData.Attribute<Double> { return AlecrimCoreData.Attribute<Double>("horizontalAccuracy", self) }
     var inlandWater_Placemark: AlecrimCoreData.NullableAttribute<String> { return AlecrimCoreData.NullableAttribute<String>("inlandWater_Placemark", self) }
-    var latitude: AlecrimCoreData.NullableAttribute<Double> { return AlecrimCoreData.NullableAttribute<Double>("latitude", self) }
-    var level: AlecrimCoreData.NullableAttribute<Int32> { return AlecrimCoreData.NullableAttribute<Int32>("level", self) }
+    var latitude: AlecrimCoreData.Attribute<Double> { return AlecrimCoreData.Attribute<Double>("latitude", self) }
+    var level: AlecrimCoreData.Attribute<Int32> { return AlecrimCoreData.Attribute<Int32>("level", self) }
     var locality_Placemark: AlecrimCoreData.NullableAttribute<String> { return AlecrimCoreData.NullableAttribute<String>("locality_Placemark", self) }
     var localizedPlaceString_Placemark: AlecrimCoreData.NullableAttribute<String> { return AlecrimCoreData.NullableAttribute<String>("localizedPlaceString_Placemark", self) }
-    var longitude: AlecrimCoreData.NullableAttribute<Double> { return AlecrimCoreData.NullableAttribute<Double>("longitude", self) }
+    var longitude: AlecrimCoreData.Attribute<Double> { return AlecrimCoreData.Attribute<Double>("longitude", self) }
     var modificationDate: AlecrimCoreData.NullableAttribute<Date> { return AlecrimCoreData.NullableAttribute<Date>("modificationDate", self) }
     var name_Placemark: AlecrimCoreData.NullableAttribute<String> { return AlecrimCoreData.NullableAttribute<String>("name_Placemark", self) }
     var ocean_Placemark: AlecrimCoreData.NullableAttribute<String> { return AlecrimCoreData.NullableAttribute<String>("ocean_Placemark", self) }
     var postalCode_Placemark: AlecrimCoreData.NullableAttribute<String> { return AlecrimCoreData.NullableAttribute<String>("postalCode_Placemark", self) }
-    var reverseGeocodeSucceed: AlecrimCoreData.NullableAttribute<Bool> { return AlecrimCoreData.NullableAttribute<Bool>("reverseGeocodeSucceed", self) }
-    var speed: AlecrimCoreData.NullableAttribute<Double> { return AlecrimCoreData.NullableAttribute<Double>("speed", self) }
+    var reverseGeocodeFailureCount: AlecrimCoreData.NullableAttribute<Int16> { return AlecrimCoreData.NullableAttribute<Int16>("reverseGeocodeFailureCount", self) }
+    var reverseGeocodeSucceed: AlecrimCoreData.Attribute<Bool> { return AlecrimCoreData.Attribute<Bool>("reverseGeocodeSucceed", self) }
+    var speed: AlecrimCoreData.Attribute<Double> { return AlecrimCoreData.Attribute<Double>("speed", self) }
     var subAdministrativeArea_Placemark: AlecrimCoreData.NullableAttribute<String> { return AlecrimCoreData.NullableAttribute<String>("subAdministrativeArea_Placemark", self) }
     var subLocality_Placemark: AlecrimCoreData.NullableAttribute<String> { return AlecrimCoreData.NullableAttribute<String>("subLocality_Placemark", self) }
     var subThoroughfare_Placemark: AlecrimCoreData.NullableAttribute<String> { return AlecrimCoreData.NullableAttribute<String>("subThoroughfare_Placemark", self) }
     var thoroughfare_Placemark: AlecrimCoreData.NullableAttribute<String> { return AlecrimCoreData.NullableAttribute<String>("thoroughfare_Placemark", self) }
-    var verticalAccuracy: AlecrimCoreData.NullableAttribute<Double> { return AlecrimCoreData.NullableAttribute<Double>("verticalAccuracy", self) }
-
-    var mediaInfo: AlecrimCoreData.Attribute<Set<MediaInfo>> { return AlecrimCoreData.Attribute<Set<MediaInfo>>("mediaInfo", self) }
+    var verticalAccuracy: AlecrimCoreData.Attribute<Double> { return AlecrimCoreData.Attribute<Double>("verticalAccuracy", self) }
 
 }
 

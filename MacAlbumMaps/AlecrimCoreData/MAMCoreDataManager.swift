@@ -90,7 +90,6 @@ extension CoordinateInfo : MKAnnotation{
                 }
                 
             }else{
-                self.reverseGeocodeSucceed = NSNumber.init(value: false)
                 completionHandler?(false, nil)
             }
             
@@ -100,11 +99,6 @@ extension CoordinateInfo : MKAnnotation{
 }
 
 extension MediaInfo: GCLocationAnalyserProtocol{
-    
-    // MKAnnotation Protocol
-//    public var coordinate: CLLocationCoordinate2D {
-//        return (self.coordinateInfo?.coordinate)!
-//    }
     
     var coordinateWGS84: CLLocationCoordinate2D {
         let coordinateInfo = self.coordinateInfo!
@@ -142,11 +136,12 @@ extension MediaInfo: GCLocationAnalyserProtocol{
                 detail += NSLocalizedString("Content Type: ",comment: "类型：") + contentType + "\n"
             }
             
-            var fileSizeString = "\(self.fileSize)"
-            if self.fileSize > 1024 * 1024 {
-                fileSizeString = "\(self.fileSize/1024/1024)M"
-            }else if self.fileSize > 1024{
-                fileSizeString = "\(self.fileSize/1024)KB"
+            let floatFileSize = Float(fileSize)
+            var fileSizeString = "\(floatFileSize)"
+            if floatFileSize > 1024 * 1024 {
+                fileSizeString = String.init(format: "%.2fM",floatFileSize/1024.0/1024.0)
+            }else if floatFileSize > 1024{
+                fileSizeString = String.init(format: "%.1fKB",floatFileSize/1024)
             }
             detail += NSLocalizedString("File Size: ",comment: "大小：") + fileSizeString + "\n"
             
@@ -161,14 +156,6 @@ extension MediaInfo: GCLocationAnalyserProtocol{
             // 添加地址信息
             if let coordinateInfo = self.coordinateInfo{
                 detail += coordinateInfo.locationInfomation
-//                detail += coordinateInfo.coordinateWGS84.latitude > 0 ? NSLocalizedString("N. ",comment: "北纬 "):NSLocalizedString("S. ",comment: "南纬 ")
-//                detail += "\(fabs(coordinateInfo.coordinateWGS84.latitude))\n"
-//                detail += coordinateInfo.coordinateWGS84.longitude > 0 ? NSLocalizedString("E. ",comment: "东经 "):NSLocalizedString("W. ",comment: "西经 ")
-//                detail += "\(fabs(coordinateInfo.coordinateWGS84.longitude))\n"
-//                
-//                if let localizedPlaceString = coordinateInfo.localizedPlaceString_Placemark{
-//                    detail += localizedPlaceString
-//                }
             }
             
             return detail
@@ -408,6 +395,7 @@ class MAMCoreDataManager: NSObject {
                 DispatchQueue.main.async {
                     let infoString = NSLocalizedString("Total Coordinate Count:", comment: "座标点总计：") + "\(total) " + NSLocalizedString("Parsing is complete!", comment: "地址信息已全部解析完成！")
                     NotificationCenter.default.post(name: NSNotification.Name(rawValue: "App_Running_Info"), object: nil, userInfo: ["StatusBar_String":infoString])
+                    NotificationCenter.default.post(name: NSNotification.Name(rawValue: "App_Running_Info"), object: nil, userInfo: ["Needs_Update_View":""])
                 }
             }
             
@@ -415,17 +403,21 @@ class MAMCoreDataManager: NSObject {
             
             for (index,coordinateInfo) in coordinateInfos.enumerated(){
                 
-                coordinateInfo.updatePlacemark(geocoder: geocoder){
-                    (succeeded,placemarkString) -> Void in
-                    var infoString = NSLocalizedString("Parsing coordinate: ", comment: "正在解析座标：") + "\(reverseGeocodeSucceedCount+index+1)/\(total)"
-                    infoString += succeeded ? placemarkString! : NSLocalizedString("Parse failed!", comment: "解析失败！")
-                    
-                    DispatchQueue.main.async {
-                        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "App_Running_Info"), object: nil, userInfo: ["StatusBar_String":infoString])
+                if coordinateInfo.reverseGeocodeFailureCount <= 3{
+                    coordinateInfo.updatePlacemark(geocoder: geocoder){
+                        (succeeded,placemarkString) -> Void in
+                        var infoString = NSLocalizedString("Parsing coordinate: ", comment: "正在解析座标：") + "\(reverseGeocodeSucceedCount+index+1)/\(total)  "
+                        infoString += succeeded ? placemarkString! : "\(index)" + NSLocalizedString("Parse failed!", comment: "解析失败！")
+                        
+                        DispatchQueue.main.async {
+                            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "App_Running_Info"), object: nil, userInfo: ["StatusBar_String":infoString])
+                        }
+                        
                     }
-
+                    Thread.sleep(forTimeInterval: 1.0)
+                }else{
+                    print("解析失败3次以上，不再解析！")
                 }
-                Thread.sleep(forTimeInterval: 1.0)
             }
         }
     }
@@ -619,34 +611,39 @@ class MAMCoreDataManager: NSObject {
                             thoroughfareTN.representedObject = thoroughfareCount
                             
                             subLocalityRO += thoroughfareCount
+                            
                             subLocalityTN.children.append(thoroughfareTN)
                         }
                         
-                        subLocalityTN.representedObject = subLocalityRO
+                        subLocalityTN.representedObject = subLocalityRO > 0 ? subLocalityRO : 1
                         
                         localityRO += subLocalityRO
+                        
                         localityTN.children.append(subLocalityTN)
                     }
                     
-                    localityTN.representedObject = localityRO
+                    localityTN.representedObject = localityRO > 0 ? localityRO : 1
                     
                     administrativeAreaRO += localityRO
+                    
                     administrativeAreaTN.children.append(localityTN)
                 }
                 
-                administrativeAreaTN.representedObject = administrativeAreaRO
+                administrativeAreaTN.representedObject = administrativeAreaRO > 0 ? administrativeAreaRO : 1
                 
                 countryRO += administrativeAreaRO
+                
                 countryTN.children.append(administrativeAreaTN)
             }
             
-            countryTN.representedObject = countryRO
+            countryTN.representedObject = countryRO > 0 ? countryRO : 1
             
-            rootRO += countryRO
+            rootRO += countryRO > 0 ? countryRO : 1
+            
             rootTreeNode.children.append(countryTN)
         }
         
-        rootTreeNode.representedObject = rootRO
+        rootTreeNode.representedObject = rootRO > 0 ? rootRO : 1
         return rootTreeNode
     }
     

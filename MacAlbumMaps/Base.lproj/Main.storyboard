@@ -805,7 +805,7 @@
                                                                             <rect key="frame" x="5" y="5" width="284" height="444"/>
                                                                             <clipView key="contentView" id="XBM-sA-MPX">
                                                                                 <rect key="frame" x="1" y="0.0" width="282" height="443"/>
-                                                                                <autoresizingMask key="autoresizingMask"/>
+                                                                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                                                 <subviews>
                                                                                     <outlineView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" multipleSelection="NO" autosaveColumns="NO" rowSizeStyle="automatic" headerView="enZ-NN-sLD" viewBased="YES" indentationPerLevel="16" autoresizesOutlineColumn="YES" outlineTableColumn="vkL-mp-R7w" id="PYB-CZ-qaL" userLabel="Location Outline View">
                                                                                         <rect key="frame" x="0.0" y="0.0" width="282" height="420"/>
@@ -1303,7 +1303,7 @@
                                                                         <subviews>
                                                                             <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="D7J-UJ-ZXg">
                                                                                 <rect key="frame" x="3" y="60" width="309" height="174"/>
-                                                                                <textFieldCell key="cell" sendsActionOnEndEditing="YES" title="Multiline Label" id="GqF-Te-8iB">
+                                                                                <textFieldCell key="cell" sendsActionOnEndEditing="YES" title="Media Information" id="GqF-Te-8iB">
                                                                                     <font key="font" metaFont="system"/>
                                                                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                                                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
@@ -1342,7 +1342,7 @@
                                                                                             <constraint firstAttribute="height" constant="21" id="P6h-lr-LPB"/>
                                                                                             <constraint firstAttribute="width" constant="137" id="pE8-aM-bDc"/>
                                                                                         </constraints>
-                                                                                        <buttonCell key="cell" type="check" title="Favorite Coordinate" bezelStyle="regularSquare" imagePosition="left" inset="2" id="knT-vh-kK7">
+                                                                                        <buttonCell key="cell" type="check" title="Favorite Coord" bezelStyle="regularSquare" imagePosition="left" inset="2" id="knT-vh-kK7">
                                                                                             <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                                                                             <font key="font" metaFont="system"/>
                                                                                         </buttonCell>
@@ -1351,27 +1351,33 @@
                                                                                         </connections>
                                                                                     </button>
                                                                                     <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="EfL-Qa-L2h">
-                                                                                        <rect key="frame" x="254" y="7" width="54" height="32"/>
+                                                                                        <rect key="frame" x="261" y="8" width="47" height="32"/>
+                                                                                        <constraints>
+                                                                                            <constraint firstAttribute="width" constant="35" id="Ajm-Hl-ZCc"/>
+                                                                                        </constraints>
                                                                                         <buttonCell key="cell" type="push" title="→" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="ZQr-7e-7Pk">
                                                                                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                                                                            <font key="font" size="13" name="PingFangSC-Regular"/>
+                                                                                            <font key="font" metaFont="system"/>
                                                                                         </buttonCell>
                                                                                         <connections>
                                                                                             <action selector="nextImageBtnTD:" target="XfG-lQ-9wD" id="46v-3C-r22"/>
                                                                                         </connections>
                                                                                     </button>
                                                                                     <button translatesAutoresizingMaskIntoConstraints="NO" id="v7R-UB-jHf">
-                                                                                        <rect key="frame" x="146" y="8" width="57" height="18"/>
-                                                                                        <buttonCell key="cell" type="check" title="Share" bezelStyle="regularSquare" imagePosition="left" inset="2" id="xqk-ZY-TOC">
+                                                                                        <rect key="frame" x="126" y="8" width="86" height="18"/>
+                                                                                        <buttonCell key="cell" type="check" title="Thumbnail" bezelStyle="regularSquare" imagePosition="left" inset="2" id="xqk-ZY-TOC">
                                                                                             <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                                                                             <font key="font" metaFont="system"/>
                                                                                         </buttonCell>
                                                                                         <connections>
-                                                                                            <action selector="shareCheckBtnTD:" target="XfG-lQ-9wD" id="OW0-Gg-cnd"/>
+                                                                                            <action selector="actAsThumbnailCheckBtnTD:" target="XfG-lQ-9wD" id="h3n-UM-2S8"/>
                                                                                         </connections>
                                                                                     </button>
                                                                                     <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="G6C-FQ-ETE">
-                                                                                        <rect key="frame" x="204" y="7" width="54" height="32"/>
+                                                                                        <rect key="frame" x="218" y="7" width="47" height="32"/>
+                                                                                        <constraints>
+                                                                                            <constraint firstAttribute="width" constant="35" id="Hmj-WL-9QF"/>
+                                                                                        </constraints>
                                                                                         <buttonCell key="cell" type="push" title="←" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="Fzw-C4-w36">
                                                                                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                                                                             <font key="font" size="13" name="PingFangSC-Regular"/>
@@ -1383,10 +1389,10 @@
                                                                                 </subviews>
                                                                                 <constraints>
                                                                                     <constraint firstItem="OVs-ho-4xl" firstAttribute="centerY" secondItem="7wb-6i-dhc" secondAttribute="centerY" id="DOc-bd-0rZ"/>
-                                                                                    <constraint firstItem="v7R-UB-jHf" firstAttribute="trailing" secondItem="OVs-ho-4xl" secondAttribute="trailing" id="DqL-2m-K74"/>
                                                                                     <constraint firstAttribute="height" constant="50" id="HCD-LK-gwH"/>
                                                                                     <constraint firstItem="EfL-Qa-L2h" firstAttribute="leading" secondItem="G6C-FQ-ETE" secondAttribute="trailing" constant="8" id="IC9-Ze-0Nf"/>
                                                                                     <constraint firstItem="G6C-FQ-ETE" firstAttribute="centerY" secondItem="yEh-7d-O97" secondAttribute="centerY" id="UnL-Ji-aK6"/>
+                                                                                    <constraint firstItem="v7R-UB-jHf" firstAttribute="leading" secondItem="OVs-ho-4xl" secondAttribute="leading" id="VpY-Py-G5j"/>
                                                                                     <constraint firstItem="7wb-6i-dhc" firstAttribute="leading" secondItem="yEh-7d-O97" secondAttribute="leading" constant="7" id="XN8-fC-rt5"/>
                                                                                     <constraint firstItem="EfL-Qa-L2h" firstAttribute="centerY" secondItem="yEh-7d-O97" secondAttribute="centerY" id="YOy-TR-wcm"/>
                                                                                     <constraint firstAttribute="trailing" secondItem="EfL-Qa-L2h" secondAttribute="trailing" constant="8" id="ZuQ-M6-SSB"/>
@@ -1493,6 +1499,7 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="actAsThumbnailCheckBtn" destination="v7R-UB-jHf" id="H57-dC-Eht"/>
                         <outlet property="browserTableView" destination="eTa-2Y-2P0" id="Cml-XF-M41"/>
                         <outlet property="changeOverlayStyleBtn" destination="Mho-qR-E7F" id="cyG-J1-lhU"/>
                         <outlet property="currentMediaInfoLabel" destination="D7J-UJ-ZXg" id="t0P-uK-MDz"/>
@@ -1510,7 +1517,6 @@
                         <outlet property="mergeDistanceForLocationTF" destination="gpX-zL-llT" id="One-LI-QF3"/>
                         <outlet property="mergeDistanceForMomentTF" destination="z2p-dY-eza" id="5sy-ju-u7c"/>
                         <outlet property="placemarkInfoTF" destination="y40-1f-zwn" id="Bep-uY-Y6m"/>
-                        <outlet property="shareCheckBtn" destination="v7R-UB-jHf" id="p2D-JK-4uM"/>
                         <outlet property="startDatePicker" destination="xdG-yI-bFb" id="9Ti-NU-fjo"/>
                         <outlet property="statisticalInfoTV" destination="LCa-6x-mo0" id="kSv-zS-dTq"/>
                     </connections>

@@ -14,18 +14,7 @@ let appContext = AppDelegate().managedObjectContext
 class AppDelegate: NSObject, NSApplicationDelegate {
     
     func applicationDidFinishLaunching(_ aNotification: Notification) {
-        // Insert code here to initialize your application
-        
-//        let result = MAMCoreDataManager.removeAllFRInfos()
-//        print(result)
-        
-//        if FileManager.directoryExists(directoryPath: appApplicationSupportPath, autoCreate: true){
-//            print(appApplicationSupportPath)
-//        }else{
-//            print("无法创建 ~/Library/Application Support/<app-identifier> 文件夹")
-//        }
-        
-        //MAMCoreDataManager.latestModificationDate = Date.init(timeIntervalSinceNow: -10*24*3600)
+        //MAMCoreDataManager.latestModificationDate = Date.init(timeIntervalSince1970: 0.0)
     }
 
     func applicationWillTerminate(_ aNotification: Notification) {

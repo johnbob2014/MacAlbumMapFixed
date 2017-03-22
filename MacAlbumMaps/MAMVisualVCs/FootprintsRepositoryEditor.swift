@@ -142,15 +142,13 @@ class FootprintsRepositoryEditor: NSViewController,NSTableViewDelegate,NSTableVi
         print(alertMessage)
     }
     
-    
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         self.title = NSLocalizedString("Footprints Repository Editor", comment: "足迹包编辑器")
         
         titleTF.stringValue = fr.title
-        placemarkStatisticalInfoTF.string = fr.placemarkStatisticalInfo.trimmingCharacters(in: CharacterSet.init(charactersIn: ".")).replacingOccurrences(of: "∙", with: "\n")
+        placemarkStatisticalInfoTF.string = fr.placemarkStatisticalInfo.trimmingCharacters(in: CharacterSet.init(charactersIn: "∙")).replacingOccurrences(of: "∙", with: "\n")
         footprintsTV.register(NSNib.init(nibNamed: "FootprintAnnotationTableCellView", bundle: nil), forIdentifier: "FootprintAnnotationTableCellView")
         
         
@@ -179,7 +177,7 @@ class FootprintsRepositoryEditor: NSViewController,NSTableViewDelegate,NSTableVi
         if fp.thumbnailArray.count > 0 {
             return 160
         }else{
-            return 45
+            return 40
         }
     }
     

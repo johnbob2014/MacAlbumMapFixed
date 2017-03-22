@@ -51,14 +51,14 @@ class MediaMapVC: NSViewController,MKMapViewDelegate,NSOutlineViewDelegate,NSOut
     
     func showMediaInfoButtons() {
         eliminateCheckBtn.isHidden = false
-        //shareCheckBtn.isHidden = false
+        actAsThumbnailCheckBtn.isHidden = false
         favoriteCoordinateInfoBtn.isHidden = false
         favoriteMediaBtn.isHidden = false
     }
     
     func hideMediaInfoButtons() {
         eliminateCheckBtn.isHidden = true
-        //shareCheckBtn.isHidden = true
+        actAsThumbnailCheckBtn.isHidden = true
         favoriteCoordinateInfoBtn.isHidden = true
         favoriteMediaBtn.isHidden = true
     }
@@ -177,7 +177,7 @@ class MediaMapVC: NSViewController,MKMapViewDelegate,NSOutlineViewDelegate,NSOut
                 currentMediaInfoLabel.stringValue = stringValue
                 
                 eliminateCheckBtn.state = currentMediaInfo.eliminateThisMedia!.intValue
-                shareCheckBtn.state = currentMediaInfo.actAsThumbnail!.intValue
+                actAsThumbnailCheckBtn.state = currentMediaInfo.actAsThumbnail!.intValue
                 favoriteMediaBtn.state = (currentMediaInfo.favorite?.intValue)!
                 favoriteCoordinateInfoBtn.state = (currentMediaInfo.coordinateInfo?.favorite?.intValue)!
                 
@@ -252,7 +252,7 @@ class MediaMapVC: NSViewController,MKMapViewDelegate,NSOutlineViewDelegate,NSOut
     
     override func viewWillAppear() {
         super.viewWillAppear()
-        
+        //print("viewWillAppear")
         self.updateControls()
     }
     
@@ -262,6 +262,27 @@ class MediaMapVC: NSViewController,MKMapViewDelegate,NSOutlineViewDelegate,NSOut
     
     func addNotificationObserver() {
         NotificationCenter.default.addObserver(self, selector:#selector(didReceiveNotification(noti:)), name: NSNotification.Name(rawValue: "App_Running_Info"), object: nil)
+    }
+    
+    func didReceiveNotification(noti: NSNotification) {
+        if let userInfo = noti.userInfo{
+            for (infoKey,info) in userInfo {
+                switch infoKey as! String {
+                case "StatusBar_String":
+                    placemarkInfoTF.stringValue = info as! String
+                case "Long_Info_String":
+                    //statisticalInfoTVString = info as! String
+                    if let window = self.view.window{
+                        NSAlert.createSimpleAlertAndBeginSheetModal(messageText: info as! String, for: window)
+                    }
+                case "Needs_Update_View":
+                    self.updateControls()
+                default:
+                    break
+                }
+            }
+        }
+        
     }
     
     private func initMapView(){
@@ -302,11 +323,18 @@ class MediaMapVC: NSViewController,MKMapViewDelegate,NSOutlineViewDelegate,NSOut
     }
     
     func updateControls() {
+        //print("MediaMapVC: updateControls")
         // 分组距离
         mergeDistanceForMomentTF.stringValue = String.init(format:"%.2f",MAMSettingManager.mergeDistanceForMoment)
         mergeDistanceForLocationTF.stringValue = String.init(format:"%.2f",MAMSettingManager.mergeDistanceForLocation)
         
         // NSOutlineView
+        let sortedMediaInfos = appContext.mediaInfos.sorted{ (infoA, infoB) -> Bool in
+            infoA.creationDate?.compare(infoB.creationDate as! Date) == ComparisonResult.orderedAscending
+        }
+        
+        rootTreeNode = MAMCoreDataManager.placemarkHierarchicalInfoTreeNode(mediaInfos: sortedMediaInfos)
+        
         self.locationOutlineView.reloadData()
         self.locationOutlineView.expandItem(rootTreeNode)
         
@@ -358,16 +386,7 @@ class MediaMapVC: NSViewController,MKMapViewDelegate,NSOutlineViewDelegate,NSOut
     
     // MARK: - 地址模式NSOutlineView
     @IBOutlet weak var locationOutlineView: NSOutlineView!
-    var rootTreeNode: GCTreeNode{
-        get{
-            let sortedMediaInfos = appContext.mediaInfos.sorted{ (infoA, infoB) -> Bool in
-                infoA.creationDate?.compare(infoB.creationDate as! Date) == ComparisonResult.orderedAscending
-            }
-            
-            return MAMCoreDataManager.placemarkHierarchicalInfoTreeNode(mediaInfos: sortedMediaInfos)
-        }
-    }
-    
+    var rootTreeNode = GCTreeNode()
     // NSOutlineViewDataSource
     func outlineView(_ outlineView: NSOutlineView, numberOfChildrenOfItem item: Any?) -> Int {
         if item != nil{
@@ -611,22 +630,6 @@ class MediaMapVC: NSViewController,MKMapViewDelegate,NSOutlineViewDelegate,NSOut
             statisticalInfoTV.string = "\n" + dateString + "\n" + statisticalInfoTVString + "\n" + statisticalInfoTV.string!
         }
     }
-    
-    func didReceiveNotification(noti: NSNotification) {
-        for (infoKey,info) in noti.userInfo! {
-            switch infoKey as! String {
-            case "StatusBar_String":
-                placemarkInfoTF.stringValue = info as! String
-            case "Long_Info_String":
-                //statisticalInfoTVString = info as! String
-                if let window = self.view.window{
-                    NSAlert.createSimpleAlertAndBeginSheetModal(messageText: info as! String, for: window)
-                }
-            default:
-                break
-            }
-        }
-    }
 
     // MARK: - 右侧视图 Right View
     
@@ -797,7 +800,7 @@ class MediaMapVC: NSViewController,MKMapViewDelegate,NSOutlineViewDelegate,NSOut
     @IBAction func playBtnTD(_ sender: NSButton) {
         if playTimer == nil {
             //playTimer = Timer.init(timeInterval: 2.0, repeats: true, block: { _ in self.indexOfCurrentAnnotation += 1 })
-            playTimer = Timer.scheduledTimer(withTimeInterval: 2.0, repeats: true, block: { _ in self.indexOfCurrentAnnotation += 1 })
+            playTimer = Timer.scheduledTimer(withTimeInterval: MAMSettingManager.playTimeInterval, repeats: true, block: { _ in self.indexOfCurrentAnnotation += 1 })
             playTimer?.fire()
             sender.layer?.borderWidth = 3.0
             sender.layer?.borderColor = NSColor.brown.cgColor
@@ -850,8 +853,8 @@ class MediaMapVC: NSViewController,MKMapViewDelegate,NSOutlineViewDelegate,NSOut
         try! appContext.save()
     }
     
-    @IBOutlet weak var shareCheckBtn: NSButton!
-    @IBAction func shareCheckBtnTD(_ sender: NSButton) {
+    @IBOutlet weak var actAsThumbnailCheckBtn: NSButton!
+    @IBAction func actAsThumbnailCheckBtnTD(_ sender: NSButton) {
         //print(sender.state)
         //let currentMediaInfo = currentMediaInfos[indexOfCurrentMediaInfo]
         currentMediaInfo.actAsThumbnail = NSNumber.init(value: sender.state == 1 ? true : false)
