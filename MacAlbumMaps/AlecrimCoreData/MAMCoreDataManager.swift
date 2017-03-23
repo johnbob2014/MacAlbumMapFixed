@@ -47,8 +47,9 @@ extension CoordinateInfo : MKAnnotation{
     var locationInfomation: String{
         get{
             var detail = ""
+            detail += NSLocalizedString("Location Information:",comment:"位置信息：") + "\n"
             detail += self.coordinateWGS84.latitude > 0 ? NSLocalizedString("N. ",comment: "北纬 "):NSLocalizedString("S. ",comment: "南纬 ")
-            detail += "\(fabs(self.coordinateWGS84.latitude))\n"
+            detail += "\(fabs(self.coordinateWGS84.latitude))  "
             detail += self.coordinateWGS84.longitude > 0 ? NSLocalizedString("E. ",comment: "东经 "):NSLocalizedString("W. ",comment: "西经 ")
             detail += "\(fabs(self.coordinateWGS84.longitude))\n"
             

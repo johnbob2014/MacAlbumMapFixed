@@ -107,6 +107,7 @@
 		1E4C894C1E6D8ADF001AD00C /* GCStarAnnotationView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GCStarAnnotationView.swift; sourceTree = "<group>"; };
 		1ECA41B81E6118100068CB44 /* MacAlbumMaps.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MacAlbumMaps.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1ECA41BA1E6160CE0068CB44 /* CLPlacemark+Assistant.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "CLPlacemark+Assistant.swift"; path = "GenericExtensions/CLPlacemark+Assistant.swift"; sourceTree = "<group>"; };
+		4B1913A11E83800900F44457 /* MacAlbumMaps.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = MacAlbumMaps.entitlements; sourceTree = "<group>"; };
 		4B29B5871E7BB750003ACEFE /* SimpleCollectionVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SimpleCollectionVC.swift; path = MAMVisualVCs/SimpleCollectionVC.swift; sourceTree = "<group>"; };
 		4B29B5881E7BB750003ACEFE /* SimpleCollectionVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = SimpleCollectionVC.xib; path = MAMVisualVCs/SimpleCollectionVC.xib; sourceTree = "<group>"; };
 		4B2CD3AD1E65589100AA1B9E /* GCTreeNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GCTreeNode.swift; sourceTree = "<group>"; };
@@ -402,6 +403,7 @@
 		4B8FB5AA1E554EFB00400F58 /* MacAlbumMaps */ = {
 			isa = PBXGroup;
 			children = (
+				4B1913A11E83800900F44457 /* MacAlbumMaps.entitlements */,
 				4B665B7A1E652B87008F5095 /* MAMResources */,
 				1E00118C1E760AAD00AC7D6A /* MAMVisualVCs */,
 				1ECA41B91E61604F0068CB44 /* GenericExtensions */,
@@ -467,6 +469,9 @@
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.InAppPurchase = {
+								enabled = 1;
+							};
+							com.apple.Sandbox = {
 								enabled = 1;
 							};
 						};
@@ -750,6 +755,7 @@
 			baseConfigurationReference = 8975812DC64039374319AC5B /* Pods-MacAlbumMaps.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = MacAlbumMaps/MacAlbumMaps.entitlements;
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = 9R3WHNFTF3;
@@ -767,6 +773,7 @@
 			baseConfigurationReference = 6826725DC6F90CA237FDBBDA /* Pods-MacAlbumMaps.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = MacAlbumMaps/MacAlbumMaps.entitlements;
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = 9R3WHNFTF3;
