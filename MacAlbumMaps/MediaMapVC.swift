@@ -171,7 +171,7 @@ class MediaMapVC: NSViewController,MKMapViewDelegate,NSOutlineViewDelegate,NSOut
                 //let currentMediaInfo = self.currentMediaInfos[indexOfCurrentMediaInfo]
                 
                 // 显示MediaInfo序号和信息
-                var stringValue = "\(indexOfCurrentMediaInfo + 1)/\(self.currentMediaInfos.count)\n"
+                var stringValue = NSLocalizedString("Media index: ",comment:"媒体序号：") + "\(indexOfCurrentMediaInfo + 1)/\(self.currentMediaInfos.count)\n"
                 stringValue += currentMediaInfo.detailInfomation
                 
                 currentMediaInfoLabel.stringValue = stringValue
@@ -239,7 +239,7 @@ class MediaMapVC: NSViewController,MKMapViewDelegate,NSOutlineViewDelegate,NSOut
         super.viewDidLoad()
         // Do view setup here.
         
-        self.title = NSLocalizedString("Mac Album Maps", comment: "相册地图 - MacOS")
+        self.title = NSLocalizedString("Album Maps", comment: "相册地图")
         
         self.addNotificationObserver()
         
@@ -252,8 +252,12 @@ class MediaMapVC: NSViewController,MKMapViewDelegate,NSOutlineViewDelegate,NSOut
     
     override func viewWillAppear() {
         super.viewWillAppear()
-        //print("viewWillAppear")
         self.updateControls()
+    }
+    
+    override func viewDidAppear() {
+        super.viewDidAppear()
+        self.checkFirstLaunch()
     }
     
     deinit {
@@ -308,16 +312,7 @@ class MediaMapVC: NSViewController,MKMapViewDelegate,NSOutlineViewDelegate,NSOut
         self.endDatePicker.dateValue = Date.init(timeIntervalSinceNow: 0)
         
         
-        // 初始化statisticalInfoTV
-        if MAMSettingManager.everLaunched {
-            //statisticalInfoTVString = self.calculateStatisticalInfos(mediaInfos: sortedMediaInfos)
-        }else{
-            placemarkInfoTF.stringValue = NSLocalizedString("Preparing data for first lanuch, wait please...", comment: "正在为首次使用准备数据，请耐心等待...")
-        }
-        
         changeOverlayStyleBtn.tag = 0
-        
-        //shareCheckBtn.isHidden = true
         
         browserTableView.register(NSNib.init(nibNamed: "GCTableCellView", bundle: nil), forIdentifier: "GCTableCellView")
     }
@@ -341,28 +336,51 @@ class MediaMapVC: NSViewController,MKMapViewDelegate,NSOutlineViewDelegate,NSOut
         browserTableView.reloadData()
     }
     
+    private func startLoading() -> Void {
+        self.goBtn.isEnabled = false
+        self.loadProgressIndicator.isHidden = false
+        self.loadProgressIndicator.startAnimation(self)
+    }
+    
+    private func endLoading() -> Void {
+        self.goBtn.isEnabled = true
+        self.loadProgressIndicator.stopAnimation(self)
+        self.loadProgressIndicator.isHidden = true
+    }
+    
     private func updateMediaInfos(){
         
         mediaLibraryLoader.loadCompletionHandler = { (loadedMediaObjects: [MLMediaObject]) -> Void in
-            if !MAMSettingManager.everLaunched{
-                MAMCoreDataManager.latestModificationDate = Date.init(timeIntervalSince1970: 0.0)
-                MAMSettingManager.everLaunched = true
-            }
             
-            self.goBtn.isEnabled = false
-            self.loadProgressIndicator.isHidden = false
-            self.loadProgressIndicator.startAnimation(self)
+            self.startLoading()
             
             MAMCoreDataManager.updateCoreData(from: loadedMediaObjects)
             
-            self.goBtn.isEnabled = true
-            self.loadProgressIndicator.stopAnimation(self)
-            self.loadProgressIndicator.isHidden = true
+            self.endLoading()
             
             MAMCoreDataManager.asyncUpdatePlacemarks()
         }
         
         mediaLibraryLoader.asyncLoadMedia()
+    }
+    
+    func checkFirstLaunch() -> Void {
+        
+        //MAMSettingManager.everLaunched = false
+        if MAMSettingManager.everLaunched{
+            // 已经登录过
+            //statisticalInfoTVString = self.calculateStatisticalInfos(mediaInfos: sortedMediaInfos)
+        }else{
+            // 首次登录
+            //MAMCoreDataManager.latestModificationDate = Date.init(timeIntervalSince1970: 0.0)
+            placemarkInfoTF.stringValue = NSLocalizedString("Preparing data for first lanuch, wait please...", comment: "正在为首次使用准备数据，请耐心等待...")
+            if let window = self.view.window{
+                NSAlert.createSimpleAlertAndBeginSheetModal(messageText: NSLocalizedString("AlbumMaps is first launched. Reading data from photos library may take a few minutes. Please be patient.", comment: "应用首次启动，从照片图库中读取数据可能需要耗费几分钟时间，请耐心等待。"), for: window)
+            }
+            
+            MAMSettingManager.everLaunched = true
+        }
+        
     }
     
     // MARK: - 左侧视图 Left View
@@ -490,26 +508,9 @@ class MediaMapVC: NSViewController,MKMapViewDelegate,NSOutlineViewDelegate,NSOut
         return view
     }
     
-//    func tableView(_ tableView: NSTableView, willDisplayCell cell: Any, for tableColumn: NSTableColumn?, row: Int) {
-//        let tfCell = cell as! NSTextFieldCell
-//        tfCell.title = self.tileString(row: row)
-//        
-//    }
-    
     func tableView(_ tableView: NSTableView, heightOfRow row: Int) -> CGFloat {
         return 50
     }
-    
-//    func tableView(_ tableView: NSTableView, dataCellFor tableColumn: NSTableColumn?, row: Int) -> NSCell? {
-//        if let dataCell = tableColumn?.dataCell(forRow: row){
-//            let cell = dataCell as! NSCell
-//            cell.stringValue = self.tileString(row: row)
-//            return cell
-//        }else{
-//            return nil
-//        }
-//        //return NSCell.init(textCell: "oik")//self.tileString(row: row))
-//    }
     
     func tileString(row: Int) -> String {
         let info = frInfos[row]
@@ -543,9 +544,7 @@ class MediaMapVC: NSViewController,MKMapViewDelegate,NSOutlineViewDelegate,NSOut
     var currentEndDate: Date = Date.init(timeIntervalSinceReferenceDate: 0.0)
     var currentPlacemark = ""
     @IBAction func goBtnTD(_ sender: NSButton) {
-        goBtn.isEnabled = false
-        loadProgressIndicator.isHidden = false
-        loadProgressIndicator.startAnimation(self)
+        self.startLoading()
         
         var filteredMediaInfos = [MediaInfo]()
         
@@ -607,17 +606,13 @@ class MediaMapVC: NSViewController,MKMapViewDelegate,NSOutlineViewDelegate,NSOut
             
         }
         
-        goBtn.isEnabled = true
-        loadProgressIndicator.stopAnimation(self)
-        loadProgressIndicator.isHidden = true
+        self.endLoading()
     }
     
     @IBAction func locationBtnTD(_ sender: NSButton) {
         
     }
     
-    
-    @IBOutlet weak var loadProgressIndicator: NSProgressIndicator!
 
     // MARK: - 左侧地址信息解析显示
     @IBOutlet weak var placemarkInfoTF: NSTextField!
@@ -632,6 +627,8 @@ class MediaMapVC: NSViewController,MKMapViewDelegate,NSOutlineViewDelegate,NSOut
     }
 
     // MARK: - 右侧视图 Right View
+    
+    @IBOutlet weak var loadProgressIndicator: NSProgressIndicator!
     
     // MARK: - 地图
     func clearMainMapView() {
@@ -649,15 +646,6 @@ class MediaMapVC: NSViewController,MKMapViewDelegate,NSOutlineViewDelegate,NSOut
         
         currentMediaInfoLabel.stringValue = ""
         imageView.image = nil
-        
-        
-//        mainMapView.addAnnotations(appContext.coordinateInfos.filter { (info) -> Bool in
-//            if let favorite = info.favorite{
-//                return favorite.boolValue
-//            }else{
-//                return false
-//            }
-//        })
     }
 
     // MARK: - 右侧功能按钮
@@ -933,6 +921,9 @@ class MediaMapVC: NSViewController,MKMapViewDelegate,NSOutlineViewDelegate,NSOut
     
     var currentPlacemarkStatisticalInfo = ""
     func showMediaInfos(mediaInfos: [MediaInfo],mapMode: MapMode,mergeDistance: CLLocationDistance) {
+        if mediaInfos.count == 0{
+            return
+        }
         
         statisticalInfoTVString = self.calculateStatisticalInfos(mediaInfos: mediaInfos)
         currentPlacemarkStatisticalInfo = statisticalInfoTVString.replacingOccurrences(of: "\n", with: ",")
@@ -946,6 +937,10 @@ class MediaMapVC: NSViewController,MKMapViewDelegate,NSOutlineViewDelegate,NSOut
         
         if groupArray == nil {
             return
+        }else if groupArray!.count > 200{
+            if let window = self.view.window{
+                NSAlert.createSimpleAlertAndBeginSheetModal(messageText: NSLocalizedString("Media groups is more than 200. Loading process is comparatively time consuming. Please be patient.",comment:"媒体分组超过300个，加载会比较耗时，请耐心等待。"), for: window)
+            }
         }
         
         self.clearMainMapView()

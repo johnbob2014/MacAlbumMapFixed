@@ -91,6 +91,8 @@ extension CoordinateInfo : MKAnnotation{
                 }
                 
             }else{
+                self.reverseGeocodeFailureCount += 1
+                try! appContext.save()
                 completionHandler?(false, nil)
             }
             
@@ -166,13 +168,18 @@ extension MediaInfo: GCLocationAnalyserProtocol{
 
 extension FootprintsRepositoryInfo{
     var filePath: String {
-        return appApplicationSupportPath + "/" + self.identifier!
+        var path = ""
+        if self.identifier != nil{
+            path = appApplicationSupportPath + "/" + self.identifier!
+        }else{
+            path = appApplicationSupportPath + "/" + String.init(format: "%.0f", Date.timeIntervalSinceReferenceDate * 1000)
+        }
+        return path
     }
 }
 
 //MARK: - CoreData管理器
 class MAMCoreDataManager: NSObject {
-    
     
     // MARK: - MLMediaObject验证及更新
     
@@ -207,7 +214,10 @@ class MAMCoreDataManager: NSObject {
                     let latitude = (latitudeNumber as! NSNumber).doubleValue
                     let longitude = (longitudeNumber as! NSNumber).doubleValue
                     if (latitude > -90 && latitude < 90 && latitude != 0 && longitude > -180 && longitude < 180 && longitude != 0){
-                        print(MAMCoreDataManager.imageTitle(from: mediaObject),latitude,longitude)
+                        if let DateAsTimerInterval = attrs[MLMediaObjectHiddenAttributeKeys.DateAsTimerIntervalKey]{
+                            print(MAMCoreDataManager.imageTitle(from: mediaObject),DateAsTimerInterval,latitude,longitude)
+                            isValidImage = true
+                        }
                         
                         /*
                          if let Places = attrs[MLMediaObjectHiddenAttributeKeys.PlacesKey]{
@@ -217,13 +227,7 @@ class MAMCoreDataManager: NSObject {
                          if let Name = attrs[MLMediaObjectHiddenAttributeKeys.NameKey]{
                          print(Name)
                          }
-                         */
-                        
-                        if let DateAsTimerInterval = attrs[MLMediaObjectHiddenAttributeKeys.DateAsTimerIntervalKey]{
-                            print(DateAsTimerInterval)
-                            isValidImage = true
-                        }
-                        
+                         
                         if let FaceList = attrs[MLMediaObjectHiddenAttributeKeys.FaceListKey]{
                             print(FaceList)
                             let array = FaceList as! NSArray
@@ -245,7 +249,7 @@ class MAMCoreDataManager: NSObject {
                             print(rectangle)
                             
                         }
-                        
+                        */
                     }
                 }
             }
@@ -363,23 +367,28 @@ class MAMCoreDataManager: NSObject {
         }
         
         var scanPhotosResult = ""
-        scanPhotosResult += NSLocalizedString("Scan medias result:", comment: "扫描媒体结果:") + "\n\n"
         
         do {
             try appContext.save()
-            scanPhotosResult += "∙" + NSLocalizedString("New Media Count: ", comment: "新添加媒体数: ") + "\(addMediaInfoCount)" + "\n"
-            scanPhotosResult += "∙" + NSLocalizedString("Total Media Count: ", comment: "总媒体数: ") + "\(appContext.mediaInfos.count())" + "\n"
-            scanPhotosResult += "∙" + NSLocalizedString("New Coordinate Count: ", comment: "新添加座标点数: ") + "\(addCoordinateInfoCount)" + "\n"
-            scanPhotosResult += "∙" + NSLocalizedString("Total Coordinate Count: ", comment: "总座标点数: ") + "\(appContext.coordinateInfos.count())" + "\n"
             
-            scanPhotosResult += "\n" + NSLocalizedString("Latest date: ", comment: "最新日期: ") + latestMD.stringWithDefaultFormat()
+            if addMediaInfoCount > 0{
+                scanPhotosResult += NSLocalizedString("Scan medias result:", comment: "扫描媒体结果:") + "\n\n"
+                scanPhotosResult += "∙" + NSLocalizedString("New Media Count: ", comment: "新添加媒体数: ") + "\(addMediaInfoCount)" + "\n"
+                scanPhotosResult += "∙" + NSLocalizedString("Total Media Count: ", comment: "总媒体数: ") + "\(appContext.mediaInfos.count())" + "\n"
+                scanPhotosResult += "∙" + NSLocalizedString("New Coordinate Count: ", comment: "新添加座标点数: ") + "\(addCoordinateInfoCount)" + "\n"
+                scanPhotosResult += "∙" + NSLocalizedString("Total Coordinate Count: ", comment: "总座标点数: ") + "\(appContext.coordinateInfos.count())" + "\n"
+                
+                scanPhotosResult += "\n" + NSLocalizedString("Latest date: ", comment: "最新日期: ") + latestMD.stringWithDefaultFormat()
+            }
+            
         } catch  {
-            scanPhotosResult += NSLocalizedString("Failed!", comment: "失败!")
+            scanPhotosResult += NSLocalizedString("Failed to scan medias!", comment: "扫描媒体失败!")
         }
         
-        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "App_Running_Info"), object: nil, userInfo: ["Long_Info_String":scanPhotosResult])
-        
-        
+        if !scanPhotosResult.isEmpty{
+            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "App_Running_Info"), object: nil, userInfo: ["Long_Info_String":scanPhotosResult])
+        }
+    
     }
     
     // MARK: - 地址信息解析工具
@@ -404,11 +413,11 @@ class MAMCoreDataManager: NSObject {
             
             for (index,coordinateInfo) in coordinateInfos.enumerated(){
                 
-                if coordinateInfo.reverseGeocodeFailureCount <= 3{
+                if coordinateInfo.reverseGeocodeFailureCount <= 5{
                     coordinateInfo.updatePlacemark(geocoder: geocoder){
                         (succeeded,placemarkString) -> Void in
                         var infoString = NSLocalizedString("Parsing coordinate: ", comment: "正在解析座标：") + "\(reverseGeocodeSucceedCount+index+1)/\(total)  "
-                        infoString += succeeded ? placemarkString! : "\(index)" + NSLocalizedString("Parse failed!", comment: "解析失败！")
+                        infoString += succeeded ? placemarkString! : "\(index) " + NSLocalizedString("Parse failed!", comment: "解析失败！")
                         
                         DispatchQueue.main.async {
                             NotificationCenter.default.post(name: NSNotification.Name(rawValue: "App_Running_Info"), object: nil, userInfo: ["StatusBar_String":infoString])
@@ -417,9 +426,25 @@ class MAMCoreDataManager: NSObject {
                     }
                     Thread.sleep(forTimeInterval: 1.0)
                 }else{
-                    print("解析失败3次以上，不再解析！")
+                    print("解析失败5次以上，不再解析！")
                 }
             }
+            
+            // 解析失败5次以上的总个数
+            let failures = appContext.coordinateInfos.filter({ (info) -> Bool in
+                info.reverseGeocodeFailureCount >= 5
+            })
+            var infoString = ""
+            if failures.count > 0{
+                infoString = NSLocalizedString("Parse complete. ",comment:"本次解析完成。 ") + "\(failures)" + NSLocalizedString("Coordinates failed to reverse more than 5 times.",comment:"个座标解析失败5次以上，不再解析！")
+            }else{
+                infoString = NSLocalizedString("Parse complete.",comment:"本次解析完成。")
+            }
+            
+            DispatchQueue.main.async {
+                NotificationCenter.default.post(name: NSNotification.Name(rawValue: "App_Running_Info"), object: nil, userInfo: ["StatusBar_String":infoString])
+            }
+            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "App_Running_Info"), object: nil, userInfo: ["Needs_Update_View":""])
         }
     }
     

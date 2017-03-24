@@ -79,6 +79,7 @@
 		4B675CB91E7B7C2C00A40511 /* GCTableCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B675CB81E7B7C2C00A40511 /* GCTableCellView.swift */; };
 		4B68BB9A1E78D34500A6D297 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4B68BB991E78D34500A6D297 /* StoreKit.framework */; };
 		4B76B3391E567CD2003BED65 /* MediaMapVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B76B3381E567CD2003BED65 /* MediaMapVC.swift */; };
+		4B7901181E84B8B50066A6A4 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4B7901171E84B8B50066A6A4 /* MapKit.framework */; };
 		4B88D0831E5E8A6D008A69BC /* MediaInfoGroupAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B88D0821E5E8A6D008A69BC /* MediaInfoGroupAnnotation.swift */; };
 		4B88D0881E5E8ADE008A69BC /* GCLocationAnalyser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B88D0861E5E8ADE008A69BC /* GCLocationAnalyser.swift */; };
 		4B88D0891E5E8ADE008A69BC /* GCMediaLibraryLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B88D0871E5E8ADE008A69BC /* GCMediaLibraryLoader.swift */; };
@@ -170,6 +171,7 @@
 		4B675CB81E7B7C2C00A40511 /* GCTableCellView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GCTableCellView.swift; path = GCTableCellView/GCTableCellView.swift; sourceTree = "<group>"; };
 		4B68BB991E78D34500A6D297 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		4B76B3381E567CD2003BED65 /* MediaMapVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MediaMapVC.swift; sourceTree = "<group>"; };
+		4B7901171E84B8B50066A6A4 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		4B88D0821E5E8A6D008A69BC /* MediaInfoGroupAnnotation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MediaInfoGroupAnnotation.swift; path = MAMModels/MediaInfoGroupAnnotation.swift; sourceTree = "<group>"; };
 		4B88D0861E5E8ADE008A69BC /* GCLocationAnalyser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GCLocationAnalyser.swift; sourceTree = "<group>"; };
 		4B88D0871E5E8ADE008A69BC /* GCMediaLibraryLoader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GCMediaLibraryLoader.swift; sourceTree = "<group>"; };
@@ -200,6 +202,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3D6B5AB6A20AF244E2674E9F /* Pods_MacAlbumMaps.framework in Frameworks */,
+				4B7901181E84B8B50066A6A4 /* MapKit.framework in Frameworks */,
 				4B68BB9A1E78D34500A6D297 /* StoreKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -424,6 +427,7 @@
 		D4C260E6018A492B02384509 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				4B7901171E84B8B50066A6A4 /* MapKit.framework */,
 				4B68BB991E78D34500A6D297 /* StoreKit.framework */,
 				9BEBD2E7F4F52E4B845D5AEA /* Pods_MacAlbumMaps.framework */,
 			);
@@ -469,6 +473,9 @@
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.InAppPurchase = {
+								enabled = 1;
+							};
+							com.apple.Maps.Mac = {
 								enabled = 1;
 							};
 							com.apple.Sandbox = {
