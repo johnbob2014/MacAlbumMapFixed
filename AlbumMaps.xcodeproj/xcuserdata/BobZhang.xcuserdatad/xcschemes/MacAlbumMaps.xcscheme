@@ -15,9 +15,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "4B8FB5A71E554EFB00400F58"
-               BuildableName = "MacAlbumMaps.app"
-               BlueprintName = "MacAlbumMaps"
-               ReferencedContainer = "container:MacAlbumMaps.xcodeproj">
+               BuildableName = "AlbumMaps.app"
+               BlueprintName = "AlbumMaps"
+               ReferencedContainer = "container:AlbumMaps.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -33,9 +33,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "4B8FB5A71E554EFB00400F58"
-            BuildableName = "MacAlbumMaps.app"
-            BlueprintName = "MacAlbumMaps"
-            ReferencedContainer = "container:MacAlbumMaps.xcodeproj">
+            BuildableName = "AlbumMaps.app"
+            BlueprintName = "AlbumMaps"
+            ReferencedContainer = "container:AlbumMaps.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
       <AdditionalOptions>
@@ -56,9 +56,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "4B8FB5A71E554EFB00400F58"
-            BuildableName = "MacAlbumMaps.app"
-            BlueprintName = "MacAlbumMaps"
-            ReferencedContainer = "container:MacAlbumMaps.xcodeproj">
+            BuildableName = "AlbumMaps.app"
+            BlueprintName = "AlbumMaps"
+            ReferencedContainer = "container:AlbumMaps.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <AdditionalOptions>
@@ -75,9 +75,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "4B8FB5A71E554EFB00400F58"
-            BuildableName = "MacAlbumMaps.app"
-            BlueprintName = "MacAlbumMaps"
-            ReferencedContainer = "container:MacAlbumMaps.xcodeproj">
+            BuildableName = "AlbumMaps.app"
+            BlueprintName = "AlbumMaps"
+            ReferencedContainer = "container:AlbumMaps.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

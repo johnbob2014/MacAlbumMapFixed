@@ -436,15 +436,15 @@ class MAMCoreDataManager: NSObject {
             })
             var infoString = ""
             if failures.count > 0{
-                infoString = NSLocalizedString("Parse complete. ",comment:"本次解析完成。 ") + "\(failures)" + NSLocalizedString("Coordinates failed to reverse more than 5 times.",comment:"个座标解析失败5次以上，不再解析！")
+                infoString = NSLocalizedString("Parse complete. ",comment:"本次解析完成。 ") + "\(failures.count)" + NSLocalizedString("Coordinates failed to reverse more than 5 times.",comment:"个座标解析失败5次以上，不再解析！")
             }else{
                 infoString = NSLocalizedString("Parse complete.",comment:"本次解析完成。")
             }
             
             DispatchQueue.main.async {
                 NotificationCenter.default.post(name: NSNotification.Name(rawValue: "App_Running_Info"), object: nil, userInfo: ["StatusBar_String":infoString])
+                NotificationCenter.default.post(name: NSNotification.Name(rawValue: "App_Running_Info"), object: nil, userInfo: ["Needs_Update_View":""])
             }
-            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "App_Running_Info"), object: nil, userInfo: ["Needs_Update_View":""])
         }
     }
     

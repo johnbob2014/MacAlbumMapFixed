@@ -33,11 +33,11 @@ class MediaMapVC: NSViewController,MKMapViewDelegate,NSOutlineViewDelegate,NSOut
             case 0:
                 placemarkInfoTF.stringValue = NSLocalizedString("Choose date range", comment: "请选择日期范围")
                 currentMapMode = MapMode.Moment
-                self.showMediaInfoButtons()
+                //self.showMediaInfoButtons()
             case 1:
                 placemarkInfoTF.stringValue = NSLocalizedString("Choose a location", comment: "请选择地点")
                 currentMapMode = MapMode.Location
-                self.showMediaInfoButtons()
+                //self.showMediaInfoButtons()
             case 2:
                 placemarkInfoTF.stringValue = NSLocalizedString("Choose a footprints repository", comment: "请选择足迹包")
                 currentMapMode = MapMode.Browser
@@ -47,20 +47,6 @@ class MediaMapVC: NSViewController,MKMapViewDelegate,NSOutlineViewDelegate,NSOut
                 break
             }
         }
-    }
-    
-    func showMediaInfoButtons() {
-        eliminateCheckBtn.isHidden = false
-        actAsThumbnailCheckBtn.isHidden = false
-        favoriteCoordinateInfoBtn.isHidden = false
-        favoriteMediaBtn.isHidden = false
-    }
-    
-    func hideMediaInfoButtons() {
-        eliminateCheckBtn.isHidden = true
-        actAsThumbnailCheckBtn.isHidden = true
-        favoriteCoordinateInfoBtn.isHidden = true
-        favoriteMediaBtn.isHidden = true
     }
     
     /// 当前添加的、用于导航的 MKAnnotation数组
@@ -160,7 +146,28 @@ class MediaMapVC: NSViewController,MKMapViewDelegate,NSOutlineViewDelegate,NSOut
     var currentMediaInfos = [MediaInfo](){
         didSet{
             self.indexOfCurrentMediaInfo = 0
+            
+            if currentMediaInfos.count > 0{
+                self.showMediaInfoButtons()
+                noThumbnailLabel.stringValue = ""
+            }else{
+                self.hideMediaInfoButtons()
+            }
         }
+    }
+    
+    func showMediaInfoButtons() {
+        eliminateCheckBtn.isHidden = false
+        actAsThumbnailCheckBtn.isHidden = false
+        favoriteCoordinateInfoBtn.isHidden = false
+        favoriteMediaBtn.isHidden = false
+    }
+    
+    func hideMediaInfoButtons() {
+        eliminateCheckBtn.isHidden = true
+        actAsThumbnailCheckBtn.isHidden = true
+        favoriteCoordinateInfoBtn.isHidden = true
+        favoriteMediaBtn.isHidden = true
     }
     
     /// 当前MediaInfo序号
@@ -186,6 +193,8 @@ class MediaMapVC: NSViewController,MKMapViewDelegate,NSOutlineViewDelegate,NSOut
                     self.imageView.image = NSImage.init(contentsOf:thumbnailURL)
                 }else if let imageURL = URL.init(string: currentMediaInfo.urlString!){
                     self.imageView.image = NSImage.init(contentsOf:imageURL)
+                }else{
+                    noThumbnailLabel.stringValue = NSLocalizedString("No thumbnail.",comment:"没有预览图。")
                 }
                 
                 // 如果是影片
@@ -210,6 +219,7 @@ class MediaMapVC: NSViewController,MKMapViewDelegate,NSOutlineViewDelegate,NSOut
     var currentFootprintAnnotationThumbnailArray = [Data](){
         didSet{
             indexOfCurrentThumbnail = 0
+            noThumbnailLabel.stringValue = ""
         }
     }
     
@@ -248,6 +258,8 @@ class MediaMapVC: NSViewController,MKMapViewDelegate,NSOutlineViewDelegate,NSOut
         self.initControls()
         
         self.updateMediaInfos()
+        
+        self.clearMainMapView()
     }
     
     override func viewWillAppear() {
@@ -310,7 +322,6 @@ class MediaMapVC: NSViewController,MKMapViewDelegate,NSOutlineViewDelegate,NSOut
         // 初始化日期选择器
         self.startDatePicker.dateValue = Date.init(timeIntervalSinceNow: -7*24*60*60)
         self.endDatePicker.dateValue = Date.init(timeIntervalSinceNow: 0)
-        
         
         changeOverlayStyleBtn.tag = 0
         
@@ -637,15 +648,15 @@ class MediaMapVC: NSViewController,MKMapViewDelegate,NSOutlineViewDelegate,NSOut
         
         currentIDAnnotations = []
         currentMediaInfoGroupAnnotations = []
-        //currentFootprintAnnotations = []
         
         currentMediaInfos = []
         
         currentFootprintsRepository = nil
         currentFootprintAnnotationThumbnailArray = []
         
-        currentMediaInfoLabel.stringValue = ""
+        currentMediaInfoLabel.stringValue = NSLocalizedString("No media or coordinate information.",comment:"没有媒体或座标信息。")
         imageView.image = nil
+        noThumbnailLabel.stringValue = NSLocalizedString("No thumbnail.",comment:"没有预览图。")
     }
 
     // MARK: - 右侧功能按钮
@@ -810,6 +821,8 @@ class MediaMapVC: NSViewController,MKMapViewDelegate,NSOutlineViewDelegate,NSOut
     // MARK: - 右侧底部图片视图 Right Bottom Left Image View
     
     @IBOutlet weak var imageView: NSImageView!
+    @IBOutlet weak var noThumbnailLabel: NSTextField!
+    
     
     // MARK: - 右侧底部MediaInfo信息视图
     @IBOutlet weak var currentMediaInfoLabel: NSTextField!

@@ -106,7 +106,7 @@
 		1E4269D01E61BD02002087EA /* Date+Assistant.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Date+Assistant.swift"; path = "GenericExtensions/Date+Assistant.swift"; sourceTree = "<group>"; };
 		1E46B3121E625F00000C6379 /* URL+Assistant.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "URL+Assistant.swift"; path = "GenericExtensions/URL+Assistant.swift"; sourceTree = "<group>"; };
 		1E4C894C1E6D8ADF001AD00C /* GCStarAnnotationView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GCStarAnnotationView.swift; sourceTree = "<group>"; };
-		1ECA41B81E6118100068CB44 /* MacAlbumMaps.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MacAlbumMaps.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		1ECA41B81E6118100068CB44 /* AlbumMaps.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AlbumMaps.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1ECA41BA1E6160CE0068CB44 /* CLPlacemark+Assistant.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "CLPlacemark+Assistant.swift"; path = "GenericExtensions/CLPlacemark+Assistant.swift"; sourceTree = "<group>"; };
 		4B1913A11E83800900F44457 /* MacAlbumMaps.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = MacAlbumMaps.entitlements; sourceTree = "<group>"; };
 		4B29B5871E7BB750003ACEFE /* SimpleCollectionVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SimpleCollectionVC.swift; path = MAMVisualVCs/SimpleCollectionVC.swift; sourceTree = "<group>"; };
@@ -399,7 +399,7 @@
 				4B8FB5AA1E554EFB00400F58 /* MacAlbumMaps */,
 				0B09E196C83B2F202F3AAD68 /* Pods */,
 				D4C260E6018A492B02384509 /* Frameworks */,
-				1ECA41B81E6118100068CB44 /* MacAlbumMaps.app */,
+				1ECA41B81E6118100068CB44 /* AlbumMaps.app */,
 			);
 			sourceTree = "<group>";
 		};
@@ -437,9 +437,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		4B8FB5A71E554EFB00400F58 /* MacAlbumMaps */ = {
+		4B8FB5A71E554EFB00400F58 /* AlbumMaps */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 4B8FB5BA1E554EFB00400F58 /* Build configuration list for PBXNativeTarget "MacAlbumMaps" */;
+			buildConfigurationList = 4B8FB5BA1E554EFB00400F58 /* Build configuration list for PBXNativeTarget "AlbumMaps" */;
 			buildPhases = (
 				B668336D507866C6AB548D24 /* [CP] Check Pods Manifest.lock */,
 				4B8FB5A41E554EFB00400F58 /* Sources */,
@@ -452,9 +452,9 @@
 			);
 			dependencies = (
 			);
-			name = MacAlbumMaps;
+			name = AlbumMaps;
 			productName = MacAlbumMaps;
-			productReference = 1ECA41B81E6118100068CB44 /* MacAlbumMaps.app */;
+			productReference = 1ECA41B81E6118100068CB44 /* AlbumMaps.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -485,7 +485,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 4B8FB5A31E554EFB00400F58 /* Build configuration list for PBXProject "MacAlbumMaps" */;
+			buildConfigurationList = 4B8FB5A31E554EFB00400F58 /* Build configuration list for PBXProject "AlbumMaps" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -498,7 +498,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				4B8FB5A71E554EFB00400F58 /* MacAlbumMaps */,
+				4B8FB5A71E554EFB00400F58 /* AlbumMaps */,
 			);
 		};
 /* End PBXProject section */
@@ -796,7 +796,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		4B8FB5A31E554EFB00400F58 /* Build configuration list for PBXProject "MacAlbumMaps" */ = {
+		4B8FB5A31E554EFB00400F58 /* Build configuration list for PBXProject "AlbumMaps" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				4B8FB5B81E554EFB00400F58 /* Debug */,
@@ -805,7 +805,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		4B8FB5BA1E554EFB00400F58 /* Build configuration list for PBXNativeTarget "MacAlbumMaps" */ = {
+		4B8FB5BA1E554EFB00400F58 /* Build configuration list for PBXNativeTarget "AlbumMaps" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				4B8FB5BB1E554EFB00400F58 /* Debug */,

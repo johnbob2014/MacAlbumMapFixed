@@ -113,7 +113,7 @@
                         <outlet property="delegate" destination="Voe-Tx-rLC" id="PrD-fu-P6m"/>
                     </connections>
                 </application>
-                <customObject id="Voe-Tx-rLC" customClass="AppDelegate" customModule="MacAlbumMaps" customModuleProvider="target"/>
+                <customObject id="Voe-Tx-rLC" customClass="AppDelegate" customModule="AlbumMaps" customModuleProvider="target"/>
                 <customObject id="Ady-hI-5gd" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="94" y="-165"/>
@@ -139,7 +139,7 @@
         <!--Media MapVC-->
         <scene sceneID="hIz-AP-VOD">
             <objects>
-                <viewController id="XfG-lQ-9wD" customClass="MediaMapVC" customModule="MacAlbumMaps" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="XfG-lQ-9wD" customClass="MediaMapVC" customModule="AlbumMaps" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" wantsLayer="YES" id="m2S-Jp-Qdl">
                         <rect key="frame" x="0.0" y="0.0" width="1280" height="800"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -440,7 +440,7 @@
                                                                                                 </textFieldCell>
                                                                                                 <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                                                                 <prototypeCellViews>
-                                                                                                    <tableCellView id="ntR-dg-QhS" customClass="GCTableCellView" customModule="MacAlbumMaps" customModuleProvider="target">
+                                                                                                    <tableCellView id="ntR-dg-QhS" customClass="GCTableCellView" customModule="AlbumMaps" customModuleProvider="target">
                                                                                                         <rect key="frame" x="1" y="1" width="279" height="17"/>
                                                                                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                                                                         <subviews>
@@ -741,35 +741,52 @@
                                                                 <rect key="frame" x="0.0" y="0.0" width="970" height="249"/>
                                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                                 <subviews>
-                                                                    <customView fixedFrame="YES" id="Cfd-Jq-p80" userLabel="Right Bottom Image Box">
+                                                                    <customView id="Cfd-Jq-p80" userLabel="Right Bottom Image Box">
                                                                         <rect key="frame" x="0.0" y="0.0" width="530" height="249"/>
                                                                         <autoresizingMask key="autoresizingMask"/>
                                                                         <subviews>
-                                                                            <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dBE-VI-fxX" userLabel="Right Bottom Left Image View">
-                                                                                <rect key="frame" x="2" y="2" width="526" height="244"/>
-                                                                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                                                            <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="dBE-VI-fxX" userLabel="Right Bottom Left Image View">
+                                                                                <rect key="frame" x="2" y="2" width="526" height="245"/>
                                                                                 <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" imageFrameStyle="photo" id="r0q-0C-k3p"/>
                                                                             </imageView>
+                                                                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dMv-Ed-98e">
+                                                                                <rect key="frame" x="221" y="116" width="89" height="17"/>
+                                                                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="No thumbnail." id="JRX-5Y-KYy">
+                                                                                    <font key="font" metaFont="system"/>
+                                                                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                                                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                                                                </textFieldCell>
+                                                                            </textField>
                                                                         </subviews>
+                                                                        <constraints>
+                                                                            <constraint firstItem="dMv-Ed-98e" firstAttribute="centerY" secondItem="dBE-VI-fxX" secondAttribute="centerY" id="Bkf-KF-Dct"/>
+                                                                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="530" id="Ezr-eR-yV9"/>
+                                                                            <constraint firstAttribute="bottom" secondItem="dBE-VI-fxX" secondAttribute="bottom" constant="5" id="GCi-Iz-aAX"/>
+                                                                            <constraint firstItem="dMv-Ed-98e" firstAttribute="centerX" secondItem="dBE-VI-fxX" secondAttribute="centerX" id="HRg-6F-mFv"/>
+                                                                            <constraint firstAttribute="trailing" secondItem="dBE-VI-fxX" secondAttribute="trailing" constant="5" id="Oi4-mS-4Me"/>
+                                                                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="249" id="ifa-BV-yaz"/>
+                                                                            <constraint firstItem="dBE-VI-fxX" firstAttribute="leading" secondItem="Cfd-Jq-p80" secondAttribute="leading" constant="5" id="oQ2-dC-ky7"/>
+                                                                            <constraint firstItem="dBE-VI-fxX" firstAttribute="top" secondItem="Cfd-Jq-p80" secondAttribute="top" constant="5" id="qNf-0p-vu2"/>
+                                                                        </constraints>
                                                                     </customView>
                                                                     <customView id="KVN-a0-i3b" userLabel="Right Bottom Buttons Box">
                                                                         <rect key="frame" x="540" y="0.0" width="430" height="249"/>
                                                                         <autoresizingMask key="autoresizingMask"/>
                                                                         <subviews>
                                                                             <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="D7J-UJ-ZXg">
-                                                                                <rect key="frame" x="3" y="60" width="424" height="184"/>
-                                                                                <textFieldCell key="cell" sendsActionOnEndEditing="YES" title="Media Information" id="GqF-Te-8iB">
+                                                                                <rect key="frame" x="8" y="60" width="419" height="184"/>
+                                                                                <textFieldCell key="cell" sendsActionOnEndEditing="YES" title="Media or Coordinate Information" id="GqF-Te-8iB">
                                                                                     <font key="font" metaFont="system"/>
                                                                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                                                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                                                                 </textFieldCell>
                                                                             </textField>
-                                                                            <customView translatesAutoresizingMaskIntoConstraints="NO" id="yEh-7d-O97" userLabel="Buttons Container">
+                                                                            <customView translatesAutoresizingMaskIntoConstraints="NO" id="yEh-7d-O97" userLabel="Media Buttons Container">
                                                                                 <rect key="frame" x="5" y="5" width="425" height="50"/>
                                                                                 <subviews>
                                                                                     <button translatesAutoresizingMaskIntoConstraints="NO" id="OVs-ho-4xl">
-                                                                                        <rect key="frame" x="126" y="27" width="77" height="18"/>
-                                                                                        <buttonCell key="cell" type="check" title="Eliminate" bezelStyle="regularSquare" imagePosition="left" inset="2" id="S5l-BV-PkD">
+                                                                                        <rect key="frame" x="126" y="27" width="143" height="18"/>
+                                                                                        <buttonCell key="cell" type="check" title="Eliminate this media" bezelStyle="regularSquare" imagePosition="left" inset="2" id="S5l-BV-PkD">
                                                                                             <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                                                                             <font key="font" metaFont="system"/>
                                                                                         </buttonCell>
@@ -819,8 +836,8 @@
                                                                                         </connections>
                                                                                     </button>
                                                                                     <button translatesAutoresizingMaskIntoConstraints="NO" id="v7R-UB-jHf">
-                                                                                        <rect key="frame" x="126" y="8" width="86" height="18"/>
-                                                                                        <buttonCell key="cell" type="check" title="Thumbnail" bezelStyle="regularSquare" imagePosition="left" inset="2" id="xqk-ZY-TOC">
+                                                                                        <rect key="frame" x="126" y="8" width="127" height="18"/>
+                                                                                        <buttonCell key="cell" type="check" title="Use as thumbnail" bezelStyle="regularSquare" imagePosition="left" inset="2" id="xqk-ZY-TOC">
                                                                                             <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                                                                             <font key="font" metaFont="system"/>
                                                                                         </buttonCell>
@@ -861,7 +878,7 @@
                                                                         </subviews>
                                                                         <constraints>
                                                                             <constraint firstAttribute="bottom" secondItem="yEh-7d-O97" secondAttribute="bottom" constant="5" id="DfT-WO-GZ1"/>
-                                                                            <constraint firstItem="D7J-UJ-ZXg" firstAttribute="leading" secondItem="KVN-a0-i3b" secondAttribute="leading" constant="5" id="DkR-u8-YAz"/>
+                                                                            <constraint firstItem="D7J-UJ-ZXg" firstAttribute="leading" secondItem="KVN-a0-i3b" secondAttribute="leading" constant="10" id="DkR-u8-YAz"/>
                                                                             <constraint firstItem="yEh-7d-O97" firstAttribute="leading" secondItem="KVN-a0-i3b" secondAttribute="leading" constant="5" id="Dvi-Yx-xA1"/>
                                                                             <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="430" id="Kk8-6t-SfH"/>
                                                                             <constraint firstAttribute="trailing" secondItem="D7J-UJ-ZXg" secondAttribute="trailing" constant="5" id="PmL-uK-nVc"/>
@@ -972,6 +989,7 @@
                         <outlet property="mapModeTabView" destination="Vxj-5A-194" id="tY3-AX-wNf"/>
                         <outlet property="mergeDistanceForLocationTF" destination="gpX-zL-llT" id="One-LI-QF3"/>
                         <outlet property="mergeDistanceForMomentTF" destination="z2p-dY-eza" id="5sy-ju-u7c"/>
+                        <outlet property="noThumbnailLabel" destination="dMv-Ed-98e" id="JmD-h0-j2a"/>
                         <outlet property="placemarkInfoTF" destination="y40-1f-zwn" id="Bep-uY-Y6m"/>
                         <outlet property="startDatePicker" destination="xdG-yI-bFb" id="9Ti-NU-fjo"/>
                         <outlet property="statisticalInfoTV" destination="LCa-6x-mo0" id="kSv-zS-dTq"/>
