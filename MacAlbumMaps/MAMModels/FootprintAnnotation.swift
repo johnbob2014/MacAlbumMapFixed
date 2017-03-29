@@ -42,7 +42,13 @@ class FootprintAnnotation: NSObject,MKAnnotation,NSCoding,GCLocationAnalyserProt
     
     // MARK: - MKAnnotation
     var coordinate: CLLocationCoordinate2D{
-        return GCCoordinateTransformer.transformToMars(fromEarth:self.coordinateWGS84)
+        let mar = GCCoordinateTransformer.transformToMars(fromEarth:self.coordinateWGS84)
+        if mar.isValid(){
+            return mar
+        }else{
+            return self.coordinateWGS84
+        }
+        //return GCCoordinateTransformer.transformToMars(fromEarth:self.coordinateWGS84)
     }
     
     var title: String?{

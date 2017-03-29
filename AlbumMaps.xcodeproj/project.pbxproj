@@ -88,6 +88,8 @@
 		4B8B24451E6F94EE006C3D37 /* FootprintsRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B8B24441E6F94EE006C3D37 /* FootprintsRepository.swift */; };
 		4B8B244B1E6F9BE0006C3D37 /* NSData+NSHash.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B8B24481E6F9BE0006C3D37 /* NSData+NSHash.m */; };
 		4B8B244C1E6F9BE0006C3D37 /* NSString+NSHash.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B8B244A1E6F9BE0006C3D37 /* NSString+NSHash.m */; };
+		4B8B5CA31E8B3FF0006C9331 /* CLLocationCoordinate2D+Assistant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B8B5CA21E8B3FF0006C9331 /* CLLocationCoordinate2D+Assistant.swift */; };
+		4B8B5CA51E8B4631006C9331 /* 示例-三亚市.gpx in Resources */ = {isa = PBXBuildFile; fileRef = 4B8B5CA41E8B4631006C9331 /* 示例-三亚市.gpx */; };
 		4B8FB5AC1E554EFB00400F58 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B8FB5AB1E554EFB00400F58 /* AppDelegate.swift */; };
 		4B8FB5B11E554EFB00400F58 /* MacAlbumMaps.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 4B8FB5AF1E554EFB00400F58 /* MacAlbumMaps.xcdatamodeld */; };
 		4B8FB5B31E554EFB00400F58 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4B8FB5B21E554EFB00400F58 /* Assets.xcassets */; };
@@ -184,6 +186,8 @@
 		4B8B24481E6F9BE0006C3D37 /* NSData+NSHash.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+NSHash.m"; sourceTree = "<group>"; };
 		4B8B24491E6F9BE0006C3D37 /* NSString+NSHash.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+NSHash.h"; sourceTree = "<group>"; };
 		4B8B244A1E6F9BE0006C3D37 /* NSString+NSHash.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+NSHash.m"; sourceTree = "<group>"; };
+		4B8B5CA21E8B3FF0006C9331 /* CLLocationCoordinate2D+Assistant.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "CLLocationCoordinate2D+Assistant.swift"; path = "GenericExtensions/CLLocationCoordinate2D+Assistant.swift"; sourceTree = "<group>"; };
+		4B8B5CA41E8B4631006C9331 /* 示例-三亚市.gpx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "示例-三亚市.gpx"; sourceTree = "<group>"; };
 		4B8FB5AB1E554EFB00400F58 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4B8FB5B01E554EFB00400F58 /* MacAlbumMaps.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = MacAlbumMaps.xcdatamodel; sourceTree = "<group>"; };
 		4B8FB5B21E554EFB00400F58 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -255,6 +259,7 @@
 				1E4269D01E61BD02002087EA /* Date+Assistant.swift */,
 				1E46B3121E625F00000C6379 /* URL+Assistant.swift */,
 				4B31ACD71E7A8BA700AD3BA8 /* NSAlert+Assistant.swift */,
+				4B8B5CA21E8B3FF0006C9331 /* CLLocationCoordinate2D+Assistant.swift */,
 			);
 			name = GenericExtensions;
 			sourceTree = "<group>";
@@ -415,6 +420,7 @@
 				4B339BCD1E5C131F00401B0C /* AlecrimCoreData */,
 				4B8FB5AB1E554EFB00400F58 /* AppDelegate.swift */,
 				4B76B3381E567CD2003BED65 /* MediaMapVC.swift */,
+				4B8B5CA41E8B4631006C9331 /* 示例-三亚市.gpx */,
 				4B8FB5B41E554EFB00400F58 /* Main.storyboard */,
 				4B8B24431E6F8BE3006C3D37 /* MacAlbumMaps-Bridging-Header.h */,
 				4B8FB5B21E554EFB00400F58 /* Assets.xcassets */,
@@ -526,6 +532,7 @@
 				4B8FB5B31E554EFB00400F58 /* Assets.xcassets in Resources */,
 				4B8FB5B61E554EFB00400F58 /* Main.storyboard in Resources */,
 				4B543D1B1E6655A40017E12C /* IcoMoon_Arrow-Bottom_WBG.png in Resources */,
+				4B8B5CA51E8B4631006C9331 /* 示例-三亚市.gpx in Resources */,
 				4B543D4A1E6659C90017E12C /* IcoMoon_Video_WBG.png in Resources */,
 				4B29B58A1E7BB750003ACEFE /* SimpleCollectionVC.xib in Resources */,
 				4B543D351E6659C90017E12C /* IcoMoon_Download_WBG.png in Resources */,
@@ -616,6 +623,7 @@
 				4B8FB5AC1E554EFB00400F58 /* AppDelegate.swift in Sources */,
 				4B2E5F131E695D1000866737 /* DynamicColorSpace.swift in Sources */,
 				4B2E5F0B1E695D1000866737 /* DynamicColor+Deriving.swift in Sources */,
+				4B8B5CA31E8B3FF0006C9331 /* CLLocationCoordinate2D+Assistant.swift in Sources */,
 				4B76B3391E567CD2003BED65 /* MediaMapVC.swift in Sources */,
 				4B339BD71E5C131F00401B0C /* CoordinateInfo+AlecrimCoreDataAttributes.swift in Sources */,
 				4B2E5F111E695D1000866737 /* DynamicColor+XYZ.swift in Sources */,

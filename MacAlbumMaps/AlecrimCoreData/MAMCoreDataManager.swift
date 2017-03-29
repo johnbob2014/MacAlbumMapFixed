@@ -31,7 +31,13 @@ extension CoordinateInfo : MKAnnotation{
     
     //  MKAnnotation Protocol
     public var coordinate: CLLocationCoordinate2D {
-        return GCCoordinateTransformer.transformToMars(fromEarth:self.coordinateWGS84)
+        let mar = GCCoordinateTransformer.transformToMars(fromEarth:self.coordinateWGS84)
+        if mar.isValid(){
+            return mar
+        }else{
+            return self.coordinateWGS84
+        }
+        //return GCCoordinateTransformer.transformToMars(fromEarth:self.coordinateWGS84)
     }
     
     public var title: String?{
@@ -55,7 +61,10 @@ extension CoordinateInfo : MKAnnotation{
             
             if let localizedPlaceString = self.localizedPlaceString_Placemark{
                 detail += localizedPlaceString
+            }else{
+                detail += NSLocalizedString("Can not parse this coordinate",comment:"无法解析该座标")
             }
+            
             return detail
         }
     }

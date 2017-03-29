@@ -259,6 +259,8 @@ class MediaMapVC: NSViewController,MKMapViewDelegate,NSOutlineViewDelegate,NSOut
         
         self.updateMediaInfos()
         
+        self.initData()
+        
         self.clearMainMapView()
     }
     
@@ -373,6 +375,19 @@ class MediaMapVC: NSViewController,MKMapViewDelegate,NSOutlineViewDelegate,NSOut
         }
         
         mediaLibraryLoader.asyncLoadMedia()
+    }
+    
+    func initData() -> Void {
+        // 如果没有足迹包，添加一个示例足迹包
+        if appContext.footprintsRepositoryInfos.count() == 0{
+            if let filePath = Bundle.main.path(forResource: "示例-三亚市", ofType: "gpx"){
+                if let fr = FootprintsRepository.importFromGPXFile(filePath: filePath){
+                    if MAMCoreDataManager.addFRInfo(fr: fr){
+                        print("添加示例足迹包成功")
+                    }
+                }
+            }
+        }
     }
     
     func checkFirstLaunch() -> Void {
@@ -553,7 +568,7 @@ class MediaMapVC: NSViewController,MKMapViewDelegate,NSOutlineViewDelegate,NSOut
     var currentMergeDistance: Double = 0.0
     var currentStartDate: Date = Date.init(timeIntervalSinceReferenceDate: 0.0)
     var currentEndDate: Date = Date.init(timeIntervalSinceReferenceDate: 0.0)
-    var currentPlacemark = ""
+    var currentGCTreeNode = GCTreeNode()
     @IBAction func goBtnTD(_ sender: NSButton) {
         self.startLoading()
         
@@ -588,18 +603,20 @@ class MediaMapVC: NSViewController,MKMapViewDelegate,NSOutlineViewDelegate,NSOut
         case 1:
             // 地点模式
             if let item = locationOutlineView.item(atRow: locationOutlineView.selectedRow){
-                let tn = item as! GCTreeNode
-                
-                currentPlacemark = tn.title
-                let filteredMediaInfos = appContext.mediaInfos.filter { $0.coordinateInfo.localizedPlaceString_Placemark.contains(tn.title) }.sorted { (infoA, infoB) -> Bool in
-                    infoA.creationDate?.compare(infoB.creationDate as! Date) == ComparisonResult.orderedAscending
+                if item is GCTreeNode{
+                    let tn = item as! GCTreeNode
+                    print(tn.tag)
+                    currentGCTreeNode = tn
+                    
+                    currentMergeDistance = NSString.init(string: mergeDistanceForLocationTF.stringValue.replacingOccurrences(of: ",", with: "")).doubleValue
+                    if currentMergeDistance == 0{
+                        currentMergeDistance = 1000
+                    }
+                    self.showMediaInfos(mediaInfos: self.filteredMediaInfos(treeNode: tn),mapMode: MapMode.Location,mergeDistance: currentMergeDistance)
+                }else{
+                    print("item is not GCTreeNode!")
                 }
                 
-                currentMergeDistance = NSString.init(string: mergeDistanceForLocationTF.stringValue.replacingOccurrences(of: ",", with: "")).doubleValue
-                if currentMergeDistance == 0{
-                    currentMergeDistance = 1000
-                }
-                self.showMediaInfos(mediaInfos: filteredMediaInfos,mapMode: MapMode.Location,mergeDistance: currentMergeDistance)
             }
             
         default:
@@ -619,6 +636,74 @@ class MediaMapVC: NSViewController,MKMapViewDelegate,NSOutlineViewDelegate,NSOut
         
         self.endLoading()
     }
+    
+    private func filteredMediaInfos(treeNode: GCTreeNode) -> [MediaInfo] {
+        let table = appContext.mediaInfos
+        var filteredMediaInfos = [MediaInfo]()
+        
+        filteredMediaInfos = table.filter{
+            if let placemark = $0.coordinateInfo?.localizedPlaceString_Placemark {
+                return placemark.contains(treeNode.title)
+            }else{
+                return false
+            }
+        }
+        /*
+        switch treeNode.tag {
+        case 0:
+            filteredMediaInfos = table.sorted{ _,_ in true }
+        case 1:
+            filteredMediaInfos = table.filter{
+                if let placemark = $0.coordinateInfo?.country_Placemark {
+                    return placemark.contains(treeNode.title)
+                }else{
+                    return false
+                }
+            }
+        case 2:
+            filteredMediaInfos = table.filter{
+                if let placemark = $0.coordinateInfo?.administrativeArea_Placemark {
+                    return placemark.contains(treeNode.title)
+                }else{
+                    return false
+                }
+            }
+        case 3:
+            filteredMediaInfos = table.filter{
+                if let placemark = $0.coordinateInfo?.subAdministrativeArea_Placemark {
+                    return placemark.contains(treeNode.title)
+                }else{
+                    return false
+                }
+            }
+        case 4:
+            filteredMediaInfos = table.filter{
+                if let placemark = $0.coordinateInfo?.locality_Placemark {
+                    return placemark.contains(treeNode.title)
+                }else{
+                    return false
+                }
+            }
+        case 5:
+            filteredMediaInfos = table.filter{
+                if let placemark = $0.coordinateInfo?.subLocality_Placemark {
+                    return placemark.contains(treeNode.title)
+                }else{
+                    return false
+                }
+            }
+        default:
+            break
+        }
+        */
+        
+        let sortedMediaInfos = filteredMediaInfos.sorted { (infoA, infoB) -> Bool in
+                infoA.creationDate?.compare(infoB.creationDate as! Date) == ComparisonResult.orderedAscending
+        }
+        
+        return sortedMediaInfos
+    }
+    
     
     @IBAction func locationBtnTD(_ sender: NSButton) {
         
@@ -1008,6 +1093,7 @@ class MediaMapVC: NSViewController,MKMapViewDelegate,NSOutlineViewDelegate,NSOut
             
             if groupIndex == 0 {
                 //print("根据 currentMergeDistance 缩放地图")
+                //print(mediaGroupAnno.coordinate)
                 let span = MKCoordinateSpan.init(latitudeDelta: currentMergeDistance / 10000.0, longitudeDelta: currentMergeDistance / 10000.0)
                 mainMapView.setRegion(MKCoordinateRegion.init(center: mediaGroupAnno.coordinate, span: span), animated: true)
                 
@@ -1263,7 +1349,7 @@ class MediaMapVC: NSViewController,MKMapViewDelegate,NSOutlineViewDelegate,NSOut
             footprintsRepository.title = currentStartDate.stringWithDefaultFormat() + " ~ " + currentEndDate.stringWithDefaultFormat()
         }else if currentMapMode == MapMode.Location {
             footprintsRepository.radius = currentMergeDistance / 2.0
-            footprintsRepository.title = currentPlacemark
+            footprintsRepository.title = currentGCTreeNode.title
         }
         
         return footprintsRepository

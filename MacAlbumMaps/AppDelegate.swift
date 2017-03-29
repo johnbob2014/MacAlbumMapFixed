@@ -14,7 +14,7 @@ let appContext = AppDelegate().managedObjectContext
 class AppDelegate: NSObject, NSApplicationDelegate {
     
     func applicationDidFinishLaunching(_ aNotification: Notification) {
-        //MAMSettingManager.hasPurchasedShareAndBrowse = false
+        MAMSettingManager.hasPurchasedShareAndBrowse = true
         //MAMCoreDataManager.latestModificationDate = Date.init(timeIntervalSince1970: 0.0)
     }
 
