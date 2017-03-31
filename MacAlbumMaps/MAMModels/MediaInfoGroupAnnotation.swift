@@ -35,12 +35,16 @@ class MediaInfoGroupAnnotation: NSObject , MKAnnotation{
     // MARK: - MKAnnotation Delegate
     
     var coordinate: CLLocationCoordinate2D{
+        /*
         let mar = GCCoordinateTransformer.transformToMars(fromEarth:self.location.coordinate)
         if mar.isValid(){
             return mar
         }else{
             return self.location.coordinate
         }
+        */
+        
+        return GCCoordinateTransformer.transformToMars(fromEarth:self.location.coordinate)
     }
     
     var title: String?{

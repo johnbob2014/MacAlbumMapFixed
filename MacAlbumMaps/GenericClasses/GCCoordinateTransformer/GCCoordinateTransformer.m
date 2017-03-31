@@ -96,21 +96,39 @@ void transform_baidu_from_mars(double bd_lat, double bd_lon, double *gg_lat, dou
     double lat = 0.0;
     double lng = 0.0;
     transform_earth_from_mars(earth.latitude, earth.longitude, &lat, &lng);
-    return CLLocationCoordinate2DMake(earth.latitude + lat, earth.longitude + lng);
+    CLLocationCoordinate2D result = CLLocationCoordinate2DMake(earth.latitude + lat, earth.longitude + lng);
+    
+    if ([GCCoordinateTransformer checkIsValidCoordinate:result]) {
+        return result;
+    }else{
+        return earth;
+    }
 }
 
 + (CLLocationCoordinate2D)transformToMarsFromBaidu:(CLLocationCoordinate2D)baidu{
     double lat = 0.0;
     double lng = 0.0;
     transform_baidu_from_mars(baidu.latitude, baidu.longitude, &lat, &lng);
-    return CLLocationCoordinate2DMake(lat, lng);
+    CLLocationCoordinate2D result = CLLocationCoordinate2DMake(lat, lng);
+    
+    if ([GCCoordinateTransformer checkIsValidCoordinate:result]) {
+        return result;
+    }else{
+        return baidu;
+    }
 }
 
 + (CLLocationCoordinate2D)transformToEarthFromMars:(CLLocationCoordinate2D)mars{
     double lat = 0.0;
     double lng = 0.0;
     transform_earth_from_mars(mars.latitude, mars.longitude, &lat, &lng);
-    return CLLocationCoordinate2DMake(mars.latitude - lat, mars.longitude - lng);
+    CLLocationCoordinate2D result =  CLLocationCoordinate2DMake(mars.latitude - lat, mars.longitude - lng);
+    
+    if ([GCCoordinateTransformer checkIsValidCoordinate:result]) {
+        return result;
+    }else{
+        return mars;
+    }
 }
 
 + (CLLocationCoordinate2D)transformToEarthFromBaidu:(CLLocationCoordinate2D)baidu{
@@ -122,7 +140,13 @@ void transform_baidu_from_mars(double bd_lat, double bd_lon, double *gg_lat, dou
     double lat = 0.0;
     double lng = 0.0;
     transform_mars_from_baidu(mars.latitude, mars.longitude, &lat, &lng);
-    return CLLocationCoordinate2DMake(lat, lng);
+    CLLocationCoordinate2D result = CLLocationCoordinate2DMake(lat, lng);
+    
+    if ([GCCoordinateTransformer checkIsValidCoordinate:result]) {
+        return result;
+    }else{
+        return mars;
+    }
 }
 
 + (CLLocationCoordinate2D)transformToBaiduFromEarth:(CLLocationCoordinate2D)earth{
@@ -130,4 +154,13 @@ void transform_baidu_from_mars(double bd_lat, double bd_lon, double *gg_lat, dou
     return [GCCoordinateTransformer transformToBaiduFromMars:mars];
 }
 
++ (BOOL)checkIsValidCoordinate:(CLLocationCoordinate2D)coordinate{
+    BOOL valid = NO;
+    if (coordinate.latitude > -90 && coordinate.latitude < 90 && coordinate.latitude != 0 && coordinate.longitude > -180 && coordinate.longitude < 180 && coordinate.longitude != 0) {
+        valid = YES;
+    }
+    return valid;
+}
+
 @end
+
