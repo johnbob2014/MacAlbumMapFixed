@@ -447,7 +447,7 @@ class MAMCoreDataManager: NSObject {
             })
             var infoString = ""
             if failures.count > 0{
-                infoString = NSLocalizedString("Parse complete. ",comment:"本次解析完成。 ") + "\(failures.count)" + NSLocalizedString("Coordinates failed to reverse more than 5 times.",comment:"个座标解析失败5次以上，不再解析！")
+                infoString = NSLocalizedString("Parse complete. ",comment:"本次解析完成。 ") + "\(failures.count) " + NSLocalizedString("Coordinates failed to reverse more than 5 times.",comment:"个座标解析失败5次以上，不再解析！")
             }else{
                 infoString = NSLocalizedString("Parse complete.",comment:"本次解析完成。")
             }

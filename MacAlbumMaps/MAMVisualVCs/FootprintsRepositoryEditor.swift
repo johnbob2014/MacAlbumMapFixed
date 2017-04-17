@@ -35,6 +35,10 @@ class FootprintsRepositoryEditor: NSViewController,NSTableViewDelegate,NSTableVi
     func checkShareAndBrowse() -> Bool {
         if MAMSettingManager.hasPurchasedShareAndBrowse {
             return true
+        }else if MAMSettingManager.trialCountForShareAndBrowse > 0{
+            MAMSettingManager.trialCountForShareAndBrowse -= 1
+            
+            return true
         }else{
             let purchaseVC = PurchaseShareAndBrowseVC()
             self.presentViewControllerAsModalWindow(purchaseVC)

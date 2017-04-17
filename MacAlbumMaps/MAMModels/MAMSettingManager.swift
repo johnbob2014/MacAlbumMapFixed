@@ -39,105 +39,115 @@ class MAMSettingManager: NSObject {
     /// 时刻模式分组距离
     class var mergeDistanceForMoment: CLLocationDistance{
         get{
-            var mergeDistance = NSUserDefaultsController.shared().defaults.double(forKey: "mergeDistanceForMoment")
+            var mergeDistance = UserDefaults.standard.double(forKey: "mergeDistanceForMoment")
             if mergeDistance == 0.0 {
                 mergeDistance = 300
             }
             return mergeDistance
         }
         set{
-            NSUserDefaultsController.shared().defaults.setValue(newValue, forKey: "mergeDistanceForMoment")
-            NSUserDefaultsController.shared().defaults.synchronize()
+            UserDefaults.standard.setValue(newValue, forKey: "mergeDistanceForMoment")
+            UserDefaults.standard.synchronize()
         }
     }
     
     /// 地点模式分组距离
     class var mergeDistanceForLocation: CLLocationDistance{
         get{
-            var mergeDistance = NSUserDefaultsController.shared().defaults.double(forKey: "mergeDistanceForLocation")
+            var mergeDistance = UserDefaults.standard.double(forKey: "mergeDistanceForLocation")
             if mergeDistance == 0.0 {
                 mergeDistance = 2000
             }
             return mergeDistance
         }
         set{
-            NSUserDefaultsController.shared().defaults.setValue(newValue, forKey: "mergeDistanceForLocation")
-            NSUserDefaultsController.shared().defaults.synchronize()
+            UserDefaults.standard.setValue(newValue, forKey: "mergeDistanceForLocation")
+            UserDefaults.standard.synchronize()
         }
     }
     
     /// 导航栏播放时间间隔，默认2.0秒
     class var playTimeInterval: TimeInterval{
         get{
-            var interval = NSUserDefaultsController.shared().defaults.double(forKey: "playTimeInterval")
+            var interval = UserDefaults.standard.double(forKey: "playTimeInterval")
             if interval == 0.0 {
                 interval = 2.0
             }
             return interval
         }
         set{
-            NSUserDefaultsController.shared().defaults.setValue(newValue, forKey: "playTimeInterval")
-            NSUserDefaultsController.shared().defaults.synchronize()
+            UserDefaults.standard.setValue(newValue, forKey: "playTimeInterval")
+            UserDefaults.standard.synchronize()
         }
     }
     
     /// 是否自动以第一张图片作为分享缩略图，默认为否
     class var autoUseFirstMediaAsThumbnail: Bool{
         get{
-            if let autoUse = NSUserDefaultsController.shared().defaults.value(forKey: "autoUseFirstMediaAsThumbnail"){
+            if let autoUse = UserDefaults.standard.value(forKey: "autoUseFirstMediaAsThumbnail"){
                 return autoUse as! Bool
             }else{
                 return false
             }
         }
         set{
-            NSUserDefaultsController.shared().defaults.setValue(newValue, forKey: "autoUseFirstMediaAsThumbnail")
-            NSUserDefaultsController.shared().defaults.synchronize()
+            UserDefaults.standard.setValue(newValue, forKey: "autoUseFirstMediaAsThumbnail")
+            UserDefaults.standard.synchronize()
         }
     }
     
     /// 是否自动以全部图片作为分享缩略图，默认为是
     class var autoUseAllMediasAsThumbnail: Bool{
         get{
-            if let autoUse = NSUserDefaultsController.shared().defaults.value(forKey: "autoUseAllMediasAsThumbnail"){
+            if let autoUse = UserDefaults.standard.value(forKey: "autoUseAllMediasAsThumbnail"){
                 return autoUse as! Bool
             }else{
                 return true
             }
         }
         set{
-            NSUserDefaultsController.shared().defaults.setValue(newValue, forKey: "autoUseAllMediasAsThumbnail")
-            NSUserDefaultsController.shared().defaults.synchronize()
+            UserDefaults.standard.setValue(newValue, forKey: "autoUseAllMediasAsThumbnail")
+            UserDefaults.standard.synchronize()
         }
     }
     
     /// 是否曾经登陆
     class var everLaunched: Bool{
         get{
-            if let ever = NSUserDefaultsController.shared().defaults.value(forKey: "everLaunched"){
+            if let ever = UserDefaults.standard.value(forKey: "everLaunched"){
                 return ever as! Bool
             }else{
                 return false
             }
         }
         set{
-            NSUserDefaultsController.shared().defaults.setValue(newValue, forKey: "everLaunched")
-            NSUserDefaultsController.shared().defaults.synchronize()
+            UserDefaults.standard.setValue(newValue, forKey: "everLaunched")
+            UserDefaults.standard.synchronize()
         }
     }
     
     /// 是否订购功能
     class var hasPurchasedShareAndBrowse: Bool{
         get{
-            if let ever = NSUserDefaultsController.shared().defaults.value(forKey: "hasPurchasedShareAndBrowse"){
+            if let ever = UserDefaults.standard.value(forKey: "hasPurchasedShareAndBrowse"){
                 return ever as! Bool
             }else{
                 return false
             }
         }
         set{
-            NSUserDefaultsController.shared().defaults.setValue(newValue, forKey: "hasPurchasedShareAndBrowse")
-            NSUserDefaultsController.shared().defaults.synchronize()
+            UserDefaults.standard.setValue(newValue, forKey: "hasPurchasedShareAndBrowse")
+            UserDefaults.standard.synchronize()
+        }
+    }
+    
+    /// 试用次数
+    class var trialCountForShareAndBrowse: Int{
+        get{
+            return UserDefaults.standard.integer(forKey: "trialCountForShareAndBrowse")
+        }
+        set{
+            UserDefaults.standard.set(newValue, forKey: "trialCountForShareAndBrowse")
         }
     }
 

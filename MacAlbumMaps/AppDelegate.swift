@@ -16,6 +16,20 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     func applicationDidFinishLaunching(_ aNotification: Notification) {
         //MAMSettingManager.hasPurchasedShareAndBrowse = true
         //MAMCoreDataManager.latestModificationDate = Date.init(timeIntervalSince1970: 0.0)
+        
+        let currentVersion = Bundle.main.infoDictionary!["CFBundleShortVersionString"] as! String
+        if currentVersion.compare("1.0.1") == ComparisonResult.orderedAscending {
+            MAMSettingManager.hasPurchasedShareAndBrowse = false
+        }
+        
+        let historyVersion = UserDefaults.standard.object(forKey: "CFBundleShortVersionString") as? String ?? ""
+        
+        print(currentVersion,historyVersion)
+        
+        if currentVersion.compare(historyVersion) == ComparisonResult.orderedDescending{
+            UserDefaults.standard.set(currentVersion, forKey: "CFBundleShortVersionString")
+        }
+        
     }
 
     func applicationWillTerminate(_ aNotification: Notification) {

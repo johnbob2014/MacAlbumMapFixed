@@ -404,6 +404,8 @@ class MediaMapVC: NSViewController,MKMapViewDelegate,NSOutlineViewDelegate,NSOut
                 NSAlert.createSimpleAlertAndBeginSheetModal(messageText: NSLocalizedString("AlbumMaps is first launched. Reading data from photos library may take a few minutes. Please be patient.", comment: "应用首次启动，从照片图库中读取数据可能需要耗费几分钟时间，请耐心等待。"), for: window)
             }
             
+            MAMSettingManager.trialCountForShareAndBrowse = 10
+            
             MAMSettingManager.everLaunched = true
         }
         
